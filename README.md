@@ -10,7 +10,11 @@
 |phone_number|string|null: false|
 |post_number|string|null: false|
 |pref|string|null: false, foreign_key: true|
-|address|string|null: false|
+|profile|text||
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
 ## Association
 - belongs_to :pref
 - has_many :comments
@@ -26,8 +30,8 @@
 # commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
-|goods_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
+|goods|reference|null: false, foreign_key: true|
 |text|string||
 ## Association
 - belongs_to :user
@@ -50,6 +54,13 @@
 - belongs_to :categories
 - belongs_to :status
 - belongs_to :brand
+
+# statusテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+## Association
+- belongs_to :goods
 
 # deliveryテーブル
 |Column|Type|Options|
