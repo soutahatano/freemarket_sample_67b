@@ -1,8 +1,8 @@
-# userテーブル
+# usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
-|e_mail|string|null: false|
+|e_mail|string|null: false,unique|
 |password|string|null: false|
 |name|string|null: false|
 |birthday|date|null: false|
@@ -20,12 +20,12 @@
 - has_many :comments
 - has_many :goods
 
-# prefテーブル
+# prefsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ## Association
-- belongs_to:user
+- has many:users
 
 # commentsテーブル
 |Column|Type|Options|
@@ -35,34 +35,31 @@
 |text|string||
 ## Association
 - belongs_to :user
-- belongs_to :goods
+- belongs_to :good
 
 # goodsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|img_id|reference|null: false, foreign_key: true|
-|categories_id|string|null: false, foreign_key: true|
-|status|string|foreign_key: true|
+|categories|string|null: false, foreign_key: true|
+|status|reference|foreign_key: true,null false|
 |price|integer|null: false|
-|brand_id|string|foreign_key: true|
+|brand|reference|foreign_key: true|
 |user_id|reference|null: false|
 ## Association
 - has_many :delivery
 - has_many :comments
-- belongs_to :img
-- belongs_to :categories
+- has many :imgs
+- belongs_to :category
 - belongs_to :status
 - belongs_to :brand
-
-# statusテーブル
+# brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ## Association
-- belongs_to :goods
-
-# deliveryテーブル
+- belongs_to :good
+# deliveriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
@@ -70,23 +67,23 @@
 |delivery_days|integer|null: false, foreign_key: true|
 |delivery_way|string|null: false, foreign_key: true|
 |delivery_date|datetime|null: false, foreign_key: true|
-|goods_id|reference|null: false, foreign_key: true|
+|goods|reference|null: false, foreign_key: true|
 ## Association
 - belongs_to :user
-- belongs_to :goods
+- belongs_to :good
 - belongs_to :delivery_charge
-- belongs_to :delivery_days
+- belongs_to :delivery_day
 - belongs_to :delivery_way
-- belongs_to :Entity
+- belongs_to :entity
 
-# delivery_chargeテーブル
+# delivery_chargesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |price|integer|null: false|
 ## Association
 - belongs_to :delivery
 
-# delivery_chargeテーブル
+# delivery_chargesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |price|integer|null: false|
@@ -100,14 +97,14 @@
 ## Association
 - belongs_to :delivery
 
-# delivery_wayテーブル
+# delivery_waysテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ## Association
 - belongs_to :delivery
 
-# delivery_dateテーブル
+# delivery_datesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |date|datetime|null: false|
