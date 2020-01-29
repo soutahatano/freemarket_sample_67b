@@ -18,6 +18,7 @@
 - belongs_to :pref
 - has_many :comments
 - has_many :items
+- belongs_to :favorite
 
 # prefsテーブル
 |Column|Type|Options|
@@ -45,6 +46,7 @@
 |price|integer|null: false|
 |brand|reference|foreign_key: true|
 |user|reference|null: false,foreign_key: true|
+|soldout|booling|default: "false"|
 ## Association
 - belongs_to :delivery
 - has_many :comments
@@ -52,6 +54,7 @@
 - belongs_to :category
 - belongs_to :status
 - belongs_to :brand
+- belongs_to :favorite
 # brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -115,4 +118,13 @@
 |date|datetime|null: false|
 ## Association
 - belongs_to :delivery
+# favoriteテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|null: false,foreign_key: true|
+|item|reference|null: false,foreign_key: true|
+## Association
+- has_many :users
+- has_many :items
+
 
