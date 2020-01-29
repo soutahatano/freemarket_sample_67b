@@ -30,7 +30,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |user|reference|null: false, foreign_key: true|
-|items|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 |text|string||
 ## Association
 - belongs_to :user
@@ -40,13 +40,13 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|categories|string|null: false, foreign_key: true|
+|category|string|null: false, foreign_key: true|
 |status|reference|foreign_key: true,null false|
 |price|integer|null: false|
 |brand|reference|foreign_key: true|
-|user_id|reference|null: false|
+|user|reference|null: false,foreign_key: true|
 ## Association
-- has_many :delivery
+- belongs_to :delivery
 - has_many :comments
 - has many :imgs
 - belongs_to :category
@@ -58,22 +58,28 @@
 |name|string|null: false|
 ## Association
 - belongs_to :item
+# statusesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+## Association
+- belongs_to :item
 # deliveriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
 |delivery_charge|integer|null: false, foreign_key: true|
-|delivery_days|integer|null: false, foreign_key: true|
+|delivery_day|integer|null: false, foreign_key: true|
 |delivery_way|string|null: false, foreign_key: true|
 |delivery_date|datetime|null: false, foreign_key: true|
-|items|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 ## Association
 - belongs_to :user
 - belongs_to :item
 - belongs_to :delivery_charge
 - belongs_to :delivery_day
 - belongs_to :delivery_way
-- belongs_to :entity
+
 
 # delivery_chargesテーブル
 |Column|Type|Options|
