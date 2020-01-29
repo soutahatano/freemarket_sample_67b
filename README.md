@@ -118,7 +118,7 @@
 |date|datetime|null: false|
 ## Association
 - belongs_to :delivery
-# favoriteテーブル
+# favoritesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user|reference|null: false,foreign_key: true|
