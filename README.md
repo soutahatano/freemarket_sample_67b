@@ -1,24 +1,105 @@
-# README
+# userテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|e_mail|string|null: false|
+|password|string|null: false|
+|name|string|null: false|
+|birthday|date|null: false|
+|credit_number|string|null: false|
+|phone_number|string|null: false|
+|post_number|string|null: false|
+|pref|string|null: false, foreign_key: true|
+|address|string|null: false|
+## Association
+- belongs_to :pref
+- has_many :comments
+- has_many :goods
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# prefテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+## Association
+- belongs_to:user
 
-Things you may want to cover:
+# commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|null: false, foreign_key: true|
+|goods_id|reference|null: false, foreign_key: true|
+|text|string||
+## Association
+- belongs_to :user
+- belongs_to :goods
 
-* Ruby version
+# deliveryテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|null: false, foreign_key: true|
+|delivery_charge|integer|null: false, foreign_key: true|
+|delivery_days|integer|null: false, foreign_key: true|
+|delivery_way|string|null: false, foreign_key: true|
+|delivery_date|datetime|null: false, foreign_key: true|
+|goods_id|reference|null: false, foreign_key: true|
+## Association
+- belongs_to :user
+- belongs_to :goods
+- belongs_to :delivery_charge
+- belongs_to :delivery_days
+- belongs_to :delivery_way
+- belongs_to :Entity
 
-* System dependencies
+# goodsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|img_id|reference|null: false, foreign_key: true|
+|categories_id|string|null: false, foreign_key: true|
+|status|string|foreign_key: true|
+|price|integer|null: false|
+|brand_id|string|foreign_key: true|
+|user_id|reference|null: false|
+## Association
+- has_many :delivery
+- has_many :comments
+- belongs_to :img
+- belongs_to :categories
+- belongs_to :status
+- belongs_to :brand
 
-* Configuration
+# delivery_chargeテーブル
+|Column|Type|Options|
+|------|----|-------|
+|price|integer|null: false|
+## Association
+- belongs_to :delivery
 
-* Database creation
+# delivery_chargeテーブル
+|Column|Type|Options|
+|------|----|-------|
+|price|integer|null: false|
+## Association
+- belongs_to :delivery
 
-* Database initialization
+# delivery_daysテーブル
+|Column|Type|Options|
+|------|----|-------|
+|day|string|null: false|
+## Association
+- belongs_to :delivery
 
-* How to run the test suite
+# delivery_wayテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+## Association
+- belongs_to :delivery
 
-* Services (job queues, cache servers, search engines, etc.)
+# delivery_dateテーブル
+|Column|Type|Options|
+|------|----|-------|
+|date|datetime|null: false|
+## Association
+- belongs_to :delivery
 
-* Deployment instructions
-
-* ...
