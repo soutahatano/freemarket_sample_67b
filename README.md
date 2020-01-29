@@ -4,7 +4,6 @@
 |nickname|string|null: false|
 |e_mail|string|null: false,unique|
 |password|string|null: false|
-|name|string|null: false|
 |birthday|date|null: false|
 |credit_number|string|null: false|
 |phone_number|string|null: false|
@@ -18,7 +17,7 @@
 ## Association
 - belongs_to :pref
 - has_many :comments
-- has_many :goods
+- has_many :items
 
 # prefsテーブル
 |Column|Type|Options|
@@ -31,13 +30,13 @@
 |Column|Type|Options|
 |------|----|-------|
 |user|reference|null: false, foreign_key: true|
-|goods|reference|null: false, foreign_key: true|
+|items|reference|null: false, foreign_key: true|
 |text|string||
 ## Association
 - belongs_to :user
-- belongs_to :good
+- belongs_to :item
 
-# goodsテーブル
+# itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -58,7 +57,7 @@
 |------|----|-------|
 |name|string|null: false|
 ## Association
-- belongs_to :good
+- belongs_to :item
 # deliveriesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -67,10 +66,10 @@
 |delivery_days|integer|null: false, foreign_key: true|
 |delivery_way|string|null: false, foreign_key: true|
 |delivery_date|datetime|null: false, foreign_key: true|
-|goods|reference|null: false, foreign_key: true|
+|items|reference|null: false, foreign_key: true|
 ## Association
 - belongs_to :user
-- belongs_to :good
+- belongs_to :item
 - belongs_to :delivery_charge
 - belongs_to :delivery_day
 - belongs_to :delivery_way
