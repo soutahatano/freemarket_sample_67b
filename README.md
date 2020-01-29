@@ -18,7 +18,7 @@
 - belongs_to :pref
 - has_many :comments
 - has_many :items
-- belongs_to :favorite
+- has_many :favorites
 
 # prefsテーブル
 |Column|Type|Options|
@@ -54,7 +54,7 @@
 - belongs_to :category
 - belongs_to :status
 - belongs_to :brand
-- belongs_to :favorite
+- has_many :favorites
 # brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -124,7 +124,7 @@
 |user|reference|null: false,foreign_key: true|
 |item|reference|null: false,foreign_key: true|
 ## Association
-- has_many :users
-- has_many :items
+- belongs_to :user
+- belongs_to :item
 
 
