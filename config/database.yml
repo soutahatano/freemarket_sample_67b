@@ -22,4 +22,6 @@ production:
   <<: *default
 #  database: db/production.sqlite3
   database: fremaket_production
-  username: root
+   username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
