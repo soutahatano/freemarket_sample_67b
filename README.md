@@ -8,31 +8,21 @@
 |credit_number|string|null: false|
 |phone_number|string|null: false|
 |post_number|string|null: false|
-|pref|string|null: false, foreign_key: true|
 |profile|text||
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 ## Association
-- belongs_to :pref
 - has_many :comments
 - has_many :items
 - has_many :favorites
-
-# prefsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-## Association
-- has many:users
-
 # commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user|reference|null: false, foreign_key: true|
 |item|reference|null: false, foreign_key: true|
-|text|string||
+|text|string|null: false|
 ## Association
 - belongs_to :user
 - belongs_to :item
@@ -41,10 +31,10 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|category|string|null: false, foreign_key: true|
+|category|reference|null: false, foreign_key: true|
 |status|reference|foreign_key: true,null false|
 |price|integer|null: false|
-|brand|reference|foreign_key: true|
+|brand|reference|null: fgalse, foreign_key: true|
 |user|reference|null: false,foreign_key: true|
 |soldout|booling|default: "false"|
 ## Association
