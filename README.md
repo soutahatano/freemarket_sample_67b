@@ -33,23 +33,6 @@
 - belongs_to :user
 - belongs_to :goods
 
-# deliveryテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
-|delivery_charge|integer|null: false, foreign_key: true|
-|delivery_days|integer|null: false, foreign_key: true|
-|delivery_way|string|null: false, foreign_key: true|
-|delivery_date|datetime|null: false, foreign_key: true|
-|goods_id|reference|null: false, foreign_key: true|
-## Association
-- belongs_to :user
-- belongs_to :goods
-- belongs_to :delivery_charge
-- belongs_to :delivery_days
-- belongs_to :delivery_way
-- belongs_to :Entity
-
 # goodsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -67,6 +50,23 @@
 - belongs_to :categories
 - belongs_to :status
 - belongs_to :brand
+
+# deliveryテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|null: false, foreign_key: true|
+|delivery_charge|integer|null: false, foreign_key: true|
+|delivery_days|integer|null: false, foreign_key: true|
+|delivery_way|string|null: false, foreign_key: true|
+|delivery_date|datetime|null: false, foreign_key: true|
+|goods_id|reference|null: false, foreign_key: true|
+## Association
+- belongs_to :user
+- belongs_to :goods
+- belongs_to :delivery_charge
+- belongs_to :delivery_days
+- belongs_to :delivery_way
+- belongs_to :Entity
 
 # delivery_chargeテーブル
 |Column|Type|Options|
