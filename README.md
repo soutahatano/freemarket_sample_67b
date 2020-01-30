@@ -30,7 +30,7 @@
 # itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index: true|
 |category|reference|null: false, foreign_key: true|
 |status|reference|foreign_key: true,null false|
 |price|integer|null: false|
@@ -51,12 +51,14 @@
 |name|string|null: false|
 ## Association
 - belongs_to :item
+
 # statusesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ## Association
 - belongs_to :item
+
 # deliveriesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -74,12 +76,12 @@
 - belongs_to :delivery_way
 
 
-# delivery_chargesテーブル
+# categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|price|integer|null: false|
+|name|string|null: false|
 ## Association
-- belongs_to :delivery
+- has_many :items
 
 # delivery_chargesテーブル
 |Column|Type|Options|
@@ -108,6 +110,7 @@
 |date|datetime|null: false|
 ## Association
 - belongs_to :delivery
+
 # favoritesテーブル
 |Column|Type|Options|
 |------|----|-------|
