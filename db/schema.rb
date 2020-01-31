@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_074533) do
+ActiveRecord::Schema.define(version: 2020_01_31_120852) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.string "post_number", null: false
+    t.string "pref", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
+    t.string "building"
+    t.string "phone_number"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -32,6 +49,14 @@ ActiveRecord::Schema.define(version: 2020_01_30_074533) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_comments_on_item_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "credit_number", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -112,9 +137,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_074533) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.date "birthday", null: false
-    t.string "credit_number", null: false
     t.string "phone_number", null: false
-    t.string "post_number", null: false
     t.text "profile"
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -129,8 +152,10 @@ ActiveRecord::Schema.define(version: 2020_01_30_074533) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
+  add_foreign_key "credits", "users"
   add_foreign_key "deliveries", "delivery_charges"
   add_foreign_key "deliveries", "delivery_dates"
   add_foreign_key "deliveries", "delivery_days"

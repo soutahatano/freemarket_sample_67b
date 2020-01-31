@@ -5,9 +5,7 @@
 |e_mail|string|null: false,unique|
 |password|string|null: false|
 |birthday|date|null: false|
-|credit_number|string|null: false|
 |phone_number|string|null: false|
-|post_number|string|null: false|
 |profile|text||
 |first_name|string|null: false|
 |last_name|string|null: false|
@@ -17,6 +15,35 @@
 - has_many :comments
 - has_many :items
 - has_many :favorites
+- has_one  :credit
+- has_one  :address
+
+# address
+|Column|Type|Options|
+|------|----|-------|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|post_number|string|null: false|
+|pref|string|null: false|
+|city|string|null: false|
+|house_number|string|null: false|
+|building|string||
+|phone_number|string||
+|user|reference|null: false, foreign_key: true|
+## Association
+- belongs_to :user
+
+
+# credits
+|Column|Type|Options|
+|------|----|-------|
+|credit_number|string|null: false|
+|user|reference|null: false, foreign_key: true|
+## Association
+- belongs_to :user
+
 # commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -45,6 +72,7 @@
 - belongs_to :status
 - belongs_to :brand
 - has_many :favorites
+
 # brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -119,5 +147,3 @@
 ## Association
 - belongs_to :user
 - belongs_to :item
-
-
