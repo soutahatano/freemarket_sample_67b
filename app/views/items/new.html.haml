@@ -2,7 +2,7 @@
   .exhibition-heder
     .exhibition-heder__image
       %span.image
-      = image_tag src="logo/logo.png", size: "185x49"
+      = image_tag "logo/logo.png", size: "185x49"
   .exhibition-main
     .exhibition-main__inner
       .in-containner
@@ -22,13 +22,11 @@
                 .sell-form__content__1__head__text 商品名
                 .sell-form__content__1__head__require 必須
               .sell-form__content__1__form
-
             .sell-form__content__2
               .sell-form__content__2__head
                 .sell-form__content__2__head__text 商品の説明
                 .sell-form__content__2__head__require 必須
               .sell-form__content__2__form 商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。
-              
           .sell-form__content__clearfix 
             .sell-form__content__clearfix__sub 商品詳細
             .sell-form__content__clearfix__form
@@ -38,10 +36,8 @@
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                    
                     =icon('fas', 'edit')
                   .in-field
-
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
                 .sell-form__content__clearfix__form
@@ -51,10 +47,8 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        
                         =icon('fas', 'edit')
                       .in-field             
-          
           .sell-form__content__clearfix 
             .sell-form__content__clearfix__sub 配送について
             .sell-form__content__clearfix__form
@@ -64,21 +58,17 @@
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                    
                     =icon('fas', 'edit')
                   .in-field
-
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
                 .sell-form__content__clearfix__form
                   .sell-form__content__clearfix__form__group
                     %label.sell-form__content__clearfix__form__group__head
                       .sell-form__content__clearfix__form__group__head__text 配送元の地域
-
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        
                         =icon('fas', 'edit')
                       .in-field                    
                   .sell-form__content__clearfix__form__group
@@ -87,7 +77,6 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        
                         =icon('fas', 'edit')
                       .in-field                                       
           .sell-form__price
@@ -117,5 +106,5 @@
         %li フリマ利用規約
         %li 特定商取引に関する表記
     .exhibition__footer__logo
-      = image_tag src="logo/logo-white.png", size: "80x65"     
+      = image_tag "logo/logo-white.png", size: "80x65"     
     %p

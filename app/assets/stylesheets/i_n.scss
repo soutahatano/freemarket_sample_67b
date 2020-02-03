@@ -1,42 +1,30 @@
 * {
   box-sizing: border-box;
-  
 }
 .exhibition{
   background: #f5f5f5;
 .exhibition-heder{
  height: 128px;
- 
  &__image{
   padding: 40px 0 0;
   text-align: center;
  }
 }
   .exhibition-main{
-    
-    
     &__inner{
       width: 700px;
       margin:0 auto;
       background: #fff;
       .in-containner{
-        
-        
         &__header{
           padding: 32px 16px;
           font-size: 22px;
           text-align:center;
           border-bottom :4px solid grey;
-
         }
         .sell-form{
-          
-          
           &__uploder{
-            
             padding: 40px;
-            
-            
             &__head{
               display: flex;
             &__text{
@@ -50,11 +38,8 @@
               font-size: 12px;
               vertical-align: top;
               background-color: red;
-
+             }
             }
-          }
-
-            
             .in-{
               margin: 8px 0 0;
             }
@@ -66,7 +51,6 @@
               background: #f5f5f5;
               border: 1px dashed #ccc;
               font-size: 0;
-              
             }
               &__text{
                 position: absolute;
@@ -151,7 +135,6 @@
           &__form{
           width: 400px;
           right: 50px;
-          
           &__group{
             &__head{
               display:flex;
@@ -166,13 +149,11 @@
                 font-size: 12px;
                 vertical-align: top;
                 background-color: red;
-
+               }
               }
-            }
             &__field{
               display: flex;
               margin: 8px 0 0;
-              
               .in-select__button{
               color: green;
               position: absolute;
@@ -198,29 +179,21 @@
         &__left{
           border-top: 1px solid #eee;
           text-decoration: lavender;
-          
-        }
+          }
         &__right{
           margin-top: 30px;
           margin-left: 20px;
-          
-
-
-          
-          
-          &__box{
-          width: 400px;
-          padding: 30px;
+           &__box{
+            width: 400px;
+            padding: 30px;
             &__head{
             display:flex;
             width: 100%;
             justify-content: space-between;
             padding-bottom: 30px;
             border-bottom: 2px solid#eee;
-            
             &__price{
               font-size: 16px;
-
             }
             &__require{
               margin: 0 0 0 8px;
@@ -279,22 +252,18 @@
     }
   }
     &__footer{
-    
     min-height: 100%;
     background: #f5f5f5;
     font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
     text-align: center;
-      
       &__clearfix{
-      display: flex;
-     justify-content: center;
-      margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        margin-left: 5px;
       li{
         padding-right: 15px;
         font-size: 8px;
       }
-
-      
     }
     &__logo{ 
       width: 80px;
@@ -302,12 +271,7 @@
       margin: 40px auto 0;
       background-color: #444444;
     }
-    
-
-    
-
   }
-  
 }
 
 // logo_header ,  logo_fotterあとで共有化
