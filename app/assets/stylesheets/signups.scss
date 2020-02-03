@@ -1,0 +1,78 @@
+// new.html のSCSS
+.sign-up{
+  background-color: #f5f5f5;
+  &__content{
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: #333333;
+    &__title{
+      background-color: #ffffff;
+      padding: 36px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    &__lists{
+      background-color: #ffffff;
+      margin-top: 1px;
+      padding: 40px 40px 64px;
+      a{
+        text-decoration: none;
+      }
+      &__list{
+        margin: 0 138px;
+        padding-left: 30px;
+        height: 50px;
+        width: 345px;
+        line-height: 50px;
+        border-radius: 5px;
+        display: flex;
+        .icon{
+          line-height: 50px;
+        }
+        h4{
+          margin: 0 auto;
+        }
+      }
+      .mail{
+        color: #fff;
+        background-color: #ea352d;
+      }
+      .facebook{
+        margin-top: 16px;
+        background: #385185;
+        color: #fff;
+      }
+      .google{
+        margin-top: 16px;
+        border: #979797 solid 1px;
+        color: #333;
+      }
+    }
+  }
+}
+// step1以降のheadder
+.sign-up__headder{
+  background-color: #f5f5f5;
+  &__content{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    height: 128px;
+    width: 700px;
+    .logo{
+      height: 50px;
+      margin: auto 40px;
+    }
+    .nav{
+
+    }
+  }
+}
+
+// step1.htmlのSCSS
+.sign-up{
+  &__content{
+
+  }
+}
