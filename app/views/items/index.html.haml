@@ -3,19 +3,20 @@
     .toppage__header__middle-box
       .toppage__header__middle-box__img
       .toppage__header__middle-box__search-box
-        %p キーワードから探す
+        %p.toppage__header__middle-box__search-box__text
+          キーワードから探す
       .toppage__header__middle-box__icon
     .toppage__header__middle-box__lower
-      %ul.toppage__header__middle-box__lower__left-box
-        %li.toppage__header__middle-box__lower__left-box__category
+      .toppage__header__middle-box__lower__left-box
+        .toppage__header__middle-box__lower__left-box__category
           カテゴリー
-        %li.toppage__header__middle-box__lower__left-box__brand
+        .toppage__header__middle-box__lower__left-box__brand
           ブランド
-      %ul.toppage__header__middle-box__lower__right-box
-        %li.toppage__header__middle-box__lower__right-box__login
-          %p ログイン
-        %li.toppage__header__middle-box__lower__right-box__sign-up
-          %p 新規会員登録
+      .toppage__header__middle-box__lower__right-box
+        .toppage__header__middle-box__lower__right-box__login
+          ログイン
+        .toppage__header__middle-box__lower__right-box__sign-up
+          新規会員登録
 
   .toppage__main-image
     .toppage__main-image__content
@@ -26,9 +27,9 @@
         %p フリマアプリです
       .toppage__main-image__content__batch
         .toppage__main-image__content__batch__batch1
-          バッチ1
+          = image_tag "logo/appstore-batch.png", width: "210px",height: "65px"
         .toppage__main-image__content__batch__batch2
-          バッチ2
+          = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
 .topintroduction
   .topintroduction__content__theme
     %p FURIMAが選ばれる3つの理由
@@ -83,10 +84,10 @@
       %p 出品・購入回数も業界最多です！
       %p ほしかったあの商品に出会えるかもしれません。
     .top-second-image__content__batch
-      .top-second-image__content__batch1
-        バッチ1
-      .top-second-image__content__batch2
-        バッチ2
+      .top-second-image__content__batch__batch1
+        = image_tag "logo/appstore-batch.png", width: "210px",height: "65px"
+      .top-second-image__content__batch__batch2
+        = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
 
 .top-property
   .top-property__feauture
@@ -96,6 +97,7 @@
   .top-property__lists
     .top-property__lists__list1
       .top-property__lists__list1__img
+        = image_tag "icon/icon-01.png",size: "240x350"
       .top-property__lists__list1__box
         .top-property__lists__list1__box__text1
           簡単に売り買いできる
@@ -104,7 +106,7 @@
 
     .top-property__lists__list2
       .top-property__lists__list2__img
-        = image_tag('icon/icon-02.png')
+        = image_tag "icon/icon-03.png",size: "240x350"
       .top-property__lists__list2__box
         .top-property__lists__list2__box__text1
           売上金は即日振込みに対応
@@ -113,35 +115,155 @@
 
     .top-property__lists__list3
       .top-property__lists__list3__img
-        = image_tag('icon/icon-03.png')
+        = image_tag "icon/icon-04.png",size: "240x350"
       .top-property__lists__list3__box
         .top-property__lists__list3__box__text1
           様々な支払いに対応
         .top-property__lists__list3__box__text2
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
 
-.top-content
-  .top-content__title
+.top-category
+  .top-category__title
     ピックアップカテゴリー
-    .top-content__title__sub-title
+    .top-category__title__sub-title
       新規投稿商品
-  .top-content__lists
-    .top-content__lists__list1
-      .top-content__lists__list1__img
-        -# = image_tag('icon/member_photo_noimage_thumb.png')
-      .top-content__lists__list1__detail
-        .top-content__lists__list1__detail__text1
+  .top-category__lists
+    .top-category__lists__list1
+      .top-category__lists__list1__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-category__lists__list1__detail
+        .top-category__lists__list1__detail__text1
           product3
-        .top-content__lists__list1__detail__text2
-          -# %ul 300000円
-            -# %li = image_tag('icon/member_photo_noimage_thumb.png') 0
-        %p (税込み)
+        .top-category__lists__list1__detail__text2
+          30000円
+          .top-category__lists__list1__detail__text2__icon
+            ★0
+        .top-category__lists__list1__detail__text3
+          (税込)
 
+    .top-category__lists__list2
+      .top-category__lists__list2__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-category__lists__list1__detail
+        .top-category__lists__list2__detail__text1
+          product2
+        .top-category__lists__list2__detail__text2
+          20000円
+          .top-category__lists__list2__detail__text2__icon
+            ★0
+        .top-category__lists__list2__detail__text3
+          (税込)
 
+    .top-category__lists__list3
+      .top-category__lists__list3__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-category__lists__list1__detail
+        .top-category__lists__list2__detail__text1
+          product1
+        .top-category__lists__list2__detail__text2
+          10000円
+          .top-category__lists__list2__detail__text2__icon
+            ★0
+        .top-category__lists__list2__detail__text3
+          (税込)
 
+.top-brand
+  .top-brand__title
+    ピックアップブランド
+    .top-brand__title__sub-title
+      アーカイバ
+  .top-brand__lists
+    .top-brand__lists__list1
+      .top-brand__lists__list1__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-brand__lists__list1__detail
+        .top-brand__lists__list1__detail__text1
+          product3
+        .top-brand__lists__list1__detail__text2
+          30000円
+          .top-brand__lists__list1__detail__text2__icon
+            ★0
+        .top-brand__lists__list1__detail__text3
+          (税込)
 
+    .top-brand__lists__list2
+      .top-brand__lists__list2__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-brand__lists__list2__detail
+        .top-brand__lists__list2__detail__text1
+          product2
+        .top-brand__lists__list2__detail__text2
+          20000円
+          .top-brand__lists__list2__detail__text2__icon
+            ★0
+        .top-brand__lists__list2__detail__text3
+          (税込)
 
-  -# .toppage__banner
-  -#   %p バナー
-  -# .toppage__footer
-  -#   %p フッター
+    .top-brand__lists__list3
+      .top-brand__lists__list3__img
+        = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+      .top-brand__lists__list3__detail
+        .top-brand__lists__list3__detail__text1
+          product1
+        .top-brand__lists__list3__detail__text2
+          10000円
+          .top-brand__lists__list3__detail__text2__icon
+            ★0
+        .top-brand__lists__list3__detail__text3
+          (税込)
+
+.top-banner
+  .top-banner__inner
+    .top-banner__inner__title
+      だれでもかんたん、人生を変えるフリマアプリ
+    .top-banner__inner__sub-title
+      今すぐ無料ダウンロード！
+    .top-banner__inner__batch
+      .top-banner__inner__batch__batch1
+        = image_tag "logo/appstore-batch.png", width: "210px",height: "65px"
+      .top-banner__inner__batch__batch2
+        = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
+
+.top-footer
+  .top-footer__contents
+    .top-footer__contents__lists
+      .top-footer__contents__lists__list1
+        .top-footer__contents__lists__list1__about
+          FURIMAについて
+        .top-footer__contents__lists__list1__text1
+          会社概要（運営会社)
+        .top-footer__contents__lists__list1__text2
+          プライバシーポリシー
+        .top-footer__contents__lists__list1__text3
+          FURIMA利用規約
+        .top-footer__contents__lists__list1__text4
+          ポイントに関する特約
+
+      .top-footer__contents__lists__list2
+        .top-footer__contents__lists__list2__about
+          FURIMAを見る
+        .top-footer__contents__lists__list2__text1
+          カテゴリー一覧
+        .top-footer__contents__lists__list2__text2
+          ブランド一覧
+
+      .top-footer__contents__lists__list3
+        .top-footer__contents__lists__list3__about
+          ヘルプ＆ガイド
+        .top-footer__contents__lists__list3__text1
+          FURIMAガイド
+        .top-footer__contents__lists__list3__text2
+          FURIMAロゴ利用ガイドライン
+        .top-footer__contents__lists__list3__text3
+          お知らせ
+
+  .top-footer__logo
+  .top-footer__text
+    © FURIMA
+
+= link_to "#" do
+  .exhibition-btn
+    .exhibition-btn__text
+      出品する
+    .exhibition-btn__icon
+      = image_tag "icon/icon_camera.png", width: "80px", height: "80px"
