@@ -64,7 +64,28 @@
       height: 50px;
       margin: auto 40px;
     }
-    .nav{
+    .nav-bar{
+      display: flex;
+      margin-top: 40px;
+      .red{
+        color: #ea352d;
+      }
+      .back-red{
+        background-color: #ea352d;
+      }
+      &__content{
+        text-align: center;
+        margin-right: 30px;
+        font-size: 12px;
+        &__round{
+          margin: 0 auto;
+          margin-top: 10px;
+          height: 8px;
+          width: 8px;
+          border-radius: 8px;
+          background-color: #333333;
+        }
+      }
 
     }
   }
@@ -73,6 +94,89 @@
 // step1.htmlのSCSS
 .sign-up{
   &__content{
-
+    &__main{
+      margin: 1px auto 0;
+      width: 620px;
+      background-color:#ffffff;
+      padding: 40px 40px 46px;
+      &__form{
+        font-weight: bold;
+        font-size: 14px;
+        padding: 0 150px;
+        .field__label{
+          .attention{
+            background-color: #ea352d;
+            color: #ffffff;
+            font-size: 12px;
+            padding: 2px;
+            border-radius: 2px;
+          }
+        }
+        .field__box{
+          margin-top: 8px;
+          padding: 10px 16px 8px;
+          width: 300px;
+          height: 35px;
+        }
+        .field{
+          margin-top: 32px;
+          h4{
+            margin: 5px 0;
+            color: #979797;
+          }
+          .check-box-label{
+            font-weight: lighter;
+            font-size: 12px;
+          }
+          .field-box__wrapper{
+            display: flex;
+            justify-content: space-between;
+            width: 336px;
+            height: 35px;
+            margin-top: 8px;
+            .field__box__half{
+              width: 150px;
+              margin: 0 9px;
+              padding: 10px ０ 8px;
+              height: 35px;
+            }
+          }
+          select{
+            margin: 5px 3px 0;
+            height: 50px;
+          }
+        }
+        h2{
+          font-weight: bold;
+          margin: 8px 0 3px;
+        }
+        p{
+          font-weight: lighter;
+          font-size: 14px;
+        }
+        h3{
+          text-align: center;
+          margin: 15px 0;
+        }
+        .create-action-btn{
+          background-color: #ea352d;
+          color: #ffffff;
+          height: 50px;
+          width: 100%;
+        }
+        .checklist{
+          margin: 20px 0;
+          text-align: right;
+        }
+        .notes{
+          color: #979797;
+          padding: 8px 16px;
+          background-color: #f5f5f5;
+          font-size: 13px;
+        }
+      }
+    }
   }
 }
+
+// step1.htmlのSCSS
