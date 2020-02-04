@@ -5,7 +5,7 @@
       .nav-bar__content
         %h5
           会員情報
-        .nav-bar__content__round
+        .nav-bar__content__round.back-red
       .nav-bar__content
         %h5.red
           住所登録
@@ -18,3 +18,44 @@
         %h5
           完了
         .nav-bar__content__round
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      発送元・お届け先住所変更
+  = form_with do |f|
+    .sign-up__content__main
+      .sign-up__content__main__form
+        .field
+          .field__label
+            = f.label :first_name, "お名前(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.password_field :first_name, class: "field__box__half", placeholder: "例)中野"
+            = f.password_field :last_name, class: "field__box__half", placeholder: "例)尊"
+        .field
+          .field__label
+            = f.label :first_name_kana, "お名前カナ(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.password_field :first_name_kana, class: "field__box__half", placeholder: "例)ナカノ"
+            = f.password_field :last_name_kana, class: "field__box__half", placeholder: "例)タケル"
+        .field
+          .field__label
+            = f.label :post_number, "郵便番号"
+            %span.attention
+              必須
+          = f.email_field :post_number, class: "field__box", placeholder: "例)123-456"
+        .field
+          .field-label
+            = f.label :pref_id, "都道府県"
+          = f.select :pref_id, include_blank: :true
+          -# = f.select :pref_id, Pref.all.map{|pf| [pf.name, pf.id]}, include_blank: :true
+        =f.submit "次へ進む", class: 'create-action-btn'
+        .checklist
+          %h4
+            本人情報確認について
+        =link_to step2_signups_path do
+          .notes
+            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.

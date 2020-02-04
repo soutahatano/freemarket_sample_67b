@@ -116,7 +116,9 @@
           margin-top: 8px;
           padding: 10px 16px 8px;
           width: 300px;
-          height: 35px;
+          height: 30px;
+          border-radius: 4px;
+          border: solid 1px #cccccc;
         }
         .field{
           margin-top: 32px;
@@ -132,13 +134,14 @@
             display: flex;
             justify-content: space-between;
             width: 336px;
-            height: 35px;
+            height: 33px;
             margin-top: 8px;
             .field__box__half{
-              width: 150px;
-              margin: 0 9px;
-              padding: 10px ０ 8px;
+              width: 145px;
+              padding: 10px 8px;
               height: 35px;
+              border-radius: 4px;
+              border: solid 1px #cccccc;
             }
           }
           select{
@@ -163,6 +166,8 @@
           color: #ffffff;
           height: 50px;
           width: 100%;
+          border-radius: 4px;
+          border: solid 1px #cccccc;
         }
         .checklist{
           margin: 20px 0;
