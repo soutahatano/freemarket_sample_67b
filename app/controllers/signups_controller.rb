@@ -3,13 +3,13 @@ class SignupsController < ApplicationController
   def new
   end
 
-  def step1
+  def identification
   end
 
-  def setp2
+  def adress
   end
 
-  def step3
+  def phone_number
   end
 
   def create

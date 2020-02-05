@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :users
   resources :signups , only: [:new, :create] do
     collection do
-      get 'step1'
-      get 'step2'
-      get 'step3'
+      get 'identification'
+      get 'adress'
+      get 'phone_number'
       get 'login'
     end
   end
