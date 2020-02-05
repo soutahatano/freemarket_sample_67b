@@ -2,7 +2,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
-|e_mail|string|null: false,unique|
+|e_mail|string|null: false,unique: true|
 |password|string|null: false|
 |birthday|date|null: false|
 |phone_number|string|null: false|
@@ -26,7 +26,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |post_number|string|null: false|
-|pref|string|null: false|
+|prefcture|string|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
 |building|string||
@@ -78,7 +78,7 @@
 |------|----|-------|
 |name|string|null: false|
 ## Association
-- belongs_to :item
+- has_many :items
 
 # statusesテーブル
 |Column|Type|Options|
