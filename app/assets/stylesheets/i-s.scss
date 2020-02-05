@@ -1,0 +1,298 @@
+* {
+  box-sizing: border-box;
+}
+
+.item-show{
+  background: #fafafa;
+  &__page{
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    width: 750px;
+    padding: 24px 40px 5px 40px;
+    margin: 10px auto 0;
+    &__other-item{
+      &__text{
+        font-weight: bold;
+        font-size: 22px;
+        margin: 24px 0 8px;
+        color: #0099e8;
+      }
+      &__lists{
+        display: flex;
+        &__list1{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+        &__list2{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+        &__list3{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+      }
+      &__lists2{
+        display: flex;
+        &__list1{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+        &__list2{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+        &__list3{
+          &__img{
+            padding: 7px;
+          }
+          &__text{
+            background-color: #fff;
+            padding: 16px;
+            height: 110px;
+            &__name{
+              font-size: 16px;
+              color: #333;
+            }
+            &__low-box{
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+    &__show-message{
+      background: #fafafa;
+      &__container{
+        &__content{
+          font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+          width: 670px;
+          padding: 24px 40px 40px;
+          margin: 8px auto 0;
+          background: white;
+          &__text{
+            padding: 8px;
+            font-size: 14px;
+            background: #fff6de;
+          }
+          &__text-box{
+            margin: 8px 0 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 16px;
+            height: 100px;
+            margin-bottom: 10px;
+          }
+          &__comment{
+            background: #aaa;
+            border: 1px solid #aaa;
+            color: #fff;
+            height: 47px;
+            line-height: 48px;
+            text-align: center;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    &__show-page{
+      font-size: 13px;
+      justify-content: space-between;
+      background: #fafafa;
+      padding-top: 20px;
+      &__content{
+        font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+        justify-content: space-between;
+        display: flex;
+        color: #0099e8;
+        &__back-btn{
+          padding-left: 20px;
+        }
+        &__next-btn{
+          padding-right: 20px;
+        }
+      }
+    }
+    &__show-icons{
+      width: 670px;
+      margin: 10px auto 0;
+      &__container{
+        background: #fff;
+        justify-content: space-between;
+        display: flex;
+        height: 60px;
+        // &__facebook{
+        // }
+        // &__twitter{
+        // }
+        // &__pinterest{
+        // }
+      }
+    }
+    &__box{
+      padding: 0 30px;
+      background: #fff;;
+      &__name{
+        font-weight: 700;
+        font-size: 24px;
+        text-align: center;
+        word-wrap: break-word;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        padding-top: 20px;
+      }
+      &__content{
+        display: flex;
+        &__table{
+          padding-left: 15px;
+          th{
+            text-align: left;
+            font-weight: 400;
+            background: #fafafa;
+            border: 1px solid #f5f5f5;
+            width: 100px;
+            height: 60px;
+          }
+          td{
+            background: #fff;
+            border: 1px solid #f5f5f5;
+          }
+        }
+      }
+      &__price-box{
+        margin-left: 150px;
+        display: flex;
+        &__price{
+          margin: 16px 16px 0 0;
+          font-size: 50px;
+        }
+        &__tax{
+          margin-top: 52px;
+          font-size: 10px;
+        }
+        &__shipping-fee{
+          margin: 47px 0 0 5px;
+          font-size: 16px;
+        }
+      }
+      &__buy-btn{
+        font-size: 24px;
+        line-height: 60px;
+        background: #ea352d;
+        margin-top: 16px;
+        color: #fff;
+        text-align: center;
+      }
+      &__text{
+        margin-top: 16px;
+        color: #ea352d;
+        font-size: 14px;
+        text-align: center;
+      }
+      &__description{
+        padding: 0 30px;
+        white-space: pre-wrap;
+        &__text{
+          font-weight: 100;
+          font-size: 18px;
+        }
+        &__container{
+          font-size: 14px;
+          display: flex;
+          &__left-box{
+            display: flex;
+            &__good-btn{
+              color: #333;
+              border: 1px solid #f5f5f5;
+              background: #f5f5f5;
+              border-radius: 40px;
+              padding: 0 20px;
+            }
+            &__report-btn{
+              color: #333;
+              border: 1px solid #f5f5f5;
+              background: #f5f5f5;
+              padding: 0 20px 20px 20px;
+              border-radius: 40px;
+            }
+          }
+        }
+      }
+    }
+    &__low-text{
+      padding-top: 20px;
+      display: flex;
+    }
+  }
+}
