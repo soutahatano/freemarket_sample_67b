@@ -1,15 +1,16 @@
 * {
   box-sizing: border-box;
 }
+.logo-header{
+ height: 128px;
+ background-color: #f5f5f5;
+  &__image{
+    padding: 40px 0 0;
+    text-align: center;
+  }
+}
 .exhibition{
   background: #f5f5f5;
-.exhibition-heder{
- height: 128px;
- &__image{
-  padding: 40px 0 0;
-  text-align: center;
- }
-}
   .exhibition-main{
     &__inner{
       width: 700px;
@@ -251,28 +252,26 @@
       }
     }
   }
-    &__footer{
-    min-height: 100%;
-    background: #f5f5f5;
-    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-    text-align: center;
-      &__clearfix{
-        display: flex;
-        justify-content: center;
-        margin-left: 5px;
-      li{
-        padding-right: 15px;
-        font-size: 8px;
-      }
-    }
-    &__logo{ 
-      width: 80px;
-      height: 65px;
-      margin: 40px auto 0;
-      background-color: #444444;
+}
+.logo-footer{
+  padding: 15px 0 45px;
+  min-height: 100%;
+  background: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  text-align: center;
+  &__clearfix{
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    li{
+      padding-right: 15px;
+      font-size: 8px;
     }
   }
+  &__logo{ 
+    width: 150px;
+    height: 65px;
+    margin: 40px auto 0;
+    background-color: #444444;
+  }
 }
-
-// logo_header ,  logo_fotterあとで共有化
-

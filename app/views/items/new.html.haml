@@ -1,8 +1,5 @@
 .exhibition
-  .exhibition-heder
-    .exhibition-heder__image
-      %span.image
-      = image_tag "logo/logo.png", size: "185x49"
+  = render 'shared/logo_header'
   .exhibition-main
     .exhibition-main__inner
       .in-containner
@@ -99,12 +96,4 @@
             %button.sell-form__btn__box__exhibition
               出品する
             .sell-form__btn__box__return もどる
-  .exhibition__footer 
-    %nav.exhibition__footer 
-      %ul.exhibition__footer__clearfix
-        %li プライバシーポリシー
-        %li フリマ利用規約
-        %li 特定商取引に関する表記
-    .exhibition__footer__logo
-      = image_tag "logo/logo-white.png", size: "80x65"     
-    %p
+= render 'shared/logo_footer'

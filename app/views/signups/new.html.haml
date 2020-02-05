@@ -1,9 +1,10 @@
-.sign-up
+= render 'shared/logo_header'
+.sign-up.sin-up-select
   .sign-up__content
     %h2.sign-up__content__title
       新規会員登録
     .sign-up__content__lists
-      = link_to "signups/step1" do
+      = link_to identification_signups_path do
         .sign-up__content__lists__list.mail
           %i.far.fa-envelope.icon.fa-2x
           %h4
@@ -16,3 +17,4 @@
         %i.fab.fa-google.icon.fa-2x
         %h4
           Googleで登録する
+= render 'shared/logo_footer'
