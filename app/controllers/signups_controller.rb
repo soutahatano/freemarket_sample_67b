@@ -9,6 +9,12 @@ class SignupsController < ApplicationController
   def setp2
   end
 
+  def step3
+  end
+
   def create
+  end
+
+  def login
   end
 end

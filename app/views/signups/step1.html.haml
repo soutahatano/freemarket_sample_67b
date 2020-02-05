@@ -5,18 +5,18 @@
       .nav-bar__content
         %h5.red
           会員情報
-        .nav-bar__content__round.back-red
+        .nav-bar__content__round.back-red.nav-bar__content__progress
       .nav-bar__content
         %h5
           住所登録
-        .nav-bar__content__round
+        .nav-bar__content__round.nav-bar__content__progress
       .nav-bar__content
         %h5
-          電話番号認証
-        .nav-bar__content__round
+          電話番号
+        .nav-bar__content__round.nav-bar__content__progress
       .nav-bar__content
         %h5
-          完了
+          登録完了
         .nav-bar__content__round
 .sign-up
   .sign-up__content
@@ -78,7 +78,7 @@
               ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         %h3
           「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
-        =f.submit "次へ進む", class: 'create-action-btn'
+        = f.submit "次へ進む", class: 'create-action-btn'
         .checklist
           %h4
             本人情報確認について

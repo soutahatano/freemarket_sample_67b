@@ -5,18 +5,18 @@
       .nav-bar__content
         %h5
           会員情報
-        .nav-bar__content__round.back-red
+        .nav-bar__content__round.back-red.nav-bar__content__passing
       .nav-bar__content
         %h5.red
           住所登録
-        .nav-bar__content__round.back-red
+        .nav-bar__content__round.back-red.nav-bar__content__progress
       .nav-bar__content
         %h5
-          電話番号認証
-        .nav-bar__content__round
+          電話番号
+        .nav-bar__content__round.nav-bar__content__progress
       .nav-bar__content
         %h5
-          完了
+          登録完了
         .nav-bar__content__round
 .sign-up
   .sign-up__content
@@ -33,7 +33,7 @@
           .field-box__wrapper
             = f.password_field :first_name, class: "field__box__half", placeholder: "例)中野"
             = f.password_field :last_name, class: "field__box__half", placeholder: "例)尊"
-        .field
+        .field.field-box
           .field__label
             = f.label :first_name_kana, "お名前カナ(全角)"
             %span.attention
@@ -41,7 +41,7 @@
           .field-box__wrapper
             = f.password_field :first_name_kana, class: "field__box__half", placeholder: "例)ナカノ"
             = f.password_field :last_name_kana, class: "field__box__half", placeholder: "例)タケル"
-        .field
+        .field.field-box
           .field__label
             = f.label :post_number, "郵便番号"
             %span.attention
@@ -50,12 +50,32 @@
         .field
           .field-label
             = f.label :pref_id, "都道府県"
+            %span.attention
+              必須
           = f.select :pref_id, include_blank: :true
           -# = f.select :pref_id, Pref.all.map{|pf| [pf.name, pf.id]}, include_blank: :true
+        .field
+          .field__label
+            = f.label :city, "市区町村"
+            %span.attention
+              必須
+          = f.email_field :city, class: "field__box", placeholder: "例)横浜市緑区"
+        .field
+          .field__label
+            = f.label :house_number, "番地"
+            %span.attention
+              必須
+          = f.email_field :house_number, class: "field__box", placeholder: "例)青山1-1-1"
+        .field
+          .field__label
+            = f.label :building, "建物"
+            %span.attention.arbitrary
+              任意
+          = f.email_field :building, class: "field__box", placeholder: "例)添木ビル108"
+        .field
+          .field__label
+            = f.label :phone_number, "電話"
+            %span.attention.arbitrary
+              任意
+          = f.email_field :phone_number, class: "field__box", placeholder: "例)090123456781"
         =f.submit "次へ進む", class: 'create-action-btn'
-        .checklist
-          %h4
-            本人情報確認について
-        =link_to step2_signups_path do
-          .notes
-            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
