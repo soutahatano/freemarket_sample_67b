@@ -1,0 +1,87 @@
+.sign-up__headder
+  .sign-up__headder__content
+    = image_tag 'logo/logo.png', class: "logo"
+    .nav-bar
+      .nav-bar__content
+        %h5.red
+          会員情報
+        .nav-bar__content__round.back-red.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          住所登録
+        .nav-bar__content__round.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          電話番号
+        .nav-bar__content__round.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          登録完了
+        .nav-bar__content__round
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      会員情報入力
+  = form_with do |f|
+    .sign-up__content__main
+      .sign-up__content__main__form
+        .field__label
+          = f.label :nickname, "ニックネーム"
+          %span.attention
+            必須
+        = f.text_field :nickname, autofocus: true, class: "field__box", placeholder: "例)フリマリオ"
+        .field
+          .field__label
+            = f.label :email, "メールアドレス"
+            %span.attention
+              必須
+          = f.email_field :email, class: "field__box", placeholder: "PC・携帯どちらでも可"
+        .field
+          .field__label
+            = f.label :password, "パスワード"
+            %span.attention
+              必須
+          = f.password_field :password, class: "field__box", placeholder: "7文字以上の半角英数"
+          %h4
+            ※ 英字と数字の両方を含めて設定してください
+          = check_box_tag :check
+          = label_tag :check, "パスワードを表示する", class: "check-box-label"
+        %h2
+          本人確認
+        %p
+          安心・安全にご利用いただくために、
+          お客さまの本人情報の登録にご協力ください。
+          他のお客さまに公開されることはありません。
+        .field
+          .field__label
+            = f.label :first_name, "お名前(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.password_field :first_name, class: "field__box__half", placeholder: "例)中野"
+            = f.password_field :last_name, class: "field__box__half", placeholder: "例)尊"
+        .field
+          .field__label
+            = f.label :first_name_kana, "お名前カナ(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.password_field :first_name_kana, class: "field__box__half", placeholder: "例)ナカノ"
+            = f.password_field :last_name_kana, class: "field__box__half", placeholder: "例)タケル"
+          .field
+            .field__label
+              = f.label :birthday, "生年月日"
+              %span.attention
+                必須
+            != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'birthday_box', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+            %h4
+              ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        %h3
+          「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
+        = f.submit "次へ進む", class: 'create-action-btn'
+        .checklist
+          %h4
+            本人情報確認について
+        =link_to step2_signups_path do
+          .notes
+            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.

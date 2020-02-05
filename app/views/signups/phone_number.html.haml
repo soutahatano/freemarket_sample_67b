@@ -1,0 +1,41 @@
+.sign-up__headder
+  .sign-up__headder__content
+    = image_tag 'logo/logo.png', class: "logo"
+    .nav-bar
+      .nav-bar__content
+        %h5
+          会員情報
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5
+          住所登録
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5.red
+          電話番号
+        .nav-bar__content__round.back-red.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          登録完了
+        .nav-bar__content__round
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      電話番号の確認
+  = form_with do |f|
+    .sign-up__content__main
+      .sign-up__content__main__form
+        .field__label
+          = f.label :phone_number, "携帯電話の番号"
+          %span.attention
+            必須
+        = f.text_field :phone_number, autofocus: true, class: "field__box", placeholder: "09098766543"
+        %p.phone-notes
+          本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います.
+        =f.submit "smsを送信する", class: 'create-action-btn'
+        %p.phone-notes
+          ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません
+        =link_to do
+          .reason-phone
+            電話番号の確認が必要な理由
+            %i.fas.fa-angle-right

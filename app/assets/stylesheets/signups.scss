@@ -1,0 +1,277 @@
+.sign-up{
+  background-color: #f5f5f5;
+  &__content{
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: #333333;
+    &__title{
+      background-color: #ffffff;
+      padding: 36px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    &__lists{
+      background-color: #ffffff;
+      margin-top: 1px;
+      padding: 40px 40px 64px;
+      a{
+        text-decoration: none;
+      }
+      &__list{
+        margin: 0 138px;
+        height: 50px;
+        width: 345px;
+        line-height: 50px;
+        border-radius: 5px;
+        display: flex;
+        .icon{
+          line-height: 50px;
+          margin-left: 30px;
+        }
+        h4{
+          margin: 0 auto;
+        }
+      }
+      .mail{
+        color: #fff;
+        background-color: #ea352d;
+      }
+      .facebook{
+        margin-top: 16px;
+        background: #385185;
+        color: #fff;
+      }
+      .google{
+        margin-top: 16px;
+        border: #979797 solid 1px;
+        color: #333;
+      }
+    }
+  }
+}
+.sign-up__headder{
+  background-color: #f5f5f5;
+  &__content{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    height: 128px;
+    width: 700px;
+    .logo{
+      height: 50px;
+      margin: auto 40px;
+    }
+    .nav-bar{
+      display: flex;
+      margin-top: 40px;
+      .red{
+        color: #ea352d;
+      }
+      .back-red{
+        background-color: #ea352d;
+      }
+      &__content{
+        text-align: center;
+        margin-right: 30px;
+        font-size: 12px;
+        &__round{
+          margin: 0 auto;
+          margin-top: 10px;
+          height: 8px;
+          width: 8px;
+          border-radius: 8px;
+          background-color: #333333;
+        }
+        &__progress::after{
+          background-color: #000000;
+          width: 75px;
+          height: 1px;
+          display: inline-block;
+          content: "";
+          margin-bottom: 10px;
+          margin-left: 8px;
+        }
+        &__passing::after{
+          background-color: #ea352d;
+          width: 75px;
+          height: 1px;
+          display: inline-block;
+          content: "";
+          margin-bottom: 10px;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+.sign-up{
+  &__content{
+    &__main{
+      margin: 1px auto 0;
+      width: 620px;
+      background-color:#ffffff;
+      padding: 40px 40px 46px;
+      &__form{
+        font-weight: bold;
+        font-size: 14px;
+        padding: 0 150px;
+        .field__label{
+          .arbitrary{
+            background-color: #979797;
+          }
+        }
+        .attention{
+          background-color: #ea352d;
+          color: #ffffff;
+          font-size: 12px;
+          padding: 2px;
+          border-radius: 2px;
+        }
+        .field__box{
+          margin-top: 8px;
+          padding: 10px 16px 8px;
+          width: 300px;
+          height: 30px;
+          border-radius: 4px;
+          border: solid 1px #cccccc;
+        }
+        .field{
+          margin-top: 35px;
+          h4{
+            margin: 5px 0;
+            color: #979797;
+          }
+          .check-box-label{
+            font-weight: lighter;
+            font-size: 12px;
+          }
+          .field-box__wrapper{
+            display: flex;
+            justify-content: space-between;
+            width: 336px;
+            height: 33px;
+            margin-top: 8px;
+            .field__box__half{
+              width: 145px;
+              padding: 10px 8px;
+              height: 35px;
+              border-radius: 4px;
+              border: solid 1px #cccccc;
+            }
+          }
+          select{
+            margin: 5px 3px 0;
+            height: 50px;
+          }
+          #pref_id{
+            width: 335px;
+            background-color: #ffffff;
+            font-weight: lighter;
+          }
+        }
+        .field-box{
+          margin-top: 55px;
+        }
+        h2{
+          font-weight: bold;
+          margin: 8px 0 3px;
+        }
+        p{
+          font-weight: lighter;
+          font-size: 14px;
+          margin-top: 10px;
+        }
+        h3{
+          text-align: center;
+          margin-top: 15px;
+        }
+        .create-action-btn{
+          background-color: #ea352d;
+          color: #ffffff;
+          height: 50px;
+          width: 100%;
+          border-radius: 4px;
+          border: solid 1px #cccccc;
+          margin-top: 20px;
+        }
+        .checklist{
+          margin: 20px 0;
+          text-align: right;
+        }
+        .notes{
+          color: #979797;
+          padding: 8px 16px;
+          background-color: #f5f5f5;
+          font-size: 13px;
+        }
+        .phone-notes{
+          margin-top: 15px;
+          color: #555555;
+        }
+        a{
+          text-decoration: none;
+        }
+        .reason-phone{
+          width: 300px;
+          text-align: right;
+          color: #0099e8;
+          text-decoration: none;
+        }
+        .finish-sentense{
+          text-align: center;
+          margin-top: 2px;
+        }
+        .start-sentense{
+          text-align: center;
+          line-height: 30px;
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+    }
+    &__box{
+      background-color: #ffffff;
+      padding: 36px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 14px;
+      color: #333;
+      a{
+        text-decoration: none;
+      }
+      .start-action-btn{
+        background-color: #0099e8;
+        color: #ffffff;
+        height: 50px;
+        width: 375px;
+        border-radius: 4px;
+        border: solid 1px #cccccc;
+        margin: 0 auto;
+      }
+    }
+    &__login-form{
+      padding: 24px 64px 32px;
+      background-color: #ffffff;
+      .form-box{
+        margin: 0 auto 25px;
+        width: 330px;
+        height: 50px;
+        border-radius: 4px;
+        border: #cccccc solid 1px;
+        padding: 0 10px;
+        display: block;
+      }
+      .log-in-btn{
+        background-color: #ea352d;
+        color: #ffffff;
+        height: 50px;
+        width: 352px;
+        border-radius: 4px;
+        border: solid 1px #cccccc;
+        margin-top: 20px;
+      }
+    }
+  }
+}

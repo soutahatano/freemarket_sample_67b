@@ -1,0 +1,34 @@
+.sign-up__headder
+  .sign-up__headder__content
+    = image_tag 'logo/logo.png', class: "logo"
+    .nav-bar
+      .nav-bar__content
+        %h5
+          会員情報
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5
+          住所登録
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5
+          電話番号
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5.red
+          登録完了
+        .nav-bar__content__round.back-red
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      電話番号の確認
+  .sign-up__content__main
+    .sign-up__content__main__form
+      %p.finish-sentense
+        ありがとうございます
+      %p.finish-sentense
+        登録が完了しました
+      =link_to "#" do
+        .create-action-btn
+          %p.start-sentense
+            Furimaを始める

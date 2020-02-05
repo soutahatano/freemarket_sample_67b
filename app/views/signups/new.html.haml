@@ -1,0 +1,18 @@
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      新規会員登録
+    .sign-up__content__lists
+      = link_to "signups/step1" do
+        .sign-up__content__lists__list.mail
+          %i.far.fa-envelope.icon.fa-2x
+          %h4
+            メールアドレスで登録する
+      .sign-up__content__lists__list.facebook
+        %i.fab.fa-facebook-square.icon.fa-2x
+        %h4
+          Facebookで登録する
+      .sign-up__content__lists__list.google
+        %i.fab.fa-google.icon.fa-2x
+        %h4
+          Googleで登録する
