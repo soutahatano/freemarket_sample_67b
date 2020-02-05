@@ -29,7 +29,7 @@
           = f.label :phone_number, "携帯電話の番号"
           %span.attention
             必須
-        = f.text_field :phone_number, autofocus: true, class: "field__box", placeholder: "携帯電話の番号の入力"
+        = f.text_field :phone_number, autofocus: true, class: "field__box", placeholder: "09098766543"
         %p.phone-notes
           本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います.
         =f.submit "smsを送信する", class: 'create-action-btn'
