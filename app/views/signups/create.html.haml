@@ -18,7 +18,7 @@
         %h5.red
           登録完了
         .nav-bar__content__round.back-red
-.sign-up
+.sign-up.completion-of-registration
   .sign-up__content
     %h2.sign-up__content__title
       電話番号の確認
@@ -28,7 +28,8 @@
         ありがとうございます
       %p.finish-sentense
         登録が完了しました
-      =link_to "#" do
+      =link_to root_path do
         .create-action-btn
           %p.start-sentense
             Furimaを始める
+= render 'shared/logo_footer'
