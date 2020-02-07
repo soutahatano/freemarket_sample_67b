@@ -1,0 +1,150 @@
+.payment-page{
+  background-color: #f5f5f5;
+  height: 500px;
+  padding-left: 470px;
+  &__content{
+    padding: 0 130px;
+    height: 450px;
+    width: 500px;
+    background-color: #fafafa;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    &__theme{
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      padding-bottom: 5px;
+      padding-top: 13px;
+    }
+    &__top-box{
+      padding-top: 30px;
+      border-top: 1px solid #dddcdc;
+      font-size: 12px;
+      display: flex;
+      &__text1{
+        margin-top: 2px;
+        font-weight: 600;
+      }
+      &__text2{
+        background: #ea352d;
+        margin: 2px 0 4px 8px;
+        padding: 2px 4px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 10px;
+      }
+    }
+    &__container1{
+      border-radius: 3px;
+      line-height: 1.5;
+      font-size: 16px;
+      &__icons{
+        display: flex;
+      }
+      &__form{
+        &__box{
+          height: 40px;
+          width: 250px;
+          font-size: 10px;
+          padding: 7px;
+          border-radius: 5px;
+        }
+      }
+    }
+    &__middle-box{
+      padding-top: 7px;
+      font-size: 12px;
+      display: flex;
+      &__text1{
+        margin-top: 2px;
+        font-weight: 600;
+      }
+      &__text2{
+        background: #ea352d;
+        margin: 2px 0 4px 8px;
+        padding: 2px 4px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 10px;
+      }
+    }
+    &__container2{
+      &__form-box{
+        display: flex;
+        &__form-left{
+          &__box{
+            height: 40px;
+            width: 100px;
+            font-size: 10px;
+            border-radius: 5px;
+            line-height: 1.5;
+          }
+        }
+        &__form-right{
+          &__box{
+            height: 40px;
+            width: 100px;
+            font-size: 10px;
+            border-radius: 5px;
+            line-height: 1.5;
+          }
+        }
+        &__month{
+          font-size: 6px;
+          padding: 10px 5px 5px 5px;
+        }
+        &__year{
+          font-size: 6px;
+          padding: 10px 5px 5px 5px;
+        }
+      }
+    }
+    &__bottom-box{
+      padding-top: 30px;
+      font-size: 12px;
+      display: flex;
+      &__text1{
+        margin-top: 2px;
+        font-weight: 600;
+      }
+      &__text2{
+        background: #ea352d;
+        margin: 2px 0 4px 8px;
+        padding: 2px 4px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 10px;
+      }
+    }
+    &__container3{
+      border-radius: 3px;
+      line-height: 1.5;
+      font-size: 16px;
+      &__form{
+        &__box{
+          height: 40px;
+          width: 250px;
+          font-size: 10px;
+          padding: 7px;
+          border-radius: 5px;
+        }
+      }
+      &__help-box{
+        display: flex;
+        font-size: 10px;
+        color: #0099e8;
+        margin-left: 120px;
+        padding-top: 5px;
+      }
+    }
+    &__register-btn{
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+      line-height: 33px;
+      margin-top: 20px;
+      width: 250px;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
