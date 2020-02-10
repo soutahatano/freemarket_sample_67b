@@ -11,7 +11,7 @@ class User < ApplicationRecord
   VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
   VALID_PHONE_REGEX = /\A\d{10,11}\z/
 
-  validates :email,                 presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
+  validates :email,                 presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :nickname,              presence: true, length: {maximum: 20}
   validates :last_name,             presence: true, format: { with: VALID_NAME_REGEX }
   validates :first_name,            presence: true, format: { with: VALID_NAME_REGEX }

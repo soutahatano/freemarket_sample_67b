@@ -33,7 +33,7 @@
         -unless @user.errors.full_messages_for(:nickname) == []
           .errors_messages
             ニックネーム
-            = @user.errors.messages[:nickname].to_s.delete('[ "]').sub!(/,.*/, '')
+            = @user.errors.messages[:nickname].to_s.delete('[ "]')
         .field
           .field__label
             = f.label :email, "メールアドレス"
