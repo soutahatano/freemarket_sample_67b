@@ -67,7 +67,6 @@ class SignupsController < ApplicationController
       phone_number: "09009876543"
     )
     unless @user.valid?
-      # binding.pry
       render '/signups/identification'
     end
   end
@@ -98,7 +97,6 @@ class SignupsController < ApplicationController
       phone_number: session[:address][:phone_number]
     )
     unless @address.valid?
-      # binding.pry
       render '/signups/address'
     end
   end
@@ -117,7 +115,6 @@ class SignupsController < ApplicationController
       phone_number: user_params[:phone_number]
     )
     unless @user.valid?
-      # binding.pry
       render '/signups/phone_number'
     end
   end

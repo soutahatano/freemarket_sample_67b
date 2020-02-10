@@ -102,6 +102,11 @@ describe User, type: :model do
       user = build(:user, password: 'aaaaaaa',password_confirmation:'aaaaaaa')
       expect(user).to be_valid
     end
+
+    it 'is valid with all columns exist ' do
+      user = build(:user)
+      expect(user).to be_valid
+    end
     
   end
 end

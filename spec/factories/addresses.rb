@@ -8,7 +8,7 @@ FactoryBot.define do
     post_number           {"012-3456"}
     prefecture            {"愛知県"}
     city                  {"浜松市"}
-    house_number          {""}
+    house_number          {"tyuig"}
     phone_number          {"09009876543"}
     user_id               {1}
   end

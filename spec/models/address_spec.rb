@@ -56,5 +56,11 @@ describe Address, type: :model do
       expect(address.errors[:user]).to include('を入力してください')
     end
     
+    it 'is valid with all columns exist ' do
+      user = build(:user)
+      address = build(:address, user: user)
+      expect(address).to be_valid
+    end
+
   end
 end
