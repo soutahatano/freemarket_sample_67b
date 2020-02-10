@@ -12,9 +12,10 @@
       .header__middle-box__lower__left-box__brand
         ブランド
     .header__middle-box__lower__right-box
-      = link_to new_user_session_path do
-        .header__middle-box__lower__right-box__login
-          ログイン
+      - unless user_signed_in?
+        = link_to new_user_session_path do
+          .header__middle-box__lower__right-box__login
+            ログイン
       =link_to new_signup_path do
         .header__middle-box__lower__right-box__sign-up
           新規会員登録
