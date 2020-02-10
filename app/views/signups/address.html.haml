@@ -1,0 +1,117 @@
+.sign-up__headder
+  .sign-up__headder__content
+    = image_tag 'logo/logo.png', class: "logo"
+    .nav-bar
+      .nav-bar__content
+        %h5
+          会員情報
+        .nav-bar__content__round.back-red.nav-bar__content__passing
+      .nav-bar__content
+        %h5.red
+          住所登録
+        .nav-bar__content__round.back-red.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          電話番号
+        .nav-bar__content__round.nav-bar__content__progress
+      .nav-bar__content
+        %h5
+          登録完了
+        .nav-bar__content__round
+.sign-up
+  .sign-up__content
+    %h2.sign-up__content__title
+      発送元・お届け先住所変更
+  = form_with model: @address, url: phone_number_signups_path, local: true do |f|
+    .sign-up__content__main
+      .sign-up__content__main__form
+        .field
+          .field__label
+            = f.label :first_name, "お名前(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.text_field :first_name, class: "field__box__half", placeholder: "例)中野"
+            = f.text_field :last_name, class: "field__box__half", placeholder: "例)尊"
+          -unless @address.errors.full_messages_for(:last_name) == []
+            .errors_messages
+              苗字
+              = @address.errors.messages[:last_name].to_s.delete('[ "]').sub!(/,.*/, '')
+          -unless @address.errors.full_messages_for(:first_name) == []
+            .errors_messages
+              名前
+              = @address.errors.messages[:first_name].to_s.delete('[ "]').sub!(/,.*/, '')
+        .field.field-box
+          .field__label
+            = f.label :first_name_kana, "お名前カナ(全角)"
+            %span.attention
+              必須
+          .field-box__wrapper
+            = f.text_field :first_name_kana, class: "field__box__half", placeholder: "例)ナカノ"
+            = f.text_field :last_name_kana, class: "field__box__half", placeholder: "例)タケル"
+          -unless @address.errors.full_messages_for(:last_name_kana) == []
+            .errors_messages
+              ミョウジ
+              = @address.errors.messages[:last_name_kana].to_s.delete('[ "]').sub!(/,.*/, '')
+          -unless @address.errors.full_messages_for(:first_name_kana) == []
+            .errors_messages
+              ナマエ
+              = @address.errors.messages[:first_name_kana].to_s.delete('[ "]').sub!(/,.*/, '')
+        .field.field-box
+          .field__label
+            = f.label :post_number, "郵便番号"
+            %span.attention
+              必須
+          = f.text_field :post_number, class: "field__box", placeholder: "例)123-456"
+          -unless @address.errors.full_messages_for(:post_number) == []
+            .errors_messages
+              郵便番号
+              = @address.errors.messages[:post_number].to_s.delete('[ "]').sub!(/,.*/, '')
+        .field
+          .field-label
+            = f.label :prefecture, "都道府県"
+            %span.attention
+              必須
+          = f.select :prefecture, include_blank: :true
+          -unless @address.errors.full_messages_for(:prefecture) == []
+            .errors_messages
+              都道府県
+              = @address.errors.messages[:prefecture].to_s.delete('[ "]').sub!(/,.*/, '')
+        .field
+          .field__label
+            = f.label :city, "市区町村"
+            %span.attention
+              必須
+          = f.text_field :city, class: "field__box", placeholder: "例)横浜市緑区"
+          -unless @address.errors.full_messages_for(:city) == []
+            .errors_messages
+              市区町村
+              = @address.errors.messages[:city].to_s.delete('[ "]')
+        .field
+          .field__label
+            = f.label :house_number, "番地"
+            %span.attention
+              必須
+          = f.text_field :house_number, class: "field__box", placeholder: "例)青山1-1-1"
+          -unless @address.errors.full_messages_for(:house_number) == []
+            .errors_messages
+              番地
+              = @address.errors.messages[:house_number].to_s.delete('[ "]')
+        .field
+          .field__label
+            = f.label :building, "建物"
+            %span.attention.arbitrary
+              任意
+          = f.text_field :building, class: "field__box", placeholder: "例)添木ビル108"
+        .field
+          .field__label
+            = f.label :phone_number, "電話"
+            %span.attention.arbitrary
+              任意
+          = f.text_field :phone_number, class: "field__box", placeholder: "例)090123456781"
+          -unless @address.errors.full_messages_for(:phone_number) == []
+            .errors_messages
+              電話番号
+              = @address.errors.messages[:phone_number].to_s.delete('[ "]').sub!(/,.*/, '')
+        =f.submit "次へ進む", class: 'create-action-btn'
+= render 'shared/logo_footer'

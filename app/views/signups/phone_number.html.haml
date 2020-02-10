@@ -22,7 +22,7 @@
   .sign-up__content
     %h2.sign-up__content__title
       電話番号の確認
-  = form_with do |f|
+  = form_with model: @user, url: signups_path, local: true do |f|
     .sign-up__content__main
       .sign-up__content__main__form
         .field__label
@@ -30,6 +30,10 @@
           %span.attention
             必須
         = f.text_field :phone_number, autofocus: true, class: "field__box", placeholder: "09098766543"
+        -unless @user.errors.full_messages_for(:phone_number) == []
+          .errors_messages
+            電話番号
+            = @user.errors.messages[:phone_number].to_s.delete('[ "]').sub!(/,.*/, '')
         %p.phone-notes
           本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います.
         =f.submit "smsを送信する", class: 'create-action-btn'
