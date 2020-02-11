@@ -26,7 +26,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |post_number|string|null: false|
-|prefcture|string|null: false|
+|prefcture_id|integer|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
 |building|string||
@@ -34,6 +34,7 @@
 |user|reference|null: false, foreign_key: true|
 ## Association
 - belongs_to :user
+- belongs_to_active_hash :prefecture
 
 
 # credits
