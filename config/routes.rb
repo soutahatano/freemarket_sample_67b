@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       get 'identification'
       post 'address'
       post 'phone_number'
-      get 'login'
     end
   end
 end

@@ -61,9 +61,12 @@ a{
     justify-content: center;
     height: 128px;
     width: 700px;
-    .logo{
+    a{
       height: 50px;
       margin: auto 40px;
+    }
+    .logo{
+      height: 50px;
     }
     .nav-bar{
       display: flex;
@@ -172,7 +175,7 @@ a{
             height: 50px;
             background-color: #ffffff;
           }
-          #pref_id{
+          #address_prefecture_id{
             width: 320px;
             background-color: #ffffff;
             font-weight: lighter;

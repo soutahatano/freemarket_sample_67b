@@ -25,17 +25,14 @@ class SignupsController < ApplicationController
       last_name: session[:address]["last_name"],
       first_name_kana: session[:address]["first_name_kana"],
       last_name_kana: session[:address]["last_name_kana"],
-      prefecture: session[:address]["prefecture"],
+      prefecture_id: session[:address]["prefecture_id"],
       city: session[:address]["city"],
       house_number: session[:address]["house_number"],
       post_number: session[:address]["post_number"],
       phone_number: session[:address]["phone_number"]
     )
+    sign_in @user unless user_signed_in?
   end
-
-  def login
-  end
-
   
   private
   
@@ -77,7 +74,7 @@ class SignupsController < ApplicationController
     session[:address][:last_name] = address_params[:last_name]
     session[:address][:first_name_kana] = address_params[:first_name_kana]
     session[:address][:last_name_kana] = address_params[:last_name_kana]
-    session[:address][:prefecture] = address_params[:prefecture]
+    session[:address][:prefecture_id] = address_params[:prefecture_id]
     session[:address][:city] = address_params[:city]
     session[:address][:house_number] = address_params[:house_number]
     session[:address][:post_number] = address_params[:post_number]
@@ -90,7 +87,7 @@ class SignupsController < ApplicationController
       last_name: session[:address][:last_name],
       first_name_kana: session[:address][:first_name_kana],
       last_name_kana: session[:address][:last_name_kana],
-      prefecture: session[:address][:prefecture],
+      prefecture_id: session[:address][:prefecture_id],
       city: session[:address][:city],
       house_number: session[:address][:house_number],
       post_number: session[:address][:post_number],
@@ -124,7 +121,7 @@ class SignupsController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:prefecture,:city,:house_number,:building,:phone_number,:post_number)
+    params.require(:address).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:prefecture_id,:city,:house_number,:building,:phone_number,:post_number)
   end
 
 end

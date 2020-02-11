@@ -1,6 +1,7 @@
 .sign-up__headder
   .sign-up__headder__content
-    = image_tag 'logo/logo.png', class: "logo"
+    = link_to root_path do
+      = image_tag 'logo/logo.png', class: "logo"
     .nav-bar
       .nav-bar__content
         %h5
@@ -72,7 +73,7 @@
             = f.label :prefecture, "都道府県"
             %span.attention
               必須
-          = f.select :prefecture, include_blank: :true
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name
           -unless @address.errors.full_messages_for(:prefecture) == []
             .errors_messages
               都道府県
