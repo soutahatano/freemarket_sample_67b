@@ -1,12 +1,11 @@
 .payment-page{
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+  width: 700px;
   height: 500px;
-  padding-left: 470px;
+  margin: 0 auto;
   &__content{
-    padding: 0 130px;
-    height: 450px;
-    width: 500px;
-    background-color: #fafafa;
+    height: 50px;
+    text-align: center;
     font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
     &__theme{
       text-align: center;
@@ -14,10 +13,11 @@
       font-weight: 600;
       padding-bottom: 5px;
       padding-top: 13px;
+      border-bottom: 1px #f5f5f5 solid;
     }
     &__top-box{
+      margin-left: 230px;
       padding-top: 30px;
-      border-top: 1px solid #dddcdc;
       font-size: 12px;
       display: flex;
       &__text1{
@@ -39,6 +39,10 @@
       font-size: 16px;
       &__icons{
         display: flex;
+        justify-content: center;
+        &__icon{
+          margin: 1px 5px;
+        }
       }
       &__form{
         &__box{
@@ -47,12 +51,14 @@
           font-size: 10px;
           padding: 7px;
           border-radius: 5px;
+          border: 1px solid #aaaaaa;
         }
       }
     }
     &__middle-box{
       padding-top: 7px;
       font-size: 12px;
+      margin-left: 230px;
       display: flex;
       &__text1{
         margin-top: 2px;
@@ -70,6 +76,7 @@
     &__container2{
       &__form-box{
         display: flex;
+        justify-content: center;
         &__form-left{
           &__box{
             height: 40px;
@@ -77,6 +84,7 @@
             font-size: 10px;
             border-radius: 5px;
             line-height: 1.5;
+            background-color: #ffffff;
           }
         }
         &__form-right{
@@ -102,6 +110,7 @@
       padding-top: 30px;
       font-size: 12px;
       display: flex;
+      margin-left: 230px;
       &__text1{
         margin-top: 2px;
         font-weight: 600;
@@ -126,13 +135,14 @@
           font-size: 10px;
           padding: 7px;
           border-radius: 5px;
+          border: 1px solid #aaaaaa;
         }
       }
       &__help-box{
         display: flex;
         font-size: 10px;
         color: #0099e8;
-        margin-left: 120px;
+        margin-left: 350px;
         padding-top: 5px;
       }
     }
@@ -146,5 +156,69 @@
       text-align: center;
       font-size: 12px;
     }
+  }
+}
+
+.payment{
+  background-color: #ffffff;
+  width: 700px;
+  height: 270px;
+  margin: 0 auto;
+  padding: 0 60px 60px;
+  &__content{
+    height: 50px;
+    text-align: center;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    &__theme{
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 13px 0;
+      border-bottom: 1px #eeeeee solid;
+    }
+  }
+  &__moov-new{
+    width: 570px;
+    height: 170px;
+    padding-top: 60px;
+    text-align: center;
+    border-bottom: #aaaaaa solid 1px;
+    &__box{
+      background-color: #ea352d;
+      color: #ffffff;
+      width: 320px;
+      height: 50px;
+      margin: auto;
+      text-align: center;
+      line-height: 50px;
+      display: flex;
+      justify-content: center;
+      i{
+        line-height: 50px;
+        margin-right: 7px;
+      }
+    }
+  }
+  &__attention-sentence{
+    margin-top: 10px;
+    height: 16px;
+    line-height: 16px;
+    display: flex;
+    margin-left: 440px;
+    color: #0099e8;
+    font-size: 13px;
+    .icon{
+      color: #0099e8;
+      margin-left: 5px;
+      line-height: 16px;
+    }
+  }
+  &__card{
+    width: 180px;
+    margin: 0 auto 10px;
+    font-size: 15px;
+  }
+  &__icon{
+    margin-top: 20px;
   }
 }
