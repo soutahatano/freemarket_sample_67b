@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_120852) do
+ActiveRecord::Schema.define(version: 2020_02_12_115443) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -115,9 +115,18 @@ ActiveRecord::Schema.define(version: 2020_01_31_120852) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.string "image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
+    t.text "describe", null: false
     t.bigint "category_id", null: false
     t.bigint "status_id", null: false
     t.bigint "brand_id", null: false
@@ -132,6 +141,14 @@ ActiveRecord::Schema.define(version: 2020_01_31_120852) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.string "picture", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_pictures_on_item_id"
+  end
+
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -143,7 +160,9 @@ ActiveRecord::Schema.define(version: 2020_01_31_120852) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.date "birthday", null: false
+    t.string "credit_number", null: false
     t.string "phone_number", null: false
+    t.string "post_number", null: false
     t.text "profile"
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -170,8 +189,10 @@ ActiveRecord::Schema.define(version: 2020_01_31_120852) do
   add_foreign_key "deliveries", "users"
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
+  add_foreign_key "images", "items"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "statuses"
   add_foreign_key "items", "users"
+  add_foreign_key "pictures", "items"
 end
