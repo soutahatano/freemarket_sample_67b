@@ -142,46 +142,24 @@
     .top-brand__title__sub-title
       アーカイバ
   .top-brand__lists
-    .top-brand__lists__list1
-      .top-brand__lists__list1__img
-        = link_to "items/1" do
-          = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
-      .top-brand__lists__list1__detail
-        .top-brand__lists__list1__detail__text1
-          product3
-        .top-brand__lists__list1__detail__text2
-          30000円
-          .top-brand__lists__list1__detail__text2__icon
+    - @items.each do |item|
+      .top-brand__lists__list1
+        .top-brand__lists__list1__img
+          = link_to "items/1" do
+            = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
+        - if item.soldout == true
+          .top-category__lists__list1__border-box
+          .top-category__lists__list1__text-box
+            .top-category__lists__list1__text-box__sold-out
+              SOLD
+        .top-category__lists__list1__text-box__name
+          = item.name
+        .top-category__lists__list1__text-box__box
+          .top-category__lists__list1__text-box__box__price
+            = item.price
+          .top-category__lists__list1__text-box__box__like
             ★0
-        .top-brand__lists__list1__detail__text3
-          (税込)
-
-    .top-brand__lists__list2
-      .top-brand__lists__list2__img
-        = link_to "items/1" do
-          = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
-      .top-brand__lists__list2__detail
-        .top-brand__lists__list2__detail__text1
-          product2
-        .top-brand__lists__list2__detail__text2
-          20000円
-          .top-brand__lists__list2__detail__text2__icon
-            ★0
-        .top-brand__lists__list2__detail__text3
-          (税込)
-
-    .top-brand__lists__list3
-      .top-brand__lists__list3__img
-        = link_to "items/1" do
-          = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
-      .top-brand__lists__list3__detail
-        .top-brand__lists__list3__detail__text1
-          product1
-        .top-brand__lists__list3__detail__text2
-          10000円
-          .top-brand__lists__list3__detail__text2__icon
-            ★0
-        .top-brand__lists__list3__detail__text3
+        .top-category__lists__list1__text-box__tax
           (税込)
 
 .top-banner
