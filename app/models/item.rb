@@ -1,18 +1,19 @@
 class Item < ApplicationRecord
-  has_many :pictures
-  accepts_nested_attributes_for :pictures, allow_destroy: true
-  has_many :images, dependent: :destroy
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :status
+  has_many :pictures, dependent: :destroy
 
-belongs_to :delivery
-has_many :comments
-has_many :pictures
-belongs_to :category
-belongs_to :status
-belongs_to :brand
-has_many :favorites
-validates :name,             presence: true, length:{maximum: 40}
-validates :name,             presence: true, length:{maximum: 1000}
-validates :price,            presence: true
-validates :category,         presence: true
-validates :status,           presence: true
+  belongs_to :category
+  belongs_to :brand
+  has_one :delivery
+  has_many :comments
+  has_many :pictures
+  has_many :favorites
+  
+  validates :name,             presence: true, length:{maximum: 40}
+  validates :text,             presence: true, length:{maximum: 1000}
+  validates :price,            presence: true
+  validates :status_id,        presence: true
+  validates :soldout,          presence: true
+
 end  
