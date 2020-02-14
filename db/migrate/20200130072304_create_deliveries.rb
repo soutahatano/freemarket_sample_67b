@@ -3,10 +3,9 @@ class CreateDeliveries < ActiveRecord::Migration[5.2]
     create_table :deliveries do |t|
       t.references :user,              null: false, foreign_key: true
       t.references :item,              null: false, foreign_key: true
-      t.references :delivery_charge,   null: false, foreign_key: true
-      t.references :delivery_day,      null: false, foreign_key: true
-      t.references :delivery_way,      null: false, foreign_key: true
-      t.references :delivery_date,     null: false, foreign_key: true
+      t.string :delivery_charge,       null: false 
+      t.string :delivery_day,          null: false 
+      t.integer :prefecture_id,        null: false
       t.timestamps
     end
   end
