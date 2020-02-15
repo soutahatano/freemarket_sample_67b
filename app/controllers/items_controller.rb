@@ -12,8 +12,9 @@ class ItemsController < ApplicationController
   def create
     
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
-      binding.pry
+    
       redirect_to root_path
     else
       render :new
@@ -22,7 +23,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit( pictures_attributes: [:src])
+    params.require(:item).permit( :name, :text, :price, :category_id,:brand_id, :status, pictures_attributes: [:id])
   end
   def set_item
     @item = Item.find(params[:id])
