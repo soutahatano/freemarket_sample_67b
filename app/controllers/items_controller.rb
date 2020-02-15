@@ -14,14 +14,13 @@ class ItemsController < ApplicationController
     else
       @category = Category.find(params[:category_id])
       @item = Item.new(
-        name: params[:name],
-        text: params[:text],
-        price: params[:price],
-        brand: params[:brand],
-        status_id: params[:status_id],
+        name: item_params[:name],
+        text: item_params[:text],
+        price: item_params[:price],
+        brand: item_params[:brand],
+        status_id: item_params[:status_id],
         category: @category,
-        user_id: current_user.id,
-        status_id: params[:status_id]
+        user_id: current_user.id
       )
       if @item.save
         count = 0
@@ -63,9 +62,9 @@ class ItemsController < ApplicationController
         if count > 0
           Delivery.create(
           item_id: @item.id,
-          deliverycharge_id: params[:deliverycharge_id],
-          deliveryday_id: params[:deliveryday_id],
-          prefecture_id: params[:prefecture_id]
+          deliverycharge_id: delivery_params[:deliverycharge_id],
+          deliveryday_id: delivery_params[:deliveryday_id],
+          prefecture_id: delivery_params[:prefecture_id]
           )
           redirect_to root_path
         else
@@ -90,4 +89,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def item_params
+    params.permit(:name,:text,:price,:brand,:status_id)
+  end
+
+  def delivery_params
+    params.permit(:deliverycharge_id,:deliveryday_id,:prefecture_id)
+  end
 end
