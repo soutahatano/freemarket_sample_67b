@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     if params[:category_id] == nil
       render :new
     else
@@ -91,7 +90,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def item_params
-    params.require(:item).permit(:name)
-  end
 end
