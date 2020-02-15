@@ -27,9 +27,9 @@ describe Address, type: :model do
     end
 
     it 'is invalid without a prefecture' do
-      address = build(:address, prefecture: '')
+      address = build(:address, prefecture_id: '')
       address.valid?
-      expect(address.errors[:prefecture]).to include('を入力してください')
+      expect(address.errors[:prefecture_id]).to include('を入力してください')
     end
 
     it 'is invalid without a city' do

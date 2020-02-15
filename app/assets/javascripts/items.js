@@ -1,137 +1,203 @@
 $(function(){
-  $('#notice-list').click(function(){
-    if(!$(this).hasClass('activ-list')){
-      $('#todo-list').removeClass('activ-list');
-      $(this).addClass('activ-list');
-    }
-  });
+  function buildchildren(insertHTML){
+    html = ` 
+      <div class="sell-form__content__clearfix__form__group__field" id="childeen_category">
+        <select name="parent_category_id" id="parent_category_id">
+        <option value="">--</option>
+        ${insertHTML}
+        </select>
+        </div>`
+    $("#category_lists").append(html);
+  };
 
-  $('#todo-list').click(function(){
-    if(!$(this).hasClass('activ-list')){
-      $('#notice-list').removeClass('activ-list');
-      $(this).addClass('activ-list');
-    }
-  });
+  function buildgrandchildren(insertHTML){
+    html = ` 
+      <div class="sell-form__content__clearfix__form__group__field" id="grandchildren_category">
+        <select name="category_id" id="category_id">
+        <option value="">--</option>
+        ${insertHTML}
+        </select>
+        </div>`
+    $("#category_lists").append(html);
+  };
 
-  $('#trading').click(function(){
-    if(!$(this).hasClass('activ-list')){
-      $('#traded').removeClass('activ-list');
-      $(this).addClass('activ-list');
-      $('.trading').removeClass('hidden-list');
-      $('.traded').addClass('hidden-list');
-    }
-  });
+  function appendOption(category){
+    var html = `<option value="${category.id}">${category.name}</option>`;
+    return html;
+  };
 
-  $('#traded').click(function(){
-    if(!$(this).hasClass('activ-list')){
-      $('#trading').removeClass('activ-list');
-      $(this).addClass('activ-list');
-      $('.traded').removeClass('hidden-list');
-      $('.trading').addClass('hidden-list');
-    }
-  });
-});
-$(function(){
-  $('#price_calc').on('input', function(){   
-    var data = $('#price_calc').val(); 
-    var profit = Math.round(data * 0.9)  
+  function appendimg(img,id){
+    var html =`
+      <div class="sell-form__uploder__box__lists__list">
+        <img type="file" src="${img}">
+        <button class="box-image__image-btn__delete" data-picture-id = ${id}>削除</button>
+      </div>`
+      return html;
+  };
+  function appendfile(picture){
+    var html =`<input class="sell-form__uploder__file" type="file" name="${picture}" id="${picture}">`
+    $('.file_field_lists').append(html);
+  };
+  $('#price_calc').on('input', function(){
+    var data = $('#price_calc').val();
+    var profit = Math.round(data * 0.9)
     var fee = (data - profit) 
     $('.sell-form__price__right__text__r').html(fee) 
     $('.sell-form__price__right__text__r').prepend('¥') 
     $('.sell-form__price__right__rieki__r').html(profit)
     $('.sell-form__price__right__rieki__r').prepend('¥')
     $('#price').val(profit) 
-    if(profit == '') {   
-    $('.sell-form__price__right__rieki__r').html('');
-    $('.sell-form__price__right__text__r').html('');
+    if(profit == '') {
+      $('.sell-form__price__right__rieki__r').html('');
+      $('.sell-form__price__right__text__r').html('');
     }
   });
-$(function(){
-  
-  const buildFileField = (num)=> {
-  const html = `<div class="js-file_group=${num}" data-index=${num} data-swich="false">
-                <input class="js-file" type="file"  name="[pictures][${num}][src]" id="_pictures_${num}_src">
-                </div>`
-  //               // `<div class="picture-box" data-index="${num}">
-  //               // <input class="js-file" type="file" name="[pictures][${num}][src]" id="_pictures_${num}_src">
-  //               // <br>
-  //               // <span class="js-remove">削除</span>
-  //               // <a href="/">編集</a>
-  //               // </div>`
-  
-    return html; 
-    
+  $('#price_calc').on('blur',function(){
+    $('#error_price').empty();
+    let value = $(this).val();
+    if(value < 300 || value > 9999999){
+      $('#error_price').append("<p class='error_count'>正しく入力してください</p>");
+    }
+  });
+  $(document).on("change", "#grandparent_category_id", function(e) {
+    e.preventDefault();
+    $('#error_category').empty();
+    let index = document.getElementById('grandparent_category_id').value;
+    if(index != ""){
+      $.ajax({
+        type: "GET",
+        url: "/items/get_category_children",
+        data: {id: index},
+        dataType: "json"
+      })
+      .done(function(categories){
+        $("#childeen_category").remove();
+        $("#grandchildren_category").remove();
+        var insertHTML = '';
+        categories.forEach(function(category){
+          insertHTML += appendOption(category);
+        });
+        buildchildren(insertHTML);
+      })
+      .fail(function() {
+        alert('カテゴリー取得に失敗しました');
+      })
+    }else{
+      $("#childeen_category").remove();
+      $("#grandchildren_category").remove();
+      $('#error_category').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $(document).on("change", "#parent_category_id", function(e) {
+    e.preventDefault();
+    let index = document.getElementById('parent_category_id').value;
+    $('#error_category').empty();
+    if(index != ""){
+      $.ajax({
+        type: "GET",
+        url: "/items/get_category_children",
+        data: {id: index},
+        dataType: "json"
+      })
+      .done(function(categories){
+        $("#grandchildeen_category").remove();
+        var insertHTML = '';
+        categories.forEach(function(category){
+          insertHTML += appendOption(category);
+        });
+        buildgrandchildren(insertHTML);
+      })
+      .fail(function() {
+        alert('カテゴリー取得に失敗しました');
+      })
+    }else{
+      $("#grandchildren_category").remove();
+      $('#error_category').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $(document).on('change', '.sell-form__uploder__file', function(e){
+    console.log("a");
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    var id_label = `#label-${$(this).attr("id")}`;
+    reader.onload = (function(file) {
+      return function(e){
+        var html = appendimg(e.target.result,id_label);
+        $(".sell-form__uploder__box__lists").append(html);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+    $(id_label).hide();
+  });
+  $(document).on("click", ".box-image__image-btn__delete", function(e){
+    e.preventDefault();
+    picture_id = $(this).data("picture-id");
+    picture = picture_id.substr(-8, 8);
+    $(this).parent().remove();
+    $(picture_id).show();
+    $(`#${picture}`).remove();
+    appendfile(picture);
+  });
+  $('#name').on('blur',function(){
+    $('#error_name').empty();
+    let error;
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_name').append("<p class='error_count'>入力してください</p>");
+    }else if(value.length > 40){
+      $('#error_name').append("<p>40字以内で入力してください</p>");
+    }
+  });
+  $('#text').on('blur',function(){
+    $('#error_text').empty();
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_text').append("<p class='error_count'>入力してください</p>");
+    }else if(value.length > 1000){
+      $('#error_text').append("<p>1000字以内で入力してください</p>");
+    }
+  });
+  $(document).on('blur','#category_id',function(){
+    $('#error_category').empty();
+    let value = $(this).val();
+    console.log(value);
+    if(value == ""){
+      $('#error_category').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $('#status_id').on('blur',function(){
+    $('#error_status').empty();
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_status').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $('#deliverycharge_id').on('blur',function(){
+    $('#error_deliverycharge').empty();
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_deliverycharge').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $('#deliveryday_id').on('blur',function(){
+    $('#error_deliveryday').empty();
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_deliveryday').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $('#prefecture_id').on('blur',function(){
+    $('#error_prefecture').empty();
+    let value = $(this).val();
+    if(value == ""){
+      $('#error_prefecture').append("<p class='error_count'>入力してください</p>");
+    }
+  });
+  $(document).on('click',".sell-form__btn__box__exhibition",function(e){
+  let error = $('.error_count').length;
+  if(error > 0){
+    alert("入力エラーがあります");
+    e.preventDefault();
   }
-    // プレビュー用のimgタグを生成する関数
-    
-    const buildImg = (index, url,)=> {
-    const html = `<div class="box">
-                  <img data-index="${index}" src="${url}" width="100px" height="100px"></img>
-                  <div class="box-image__image-btn">
-                  <button id=delete class="box-image__image-btn__update">編集</button>
-                  <button id=delete class="box-image__image-btn__delete">削除</button>
-                  </div>
-                  `
-                           
-    return html;
-    
-    }
-
-    // file_fieldのnameに動的なindexをつける為の配列
-    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-    // 既に使われているindexを除外
-    lastIndex = $('.js-file').data('index');
-    fileIndex.splice(0, lastIndex);
-   
-    
-    
-    $('#picture-box').on('change', '.js-file', function(e) {
-      const targetIndex = $(this).parent().data('index');
-
-      const file = e.target.files[0];
-      const blobUrl = window.URL.createObjectURL(file);
-      
-      // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-      if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
-        img.setAttribute('src', blobUrl);
-      } else {  // 新規画像追加の処理
-        $('#previews').append(buildImg(targetIndex, blobUrl));
-        // fileIndexの先頭の数字を使ってinputを作る
-        $('#previews').append(buildFileField(fileIndex[0]));
-        
-        fileIndex.shift();
-        
-        // 末尾の数に1足した数を追加する
-        $('#previews').css("display","flex");
-        $('#picture-box').css("flex-wrap","wrap");
-        $('#_pictures_10_src.js-file').css("display","none");
-        $(this).css("display","none");
-
-    }
-    
-    
-  
-// });
-    
-    $("#previews").on('click', '.box-image__image-btn__delete', function() {
-    console.log("hellow")
-    
-    $(this).parent().parent(".box").remove();
-    const targetFile =$(this).parent().parent().find("img").data("index");
-    $(`div[data-index=${targetFile}]`).toggle();
-
-    // console.log(g);
-    // $(this).remove();
-    // console.log(this)
-    
-    
-    
-    // 画像入力欄が0個にならないようにしておく
-    // if ($(".js-file").length ==0 ) $('#picture-box').append(buildFileField(fileIndex[0]));
-    
-    });
-  });
-
   });
 });
-              

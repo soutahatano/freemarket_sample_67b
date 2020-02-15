@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_014800) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_on_category_id"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,10 +62,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_014800) do
   end
 
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "item_id", null: false
-    t.integer "delivery_charge_id", null: false
-    t.integer "delivery_day_id", null: false
+    t.integer "deliverycharge_id", null: false
+    t.integer "deliveryday_id", null: false
     t.integer "prefecture_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,14 +86,13 @@ ActiveRecord::Schema.define(version: 2020_02_13_014800) do
     t.string "name", null: false
     t.string "text", null: false
     t.string "soldout", default: "false", null: false
+    t.string "brand"
     t.integer "price", null: false
     t.integer "status_id", null: false
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "brand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["name"], name: "index_items_on_name"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_014800) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "categories", "categories"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "credits", "users"
@@ -133,7 +135,6 @@ ActiveRecord::Schema.define(version: 2020_02_13_014800) do
   add_foreign_key "deliveries", "users"
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
-  add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "pictures", "items"
