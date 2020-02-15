@@ -116,7 +116,6 @@ $(function(){
     }
   });
   $(document).on('change', '.sell-form__uploder__file', function(e){
-    console.log("a");
     var file = e.target.files[0];
     var reader = new FileReader();
     var id_label = `#label-${$(this).attr("id")}`;
@@ -160,7 +159,6 @@ $(function(){
   $(document).on('blur','#category_id',function(){
     $('#error_category').empty();
     let value = $(this).val();
-    console.log(value);
     if(value == ""){
       $('#error_category').append("<p class='error_count'>入力してください</p>");
     }
