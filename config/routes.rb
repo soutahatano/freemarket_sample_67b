@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resources :credits
+  resources :deliveries
   resources :signups , only: [:new, :create] do
     collection do
       get 'identification'
