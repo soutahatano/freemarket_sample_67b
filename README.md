@@ -40,7 +40,7 @@
 # credits
 |Column|Type|Options|
 |------|----|-------|
-|credit_number|string|null: false|
+|customer_id|string|null: false|
 |user|reference|null: false, foreign_key: true|
 ## Association
 - belongs_to :user
