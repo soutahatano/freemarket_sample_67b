@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show]
   def index
+    @items = Item.all
+    @items = @items.order("created_at DESC").limit(5)
   end
 
   def new
