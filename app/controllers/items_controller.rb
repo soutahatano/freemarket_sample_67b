@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:edit,:show]
+  # before_action  :move_to_index,except: [:index, :show]
+
   def index
+    
   end
 
   def new
@@ -79,7 +82,34 @@ class ItemsController < ApplicationController
   def get_category_children
     @category_children = Category.find(params[:id]).children
   end
- 
+  def edit
+    @item = Item.find(params[:id])
+    @category = Category.all
+    @delivery =Delivery.find(params[:id])
+    @category_children = Category.find(params[:id]).children
+    @picture=Picture.find(params[:id])
+
+    
+  end
+
+
+  def update
+    @item = Item.find_by(id: params[:id])
+    if item.user_id == current_user.id
+      @item.update(
+        name:             item_params[:name],
+        text:      item_params[:text],
+        status:        item_params[:status],
+        category_id:      item_params[:grandchild_category_id],
+        brand:         item_params[:brand],
+        price:            item_params[:price],
+        user_id:        item_params[:user_id],
+        pictures:           session[:pictures]
+      )
+    else
+      render 'edit'
+    end
+  end
   def show
   end
 
