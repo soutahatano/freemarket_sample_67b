@@ -1,0 +1,146 @@
+.exhibition
+  = render 'shared/logo_header'
+  .exhibition-main
+    .exhibition-main__inner
+      .in-containner
+        .in-containner__header 商品の情報を入力
+        %form.sell-form
+        = form_with  id: "item-edit-form",method: :patch,url: item_path(@item), local: true do |f|
+          .sell-form__uploder 
+            .sell-form__uploder__head 
+              .sell-form__uploder__head__text 出品画像
+              .sell-form__uploder__head__require 必須
+            %p.in- 最大5枚までアップロードできます。
+            .sell-form__uploder__box
+              .sell-form__uploder__box__lists
+                -@item.pictures.each_with_index do |picture, index|
+                  .sell-form__uploder__box__lists__list
+                    = image_tag picture.picture.url
+                    %button.box-image__image-btn__delete{data: {picture: {id: "#label-picture#{index + 1}"}}}
+                      削除
+              .sell-form__uploder__box__field
+                -5.times do |index|
+                  = f.label "picture#{index + 1}", "画像を選択", class: 'sell-form__uploder__box__field__picture', id: "label-picture#{index + 1}"
+              .file_field_lists
+                -@item.pictures.each_with_index do |picture, index|
+                  = f.file_field "picture#{index + 1}", class: 'sell-form__uploder__file', value: picture.picture
+                -(5 - @item.pictures.length).times do |index|
+                  = f.file_field "picture#{5 - index}", class: 'sell-form__uploder__file'
+          .sell-form__content
+            .sell-form__content__1
+              %label.sell-form__content__1__head
+                .sell-form__content__1__head__text 商品名
+                .sell-form__content__1__head__require 必須
+              =f.text_field :name, class:'sell-form__content__1__form__input',value: @item.name
+
+              .exhibition_error_messages#error_name
+              -# .sell-form__content__1__form
+            .sell-form__content__2
+              .sell-form__content__2__head
+                .sell-form__content__2__head__text 商品の説明
+                .sell-form__content__2__head__require 必須
+              =f.text_area :text, class:'sell-form__content__2__input', value: @item.text ,placeholder:'商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+                
+              .exhibition_error_messages#error_text
+          .sell-form__content__clearfix 
+            .sell-form__content__clearfix__sub 商品詳細
+            .sell-form__content__clearfix__form
+              #category_lists
+                .sell-form__content__clearfix__form__group
+                  %label.sell-form__content__clearfix__form__group__head
+                    .sell-form__content__clearfix__form__group__head__text カテゴリー
+                    .sell-form__content__clearfix__form__group__head__require 必須
+                  .sell-form__content__clearfix__form__group__field
+                    =f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt:"--",selected:@item.category.parent.parent.id}
+                  .sell-form__content__clearfix__form__group__field#children_category
+                    =f.select :parent_category_id, Category.where(category_id: @item.category.parent.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected: @item.category.parent.id}
+                  .sell-form__content__clearfix__form__group__field#grandchildren_category
+                    =f.select :category_id, Category.where(category_id: @item.category.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category_id}
+                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category.children.id}
+              .exhibition_error_messages#error_category
+              .sell-form__content__clearfix__form__group
+                .sell-form__content__clearfix__sub 
+                .sell-form__content__clearfix__form
+                  .sell-form__content__clearfix__form__group
+                    %label.sell-form__content__clearfix__form__group__head
+                      .sell-form__content__clearfix__form__group__head__text ブランド
+                      .sell-form__content__clearfix__form__group__head__require 任意
+                    .sell-form__content__clearfix__form__group__field
+                      %i.in-select__button
+                        -#=icon('fa', 'angle-down')
+                      = f.text_field :brand, class:'sell-form__content__1__form__input',value: @item.brand ,placeholder: '例）アディダス'
+              .sell-form__content__clearfix__form__group
+                .sell-form__content__clearfix__sub 
+                .sell-form__content__clearfix__form
+                  .sell-form__content__clearfix__form__group
+                    %label.sell-form__content__clearfix__form__group__head
+                      .sell-form__content__clearfix__form__group__head__text 商品の状態
+                      .sell-form__content__clearfix__form__group__head__require 必須
+                    .sell-form__content__clearfix__form__group__field
+                      %i.in-select__button
+                        -#=icon('fa', 'angle-down')
+                      = f.collection_select :status_id, Status.all, :id, :name,{prompt: "--",selected:@item.status_id}
+                    .exhibition_error_messages#error_status
+          .sell-form__content__clearfix 
+            .sell-form__content__clearfix__sub 配送について
+            .sell-form__content__clearfix__form
+              .sell-form__content__clearfix__form__group
+                %label.sell-form__content__clearfix__form__group__head
+                  .sell-form__content__clearfix__form__group__head__text 配送料の負担
+                  .sell-form__content__clearfix__form__group__head__require 必須
+                .sell-form__content__clearfix__form__group__field
+                  %i.in-select__button
+                    -#=icon('fa', 'angle-down')
+                  = f.collection_select :deliverycharge_id, Deliverycharge.all, :id, :name,{prompt: "--",selected: @item.delivery.deliverycharge_id}
+                .exhibition_error_messages#error_deliverycharge
+              .sell-form__content__clearfix__form__group
+                .sell-form__content__clearfix__sub 
+                .sell-form__content__clearfix__form
+                  .sell-form__content__clearfix__form__group
+                    %label.sell-form__content__clearfix__form__group__head
+                      .sell-form__content__clearfix__form__group__head__text 配送元の地域
+                      .sell-form__content__clearfix__form__group__head__require 必須
+                    .sell-form__content__clearfix__form__group__field
+                      %i.in-select__button
+                        -#=icon('fa', 'angle-down')
+                      = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--",selected: @item.delivery.prefecture_id}
+              .sell-form__content__clearfix__form__group
+                %label.sell-form__content__clearfix__form__group__head
+                  .sell-form__content__clearfix__form__group__head__text 配送までの日数
+                  .sell-form__content__clearfix__form__group__head__require 必須
+                .sell-form__content__clearfix__form__group__field
+                  %i.in-select__button
+                    -#=icon('fa', 'angle-down')
+                  = f.collection_select :deliveryday_id, Deliveryday.all, :id, :name,{prompt: "--",selected: @item.delivery.deliveryday_id}
+                .exhibition_error_messages#error_deliveryday
+          .sell-form__price
+            .sell-form__price__left 販売価格(300~9,999,999)
+            .sell-form__price__right
+              .sell-form__price__right__box
+                %label.sell-form__price__right__box__head
+                  .sell-form__price__right__box__head__box
+                    .sell-form__price__right__box__head__box__price 価格
+                    .sell-form__price__right__box__head__box__require 必須
+                  .sell-form__price__right__box__head__form
+                    ¥
+                    %input#price_calc.sell-form__price__right__box__head__form__price{placeholder: "例) 300", value:@item.price}/
+                  =f.number_field :price, style: "display: none", id: "price"
+                .sell-form__price__right__text 
+                  .sell-form__price__right__text__l 
+                    販売手数料（１０％）
+                  .sell-form__price__right__text__r -
+                .sell-form__price__right__rieki 
+                  .sell-form__price__right__rieki__l 
+                    販売利益
+                  .sell-form__price__right__rieki__r -
+              .exhibition_error_messages#error_price
+          .sell-form__btn__box
+            .sell-form__btn__box__text
+              禁止されている出品、行為を必ずご確認ください。
+              %br
+                またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+              %br
+                また、出品をもちまして加盟店規約に同意したことになります。
+            =f.submit "更新する", class: "sell-form__btn__box__exhibition"
+            .sell-form__btn__box__return もどる
+= render 'shared/logo_footer'

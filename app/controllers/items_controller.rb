@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:edit,:show]
+  # before_action  :move_to_index,except: [:index, :show]
+
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
@@ -82,6 +84,37 @@ class ItemsController < ApplicationController
     @category_children = Category.find(params[:id]).children
   end
 
+  def edit
+    @item=Item.find(params[:id])
+  end
+
+  def update
+    binding.pry
+    item = Item.find(params[:id])
+    if item.user_id == current_user.id
+      item.update(item_params)
+      item.delivery.update(delivery_params)
+      item.pictures.each_with_index do |picture, index|
+        picture_params = ":params#{index + 1}"
+        if picture != params[picture_params]
+          picture.update(picture: params[picture_params])
+        elsif params[picture_params] =  nil
+          picture.desutoroy
+        end
+      end
+      (5 - item.pictures.length).times do |x|
+        picture_params = ":params#{5 - x}"
+        Picture.create(
+          picture: params[picture_params],
+          item: item
+        )
+      end
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+  
   def show
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)

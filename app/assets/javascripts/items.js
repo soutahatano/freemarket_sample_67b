@@ -1,7 +1,7 @@
 $(function(){
   function buildchildren(insertHTML){
     html = ` 
-      <div class="sell-form__content__clearfix__form__group__field" id="childeen_category">
+      <div class="sell-form__content__clearfix__form__group__field" id="children_category">
         <select name="parent_category_id" id="parent_category_id">
         <option value="">--</option>
         ${insertHTML}
@@ -38,6 +38,12 @@ $(function(){
     var html =`<input class="sell-form__uploder__file" type="file" name="${picture}" id="${picture}">`
     $('.file_field_lists').append(html);
   };
+  $(document).ready( function(){
+      var img_count = $('.sell-form__uploder__box__lists__list').length;
+      for( var i = 0; i < img_count; i ++){
+        $(`#label-picture${i + 1}`).hide();
+      };
+  });
   $('#price_calc').on('input', function(){
     var data = $('#price_calc').val();
     var profit = Math.round(data * 0.9)
@@ -71,7 +77,7 @@ $(function(){
         dataType: "json"
       })
       .done(function(categories){
-        $("#childeen_category").remove();
+        $("#children_category").remove();
         $("#grandchildren_category").remove();
         var insertHTML = '';
         categories.forEach(function(category){
@@ -83,7 +89,7 @@ $(function(){
         alert('カテゴリー取得に失敗しました');
       })
     }else{
-      $("#childeen_category").remove();
+      $("#children_category").remove();
       $("#grandchildren_category").remove();
       $('#error_category').append("<p class='error_count'>入力してください</p>");
     }
@@ -100,7 +106,7 @@ $(function(){
         dataType: "json"
       })
       .done(function(categories){
-        $("#grandchildeen_category").remove();
+        $("#grandchildren_category").remove();
         var insertHTML = '';
         categories.forEach(function(category){
           insertHTML += appendOption(category);
