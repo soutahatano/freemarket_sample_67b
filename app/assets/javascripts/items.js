@@ -1,7 +1,7 @@
 $(function(){
   function buildchildren(insertHTML){
     html = ` 
-      <div class="sell-form__content__clearfix__form__group__field" id="childeen_category">
+      <div class="sell-form__content__clearfix__form__group__field" id="children_category">
         <select name="parent_category_id" id="parent_category_id">
         <option value="">--</option>
         ${insertHTML}
@@ -71,7 +71,7 @@ $(function(){
         dataType: "json"
       })
       .done(function(categories){
-        $("#childeen_category").remove();
+        $("#children_category").remove();
         $("#grandchildren_category").remove();
         var insertHTML = '';
         categories.forEach(function(category){
@@ -83,7 +83,7 @@ $(function(){
         alert('カテゴリー取得に失敗しました');
       })
     }else{
-      $("#childeen_category").remove();
+      $("#children_category").remove();
       $("#grandchildren_category").remove();
       $('#error_category').append("<p class='error_count'>入力してください</p>");
     }
@@ -100,7 +100,7 @@ $(function(){
         dataType: "json"
       })
       .done(function(categories){
-        $("#grandchildeen_category").remove();
+        $("#grandchildren_category").remove();
         var insertHTML = '';
         categories.forEach(function(category){
           insertHTML += appendOption(category);

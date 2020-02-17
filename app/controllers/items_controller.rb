@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :buy]
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category = Category.where(category_id: nil)
   end
 
   def create
@@ -86,6 +85,9 @@ class ItemsController < ApplicationController
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
+  end
+
+  def buy
   end
 
   private

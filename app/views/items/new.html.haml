@@ -48,9 +48,7 @@
                     .sell-form__content__clearfix__form__group__head__text カテゴリー
                     .sell-form__content__clearfix__form__group__head__require 必須
                   .sell-form__content__clearfix__form__group__field
-                    -# %i.in-select__button
-                      -#=icon('fa', 'angle-down')
-                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt: "--"}
+                    = f.select :grandparent_category_id, Category.where(category_id: nil).map { |category| [category.name, category.id] },{prompt: "--"}
               .exhibition_error_messages#error_category
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
@@ -61,7 +59,6 @@
                       .sell-form__content__clearfix__form__group__head__require 任意
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        -#=icon('fa', 'angle-down')
                       = f.text_field :brand, class:'sell-form__content__1__form__input' ,placeholder: '例）アディダス'
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
@@ -72,7 +69,6 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        -#=icon('fa', 'angle-down')
                       = f.collection_select :status_id, Status.all, :id, :name,{prompt: "--"}
                     .exhibition_error_messages#error_status
           .sell-form__content__clearfix 
@@ -84,7 +80,6 @@
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                    -#=icon('fa', 'angle-down')
                   = f.collection_select :deliverycharge_id, Deliverycharge.all, :id, :name,{prompt: "--"}
                 .exhibition_error_messages#error_deliverycharge
               .sell-form__content__clearfix__form__group
@@ -96,7 +91,6 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                        -#=icon('fa', 'angle-down')
                       = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--"}
                     .exhibition_error_messages#error_prefecture
               .sell-form__content__clearfix__form__group
@@ -105,7 +99,6 @@
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                    -#=icon('fa', 'angle-down')
                   = f.collection_select :deliveryday_id, Deliveryday.all, :id, :name,{prompt: "--"}
                 .exhibition_error_messages#error_deliveryday
           .sell-form__price
