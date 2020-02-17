@@ -396,7 +396,7 @@
     margin: 26px 0;
     &__list1{
       &:hover{
-        background-color: #ffffff;
+        background-color: #a2faf9;
       }
       box-shadow:0 0 7px;
       border:1px solid #000;
@@ -476,7 +476,7 @@
     margin: 26px auto;
     &__list1{
       &:hover{
-        background-color: #ffffff;
+        background-color: #a2faf9;
       }
       box-shadow:0px 0px 7px;
       border:1px solid #000;
@@ -487,52 +487,6 @@
       position: relative;
       &__img{
         position: absolute;
-      }
-      &__text-box{
-        &__sold-out{
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: rotate(-45deg);
-          font-size: 28px;
-          margin-top: 25px;
-          color: #fff;
-          letter-spacing: 2px;
-          font-weight: 600;
-        }
-        &__name{
-          margin-left: 10px;
-          margin-top: 210px;
-          color: black;
-          font-size: 14px;
-        }
-        &__box{
-          font-size: 14px;
-          margin: 3px 10px 0px 10px;
-          display: flex;
-          justify-content: space-between;
-          &__price{
-            color: black;
-          }
-          &__like{
-            color: rgb(64, 201, 231);
-          }
-        }
-        &__tax{
-          margin-left: 10px;
-          display: flex;
-          font-size: 11px;
-          color: black;
-        }
-      }
-      &__border-box{
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-top: 60px solid #f52f2f ;
-        border-right: 60px solid transparent;
-        border-bottom: 60px solid transparent;
-        border-left: 60px solid #f52f2f  ;
       }
     }
   }
@@ -688,5 +642,57 @@
     font-size: 18px;
     text-decoration: none;
     margin-bottom: 5px;
+  }
+}
+
+.top-category__lists__list1{
+  &__text-box{
+    &__sold-out{
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-45deg);
+      font-size: 28px;
+      margin-top: 25px;
+      color: #fff;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+    &__name{
+      margin-left: 10px;
+      margin-top: 210px;
+      color: black;
+      font-size: 14px;
+    }
+    &__box{
+      font-size: 14px;
+      margin: 3px 10px 0px 10px;
+      display: flex;
+      justify-content: space-between;
+      &__price{
+        color: black;
+      }
+      &__like{
+        color: rgb(64, 201, 231);
+      }
+    }
+    &__tax{
+      margin-left: 10px;
+      display: flex;
+      font-size: 11px;
+      color: black;
+    }
+  }
+  &__border-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+
+    border-top: 60px solid #f52f2f ;
+    border-right: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-left: 60px solid #f52f2f  ;
   }
 }

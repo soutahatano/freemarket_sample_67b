@@ -1,5 +1,4 @@
 = render 'shared/main_header'
-
 .toppage
   .toppage__main-image
     .toppage__main-image__content
@@ -15,14 +14,12 @@
         .toppage__main-image__content__batch__batch2
           = link_to "https://play.google.com/store?utm_source=apac_med&utm_medium=hasem&utm_content=Jan0220&utm_campaign=Evergreen&pcampaignid=MKT-DR-apac-jp-1003227-med-hasem-py-Evergreen-Jan0220-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700012434507671_creativeid_416444421498_device_c_kwd_kwd-33891114176_geoid_1009461_network_g&gclid=Cj0KCQiAm4TyBRDgARIsAOU75srtW8tLttkfHsD9kfT9puDSjkhqhcYEeYBTmW4SJG6Vi4XKyFlshD4aArZOEALw_wcB&gclsrc=aw.ds" do
             = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
-
 .topintroduction
   .topintroduction__content
     .topintroduction__content__theme
       %p FURIMAが選ばれる3つの理由
       .topintroduction__content__theme__line
     .topintroduction__content__lists
-
       .topintroduction__content__lists__list1
         .topintroduction__content__lists__list1__img
           .topintroduction__content__lists__list1__img__num
@@ -35,7 +32,6 @@
               %p ですぐに出品
           .topintroduction__content__lists__list1__text__text2
             スマホで入力するだけで簡単に出品できる！
-
       .topintroduction__content__lists__list2
         .topintroduction__content__lists__list2__img
           .topintroduction__content__lists__list1__img__num
@@ -48,7 +44,6 @@
               %p で使いやすい
           .topintroduction__content__lists__list2__text__text2
             %p めんどくさい入力は必要なく、検索も購入もスムーズ！
-
       .topintroduction__content__lists__list3
         .topintroduction__content__lists__list3__img
           .topintroduction__content__lists__list1__img__num
@@ -61,7 +56,6 @@
               %p 業界最安
           .topintroduction__content__lists__list3__text__text2
             %p 最大3%でお得に出品&購入！
-
 .top-second-image
   .top-second-image__content
     .top-second-image__content__title
@@ -77,12 +71,10 @@
       .top-second-image__content__batch__batch2
         = link_to "https://play.google.com/store?utm_source=apac_med&utm_medium=hasem&utm_content=Jan0220&utm_campaign=Evergreen&pcampaignid=MKT-DR-apac-jp-1003227-med-hasem-py-Evergreen-Jan0220-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700012434507671_creativeid_416444421498_device_c_kwd_kwd-33891114176_geoid_1009461_network_g&gclid=Cj0KCQiAm4TyBRDgARIsAOU75srtW8tLttkfHsD9kfT9puDSjkhqhcYEeYBTmW4SJG6Vi4XKyFlshD4aArZOEALw_wcB&gclsrc=aw.ds" do
           = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
-
 .top-property
   .top-property__feauture
     FURIMAの特徴
     .top-property__feauture__line
-
   .top-property__lists
     .top-property__lists__list1
       .top-property__lists__list1__img
@@ -92,7 +84,6 @@
           簡単に売り買いできる
         .top-property__lists__list1__box__text2
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
-
     .top-property__lists__list2
       .top-property__lists__list2__img
         = image_tag "icon/icon-03.png",size: "240x350"
@@ -101,7 +92,6 @@
           売上金は即日振込みに対応
         .top-property__lists__list2__box__text2
           午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
-
     .top-property__lists__list3
       .top-property__lists__list3__img
         = image_tag "icon/icon-04.png",size: "240x350"
@@ -109,7 +99,6 @@
           様々な支払いに対応
         .top-property__lists__list3__box__text2
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-
 .top-category
   .top-category__title
     ピックアップ
@@ -119,9 +108,9 @@
     - @items.each do |item|
       .top-category__lists__list1
         .top-category__lists__list1__img
-          = link_to "items/1" do
-            = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
-        - if item.soldout == true
+          = link_to item_path(item) do
+            = image_tag item.pictures[0].picture.url,size: "188x188"
+        - if item.soldout == "true"
           .top-category__lists__list1__border-box
           .top-category__lists__list1__text-box
             .top-category__lists__list1__text-box__sold-out
@@ -132,10 +121,9 @@
           .top-category__lists__list1__text-box__box__price
             = item.price
           .top-category__lists__list1__text-box__box__like
-            ★0
+            ♡ 2
         .top-category__lists__list1__text-box__tax
           (税込)
-
 .top-brand
   .top-brand__title
     おすすめ商品(お気に入りに追加されている数が多いものを表示させる予定)
@@ -146,8 +134,8 @@
       .top-brand__lists__list1
         .top-brand__lists__list1__img
           = link_to "items/1" do
-            = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
-        - if item.soldout == true
+            = image_tag item.pictures[0].picture.url,size: "188x188"
+        - if item.soldout == "true"
           .top-category__lists__list1__border-box
           .top-category__lists__list1__text-box
             .top-category__lists__list1__text-box__sold-out
@@ -158,10 +146,9 @@
           .top-category__lists__list1__text-box__box__price
             = item.price
           .top-category__lists__list1__text-box__box__like
-            ★0
+            ♡ 2
         .top-category__lists__list1__text-box__tax
           (税込)
-
 .top-banner
   .top-banner__inner
     .top-banner__inner__title
@@ -175,7 +162,6 @@
       .top-banner__inner__batch__batch2
         = link_to "https://play.google.com/store?utm_source=apac_med&utm_medium=hasem&utm_content=Jan0220&utm_campaign=Evergreen&pcampaignid=MKT-DR-apac-jp-1003227-med-hasem-py-Evergreen-Jan0220-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700012434507671_creativeid_416444421498_device_c_kwd_kwd-33891114176_geoid_1009461_network_g&gclid=Cj0KCQiAm4TyBRDgARIsAOU75srtW8tLttkfHsD9kfT9puDSjkhqhcYEeYBTmW4SJG6Vi4XKyFlshD4aArZOEALw_wcB&gclsrc=aw.ds" do
           = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
-
 = render 'shared/main_footer'
 - if user_signed_in?
   = render 'shared/main_exhibition-btn'

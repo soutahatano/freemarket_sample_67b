@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :pictures
 
   belongs_to :category
+  belongs_to :user
   # belongs_to :brand
   has_one :delivery
   has_many :comments

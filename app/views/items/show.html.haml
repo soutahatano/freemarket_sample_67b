@@ -1,101 +1,89 @@
 = render 'shared/main_header'
-
 .item-show
   .item-show__page
     .item-show__page__box
       .item-show__page__box__name
-        DF81 グッチ トートバッグ GGキャンバス ブラック
+        = @item.name
       .item-show__page__box__content
         .item-show__page__box__content__img
-          = image_tag "icon/member_photo_noimage_thumb.png", width: "290px", height: "310px"
+          #picturepreview
+            = image_tag @item.pictures[0].picture.url, width: "290px", height: "290px"
+            - if @item.soldout == "true"
+              .top-category__lists__list1__border-box
+              .top-category__lists__list1__text-box
+                .top-category__lists__list1__text-box__sold-out
+                  SOLD
+          .picture
+            - @item.pictures.each do |picture|
+              = image_tag picture.picture.url, width: "54.3px", height: "54.3px", class: "hoge"
         .item-show__page__box__content__table
           %table{border: "1"}
             %tr
               %th 出品者
-              %td マキ（日曜不在です。即購入ＯＫ!）😁376 😯12 😩2
+              %td
+                = @item.user.nickname
             %tr
               %th カテゴリー
-              %td レディース
+              %td
+                = @item.category.name
             %tr
               %th ブランド
-              %td グッチ
+              %td
+                = @item.brand
             %tr
               %th 商品の状態
-              %td やや傷や汚れあり
+              %td
+                = @item.status.name
             %tr
               %th 配送料の負担
-              %td 送料込み(出品者負担)
-            %tr
-              %th 配送の方法
-              %td ゆうゆうメルカリ便
+              %td
+                = @item.delivery.deliverycharge.name
             %tr
               %th 配送元地域
-              %td 静岡県
+              %td
+                = @item.user.address.prefecture.name
+                = @item.user.address.city
             %tr
               %th 発送日の目安
-              %td 1~2日で発送
+              %td
+                = @item.delivery.deliveryday.name
       .item-show__page__box__price-box
         .item-show__page__box__price-box__price
-          ¥12,699
+          ¥
+          = @item.price
         .item-show__page__box__price-box__tax
           (税込)
-        .item-show__page__box__price-box__shipping-fee
-          送料込み
-
-      .item-show__page__box__buy-btn
-        購入画面に進む
+        -if @item.delivery.deliverycharge.name == "送料込み(出品者負担)"
+          .item-show__page__box__price-box__shipping-fee
+            送料込み
+        -else
+          .item-show__page__box__price-box__shipping-fee
+            送料別
+      - if @item.user == current_user
+        = link_to do
+          .item-show__page__box__buy-btn
+            編集
+        = link_to do
+          .item-show__page__box__buy-btn
+            削除
+      - else 
+        = link_to do
+          .item-show__page__box__buy-btn
+            購入画面に進む
       .item-show__page__box__text
-        この商品はゆうゆうメルカリ便を利用しているため、アプリからのみ購入できます。
-
+        この商品はFURIMA便を利用しているため、アプリからのみ購入できます。
       .item-show__page__box__description
         .item-show__page__box__description__text
-          【商品説明】
-          サイズ
-          H (高) :約24cm
-          W (横) :約26cm
-          D (幅) :約11cm
-          %br
-          仕様：ファスナー開閉式
-          色：ブラック
-          素材：キャンバス、レザー
-          持ち手: 約44.5cm
-          内側：ファスナーポケット×1   
-          オープンポケット×1
-          139552 001013
-          【状態ランク】
-          状態ランク…BC
-          S…新品、未使用or未使用に近い
-          A…目立った傷や汚れなし
-          AB…目立った傷や汚れなしorやや傷や汚れあり
-          BA…やや傷や汚れあり
-          B…やや傷や汚れあり
-          BC…やや傷や汚れあり
-          C…傷や汚れあり
-          D…全体的に状態が悪い
-          【商品詳細】
-          全体的に使用感があり、経年劣化が見られます。
-          ベタつきはありません。
-          表面金属部分に小キズあり
-          持ち手部分、スレ、ホツレ、色褪せあり
-          内側、全体的に薄ヨゴレあり
-          底、金属部分にキズ、スレあり、角にスレ、ホツレ、ヤブレあり
-          全体的に使用感やダメージがありますが、普段使いでしたら、まだまだ十分にお使い頂ける状態です。
-          ※鑑定済の企業向け中古ブランド市場にて購入しているため、真贋に問題はないと認識しておりますが万が一偽物があった場合は、返金対応させて頂きますのでご安心下さい。
-          ※使用感、劣化の状態の判断には個人差がありますので、あくまでも中古品とのご認識の上、細かな状態をお気にされる方はご購入をお控えください。
-          ※写真の色彩に関しましては、撮影環境や閲覧環境によって被写体が実物の色と異なる場合がございますので、ご了承ください。
-          ※発送はメルカリ便のみの対応となります。
-          他発送方法はお受けしかねますので、ご了承ください。
-          35
+          [商品説明]
+          = @item.text
         .item-show__page__box__description__container
           .item-show__page__box__description__container__left-box
             .item-show__page__box__description__container__left-box__good-btn
               💖  いいね
             .item-show__page__box__description__container__left-box__report-btn
               🇯🇵  不適切な商品の報告
-          .item-show__page__description__container__lock-text
+          .item-show__page__box__description__container__lock-text
             🔑  あんしん・あんぜんへの取り組み
-
-
     .item-show__page__show-message
       .item-show__page__show-message__container
         .item-show__page__show-message__container__content
@@ -104,182 +92,41 @@
           .item-show__page__show-message__container__content__text-box
           .item-show__page__show-message__container__content__comment
             コメントする
-
-    .item-show__page__show-page
-      .item-show__page__show-page__content
-        .item-show__page__show-page__content__back-btn
-          ＜ A ツキウタ。 文月海 バッジ アニメイトカフェ時間革命
-        .item-show__page__show-page__content__next-btn
-          時間革命 1秒もムダに生きるな ＞
-
     .item-show__page__show-icons
       .item-show__page__show-icons__container
         .item-show__page__show-icons__container__facebook
-          1
+          %i.fab.fa-twitter
         .item-show__page__show-icons__container__twitter 
-          2
+          %i.fab.fa-facebook
         .item-show__page__show-icons__container__pinterest
-          3
-
+          %i.fab.fa-line
     .item-show__page__other-item
       .item-show__page__other-item__text
-        マキ（日曜不在です。即購入ＯＫ!）さんのその他の出品
+        = @item.user.nickname
+        さんのその他の出品
       .item-show__page__other-item__lists
-        .item-show__page__other-item__lists__list1
-          .item-show__page__other-item__lists__list1__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list1__text
-            .item-show__page__other-item__lists__list1__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list1__text__low-box
-              .item-show__page__other-item__lists__list1__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list1__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists__list2
-          .item-show__page__other-item__lists__list2__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list2__text
-            .item-show__page__other-item__lists__list2__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list2__text__low-box
-              .item-show__page__other-item__lists__list2__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list2__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists__list3
-          .item-show__page__other-item__lists__list3__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list3__text
-            .item-show__page__other-item__lists__list3__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list3__text__low-box
-              .item-show__page__other-item__lists__list3__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list3__text__low-box__good
-                ♡ 2
-
-      .item-show__page__other-item__lists2
-        .item-show__page__other-item__lists2__list1
-          .item-show__page__other-item__lists2__list1__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list1__text
-            .item-show__page__other-item__lists2__list1__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list1__text__low-box
-              .item-show__page__other-item__lists2__list1__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list1__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists2__list2
-          .item-show__page__other-item__lists2__list2__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list2__text
-            .item-show__page__other-item__lists2__list2__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list2__text__low-box
-              .item-show__page__other-item__lists2__list2__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list2__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists2__list3
-          .item-show__page__other-item__lists2__list3__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list3__text
-            .item-show__page__other-item__lists2__list3__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list3__text__low-box
-              .item-show__page__other-item__lists2__list3__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list3__text__low-box__good
-                ♡ 2
-
-    .item-show__page__other-item
-      .item-show__page__other-item__text
-        マキ（日曜不在です。即購入ＯＫ!）さんのその他の出品
-      .item-show__page__other-item__lists
-        .item-show__page__other-item__lists__list1
-          .item-show__page__other-item__lists__list1__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list1__text
-            .item-show__page__other-item__lists__list1__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list1__text__low-box
-              .item-show__page__other-item__lists__list1__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list1__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists__list2
-          .item-show__page__other-item__lists__list2__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list2__text
-            .item-show__page__other-item__lists__list2__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list2__text__low-box
-              .item-show__page__other-item__lists__list2__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list2__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists__list3
-          .item-show__page__other-item__lists__list3__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists__list3__text
-            .item-show__page__other-item__lists__list3__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists__list3__text__low-box
-              .item-show__page__other-item__lists__list3__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists__list3__text__low-box__good
-                ♡ 2
-
-      .item-show__page__other-item__lists2
-        .item-show__page__other-item__lists2__list1
-          .item-show__page__other-item__lists2__list1__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list1__text
-            .item-show__page__other-item__lists2__list1__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list1__text__low-box
-              .item-show__page__other-item__lists2__list1__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list1__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists2__list2
-          .item-show__page__other-item__lists2__list2__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list2__text
-            .item-show__page__other-item__lists2__list2__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list2__text__low-box
-              .item-show__page__other-item__lists2__list2__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list2__text__low-box__good
-                ♡ 2
-
-        .item-show__page__other-item__lists2__list3
-          .item-show__page__other-item__lists2__list3__img
-            = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
-          .item-show__page__other-item__lists2__list3__text
-            .item-show__page__other-item__lists2__list3__text__name
-              BV4 ルイヴィトン ダミエ グラフィット ポルトフォ
-            .item-show__page__other-item__lists2__list3__text__low-box
-              .item-show__page__other-item__lists2__list3__text__low-box__price
-                ￥11,499
-              .item-show__page__other-item__lists2__list3__text__low-box__good
-                ♡ 2
-
+        - @items.each do |item|
+          = link_to item_path(item) do
+            .item-show__page__other-item__lists__list1
+              .item-show__page__other-item__lists__list1__img
+                = image_tag item.pictures[0].picture.url,size: "188x188"
+                - if item.soldout == "true"
+                  .top-category__lists__list1__border-box
+                  .top-category__lists__list1__text-box
+                    .top-category__lists__list1__text-box__sold-out
+                      SOLD
+              .item-show__page__other-item__lists__list1__text
+                .item-show__page__other-item__lists__list1__text__name
+                  = item.name
+                .item-show__page__other-item__lists__list1__text__low-box
+                  .item-show__page__other-item__lists__list1__text__low-box__price
+                    = item.price
+                  .item-show__page__other-item__lists__list1__text__low-box__good
+                    ♡ 2
       .item-show__page__low-text
         .item-show__page__low-text__left
-          メルカリ
+          FURIMA
         .item-show__page__low-text__right
-          > DF81 グッチ トートバッグ GGキャンバス ブラック
-
-
+          ＞
+          = @item.name
 = render 'shared/main_footer'
