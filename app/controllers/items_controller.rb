@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit,:show]
-  # before_action  :move_to_index,except: [:index, :show]
 
   def index
     @items = Item.all
@@ -85,30 +84,27 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item=Item.find(params[:id])
   end
 
   def update
-    binding.pry
     item = Item.find(params[:id])
     if item.user_id == current_user.id
       item.update(item_params)
       item.delivery.update(delivery_params)
       item.pictures.each_with_index do |picture, index|
-        picture_params = ":params#{index + 1}"
-        if picture != params[picture_params]
-          picture.update(picture: params[picture_params])
-        elsif params[picture_params] =  nil
-          picture.desutoroy
+        if params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] != nil 
+          picture.update(picture: params[:"params#{index + 1}"])
+        elsif params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] ==  nil
+          picture.destroy
         end
       end
       (5 - item.pictures.length).times do |x|
-        picture_params = ":params#{5 - x}"
-        Picture.create(
-          picture: params[picture_params],
-          item: item
+        picture = Picture.create(
+          picture: params[:"picture#{5 - x}"],
+          item_id: item.id
         )
       end
+      
       redirect_to root_path
     else
       render 'edit'

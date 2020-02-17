@@ -16,16 +16,17 @@
                 -@item.pictures.each_with_index do |picture, index|
                   .sell-form__uploder__box__lists__list
                     = image_tag picture.picture.url
+                    = f.hidden_field :"image#{index + 1}", value: "true"
                     %button.box-image__image-btn__delete{data: {picture: {id: "#label-picture#{index + 1}"}}}
                       削除
               .sell-form__uploder__box__field
                 -5.times do |index|
-                  = f.label "picture#{index + 1}", "画像を選択", class: 'sell-form__uploder__box__field__picture', id: "label-picture#{index + 1}"
+                  = f.label :"picture#{index + 1}", "画像を選択", class: 'sell-form__uploder__box__field__picture', id: "label-picture#{index + 1}"
               .file_field_lists
                 -@item.pictures.each_with_index do |picture, index|
-                  = f.file_field "picture#{index + 1}", class: 'sell-form__uploder__file', value: picture.picture
+                  = f.file_field :"picture#{index + 1}", class: 'sell-form__uploder__file'
                 -(5 - @item.pictures.length).times do |index|
-                  = f.file_field "picture#{5 - index}", class: 'sell-form__uploder__file'
+                  = f.file_field :"picture#{5 - index}", class: 'sell-form__uploder__file'
           .sell-form__content
             .sell-form__content__1
               %label.sell-form__content__1__head
@@ -51,12 +52,11 @@
                     .sell-form__content__clearfix__form__group__head__text カテゴリー
                     .sell-form__content__clearfix__form__group__head__require 必須
                   .sell-form__content__clearfix__form__group__field
-                    =f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt:"--",selected:@item.category.parent.parent.id}
+                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt:"--",selected:@item.category.parent.parent.id}
                   .sell-form__content__clearfix__form__group__field#children_category
-                    =f.select :parent_category_id, Category.where(category_id: @item.category.parent.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected: @item.category.parent.id}
+                    = f.select :parent_category_id, Category.where(category_id: @item.category.parent.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected: @item.category.parent.id}
                   .sell-form__content__clearfix__form__group__field#grandchildren_category
-                    =f.select :category_id, Category.where(category_id: @item.category.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category_id}
-                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category.children.id}
+                    = f.select :category_id, Category.where(category_id: @item.category.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category_id}
               .exhibition_error_messages#error_category
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
@@ -123,8 +123,7 @@
                     .sell-form__price__right__box__head__box__require 必須
                   .sell-form__price__right__box__head__form
                     ¥
-                    %input#price_calc.sell-form__price__right__box__head__form__price{placeholder: "例) 300", value:@item.price}/
-                  =f.number_field :price, style: "display: none", id: "price"
+                    =f.number_field :price, id: "price_calc", class: "sell-form__price__right__box__head__form__price",placeholder: "例) 300", value:@item.price
                 .sell-form__price__right__text 
                   .sell-form__price__right__text__l 
                     販売手数料（１０％）

@@ -118,8 +118,7 @@
                     .sell-form__price__right__box__head__box__require 必須
                   .sell-form__price__right__box__head__form
                     ¥
-                    %input#price_calc.sell-form__price__right__box__head__form__price{placeholder: "例) 300", type: "number"}/
-                  =f.number_field :price, style: "display: none", id: "price"
+                    =f.number_field :price, id: "price_calc", class: "sell-form__price__right__box__head__form__price",placeholder: "例) 300", value:@item.price
                 .sell-form__price__right__text 
                   .sell-form__price__right__text__l 
                     販売手数料（１０％）

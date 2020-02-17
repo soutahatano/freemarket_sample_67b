@@ -52,7 +52,6 @@ $(function(){
     $('.sell-form__price__right__text__r').prepend('¥') 
     $('.sell-form__price__right__rieki__r').html(profit)
     $('.sell-form__price__right__rieki__r').prepend('¥')
-    $('#price').val(profit) 
     if(profit == '') {
       $('.sell-form__price__right__rieki__r').html('');
       $('.sell-form__price__right__text__r').html('');
