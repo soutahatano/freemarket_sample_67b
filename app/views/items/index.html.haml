@@ -163,4 +163,5 @@
         = link_to "https://play.google.com/store?utm_source=apac_med&utm_medium=hasem&utm_content=Jan0220&utm_campaign=Evergreen&pcampaignid=MKT-DR-apac-jp-1003227-med-hasem-py-Evergreen-Jan0220-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700012434507671_creativeid_416444421498_device_c_kwd_kwd-33891114176_geoid_1009461_network_g&gclid=Cj0KCQiAm4TyBRDgARIsAOU75srtW8tLttkfHsD9kfT9puDSjkhqhcYEeYBTmW4SJG6Vi4XKyFlshD4aArZOEALw_wcB&gclsrc=aw.ds" do
           = image_tag "logo/google-play-badge.png",width: "250px",height: "100px"
 = render 'shared/main_footer'
-= render 'shared/main_exhibition-btn'
+- if user_signed_in?
+  = render 'shared/main_exhibition-btn'
