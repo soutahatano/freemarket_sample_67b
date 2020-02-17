@@ -198,7 +198,8 @@ $(function(){
   });
   $(document).on('click',".sell-form__btn__box__exhibition",function(e){
   let error = $('.error_count').length;
-  if(error > 0){
+  let img = $(".sell-form__uploder__box__lists__list").length;
+  if(error > 0|| img < 1){
     alert("入力エラーがあります");
     e.preventDefault();
   }
