@@ -1,3 +1,16 @@
+# brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|reference||
+## Association
+- has_many :items
+# categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|category|reference|null: false|
+## Association
+- has_many :items
 # usersテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -17,7 +30,60 @@
 - has_many :favorites
 - has_one  :credit
 - has_one  :address
+# itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
+|text|string|null: false|
+|soldout|string|foreign_key: true,null false|
+|brand|reference|null: false,foreign_key: true|
+|price|integer|null: fgalse|
+|category|reference|null: false,foreign_key: true|
+|user|reference|null:false,foreign_key: true|
 
+## Association
+- belongs_to :delivery
+- has_many :comments
+- has many :imgs
+- belongs_to :category
+- belongs_to :status
+- belongs_to :brand
+- has_many :favorites
+# commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
+|text|string|null: false|
+## Association
+- belongs_to :user
+- belongs_to :item
+# deliveriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
+|deliveryday_id|integer|null: false|
+|deliveryday_id|integer|null: false|
+|prefecture_id|integer|null: false|
+## Association
+- belongs_to :user
+- belongs_to :item
+# favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|reference|null: false,foreign_key: true|
+|item|reference|null: false,foreign_key: true|
+## Association
+- belongs_to :user
+- belongs_to :item
+# credits
+|Column|Type|Options|
+|------|----|-------|
+|credit_number|string|null: false|
+|user|reference|null: false, foreign_key: true|
+## Association
+- belongs_to :user
 # address
 |Column|Type|Options|
 |------|----|-------|
@@ -35,116 +101,19 @@
 ## Association
 - belongs_to :user
 - belongs_to_active_hash :prefecture
-
-
-# credits
+# picturesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|credit_number|string|null: false|
-|user|reference|null: false, foreign_key: true|
-## Association
-- belongs_to :user
-
-# commentsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user|reference|null: false, foreign_key: true|
 |item|reference|null: false, foreign_key: true|
-|text|string|null: false|
-## Association
-- belongs_to :user
-- belongs_to :item
-
-# itemsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, index: true|
-|category|reference|null: false, foreign_key: true|
-|status|reference|foreign_key: true,null false|
-|price|integer|null: false|
-|brand|reference|null: fgalse, foreign_key: true|
-|user|reference|null: false,foreign_key: true|
-|soldout|booling|default: "false"|
-## Association
-- belongs_to :delivery
-- has_many :comments
-- has many :imgs
-- belongs_to :category
-- belongs_to :status
-- belongs_to :brand
-- has_many :favorites
-
-# brandsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
+|picture|string|null: false|
 ## Association
 - has_many :items
 
-# statusesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-## Association
-- belongs_to :item
-
-# deliveriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user|reference|null: false, foreign_key: true|
-|delivery_charge|integer|null: false, foreign_key: true|
-|delivery_day|integer|null: false, foreign_key: true|
-|delivery_way|string|null: false, foreign_key: true|
-|delivery_date|datetime|null: false, foreign_key: true|
-|item|reference|null: false, foreign_key: true|
-## Association
-- belongs_to :user
-- belongs_to :item
-- belongs_to :delivery_charge
-- belongs_to :delivery_day
-- belongs_to :delivery_way
 
 
-# categoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-## Association
-- has_many :items
 
-# delivery_chargesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|price|integer|null: false|
-## Association
-- belongs_to :delivery
 
-# delivery_daysテーブル
-|Column|Type|Options|
-|------|----|-------|
-|day|string|null: false|
-## Association
-- belongs_to :delivery
 
-# delivery_waysテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-## Association
-- belongs_to :delivery
 
-# delivery_datesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|date|datetime|null: false|
-## Association
-- belongs_to :delivery
 
-# favoritesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user|reference|null: false,foreign_key: true|
-|item|reference|null: false,foreign_key: true|
-## Association
-- belongs_to :user
-- belongs_to :item
+
