@@ -54,10 +54,9 @@
                     =f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt:"--",selected:@item.category.parent.parent.id}
                   .sell-form__content__clearfix__form__group__field#children_category
                     =f.select :parent_category_id, Category.where(category_id: @item.category.parent.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected: @item.category.parent.id}
-                    -# =f.select :parent_category_id, Category.where(category_id:@category_id) .map { |category| [category.name, category.id] },{prompt: @item.category_id}
                   .sell-form__content__clearfix__form__group__field#grandchildren_category
                     =f.select :category_id, Category.where(category_id: @item.category.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category_id}
-                    -# =f.select :grandchild_category_id, Category.where(category_id:@category_children) .map { |category| [category.name, category.id] },{prompt:  @category_children}
+                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category.children.id}
               .exhibition_error_messages#error_category
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 

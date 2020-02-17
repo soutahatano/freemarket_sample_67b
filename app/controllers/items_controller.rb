@@ -85,11 +85,10 @@ class ItemsController < ApplicationController
 
   def edit
     @item=Item.find(params[:id])
-
   end
 
   def update
-    
+    binding.pry
     item = Item.find(params[:id])
     if item.user_id == current_user.id
       item.update(item_params)
@@ -99,7 +98,7 @@ class ItemsController < ApplicationController
         if picture != params[picture_params]
           picture.update(picture: params[picture_params])
         elsif params[picture_params] =  nil
-          picture.delete!
+          picture.desutoroy
         end
       end
       (5 - item.pictures.length).times do |x|
