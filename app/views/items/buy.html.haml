@@ -1,11 +1,9 @@
 = render 'shared/logo_header'
-
 .buy-page
   .buy-page__buy-content
     .buy-page__buy-content__confirmation
       .buy-page__buy-content__confirmation__text
         購入内容の確認
-
     .buy-page__buy-content__item
       .buy-page__buy-content__item__box
         .buy-page__buy-content__item__box__img
@@ -15,20 +13,19 @@
             これは笑顔の写真です
           .buy-page__buy-content__item__box__detail__price
             ￥500 (税込) 送料込み
-
       .buy-page__buy-content__item__info
         .buy-page__buy-content__item__info__container
           .buy-page__buy-content__item__info__container__detail
             .buy-page__buy-content__item__info__container__detail__text
               支払い金額
             .buy-page__buy-content__item__info__container__detail__price
-              ￥500
+              ¥
+              = @item.price
           .buy-page__buy-content__item__info__container__detail__point
             .buy-page__buy-content__item__info__container__detail__point__icon
               □
             .buy-page__buy-content__item__info__container__detail__point__text
               ポイント使用(所持ポイント:P0)
-
           .buy-page__buy-content__item__info__container__method-box
             .buy-page__buy-content__item__info__container__method-box__text
               支払い方法
@@ -37,7 +34,6 @@
                 ◇
               .buy-page__buy-content__item__info__container__method-box__under__text
                 登録してください
-
           .buy-page__buy-content__item__info__container__address-box
             .buy-page__buy-content__item__info__container__address-box__text
               配送先
@@ -46,9 +42,10 @@
                 ◇
               .buy-page__buy-content__item__info__container__address-box__under__text
                 登録してください
-
           .buy-page__buy-content__item__info__container__purchase
-            .buy-page__buy-content__item__info__container__purchase__text
-              購入する
+            -unless @item.soldout == "true"
+              = link_to pay_credits_path(@item) do
+                .buy-page__buy-content__item__info__container__purchase__text
+                  購入する
 
 = render 'shared/logo_footer'

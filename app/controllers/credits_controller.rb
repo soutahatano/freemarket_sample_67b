@@ -1,6 +1,7 @@
 class CreditsController < ApplicationController
   require "payjp"
   before_action :set_credit
+  before_action :set_api_key, except: [:index, :new]
 
   def index
     redirect_to credit_path(@credit) if @credit.present?
@@ -11,7 +12,6 @@ class CreditsController < ApplicationController
   end
 
   def create
-    Payjp.api_key = Rails.application.credentials[:payjp][:secret_access_key]
     if params[:payjp_token].blank?
       redirect_to action: "new"
     else
@@ -30,13 +30,11 @@ class CreditsController < ApplicationController
   end
 
   def show
-    Payjp.api_key = Rails.application.credentials[:payjp][:secret_access_key]
       customer = Payjp::Customer.retrieve(@credit.customer_id)
       @credit_information = customer.cards.retrieve(@credit.card_id)
   end
 
   def destroy
-    Payjp.api_key = Rails.application.credentials[:payjp][:secret_access_key]
     customer = Payjp::Customer.retrieve(@credit.customer_id)
     customer.delete
     if @credit.destroy
@@ -46,9 +44,34 @@ class CreditsController < ApplicationController
     end
   end
 
+  def pay
+    @item = Item.find(params[:format])
+    if @item.soldout
+      redirect_to root_path
+    else
+      Payjp::Charge.create(
+      amount: @item.price,
+      customer: @credit.customer_id,
+      currency: 'jpy'
+      )
+      @item.update(
+        soldout: "true"
+      )
+      @item.delivery.update(
+        user: current_user
+      )
+      redirect_to root_path
+    end
+  end
+
   private
 
   def set_credit
     @credit = Credit.find_by(user_id: current_user.id) if Credit.find_by(user_id: current_user.id).present?
   end
+
+  def set_api_key
+    Payjp.api_key = Rails.application.credentials[:payjp][:secret_access_key]
+  end
+
 end

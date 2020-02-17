@@ -119,7 +119,7 @@
     - @items.each do |item|
       .top-category__lists__list1
         .top-category__lists__list1__img
-          = link_to "items/1" do
+          = link_to item_path(item) do
             = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
         - if item.soldout == true
           .top-category__lists__list1__border-box
@@ -145,7 +145,7 @@
     - @items.each do |item|
       .top-brand__lists__list1
         .top-brand__lists__list1__img
-          = link_to "items/1" do
+          = link_to item_path(item) do
             = image_tag "icon/member_photo_noimage_thumb.png",size: "190x190"
         - if item.soldout == true
           .top-category__lists__list1__border-box

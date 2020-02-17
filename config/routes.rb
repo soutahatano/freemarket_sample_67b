@@ -6,10 +6,16 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
     end
+    member do
+      get 'buy'
+    end
   end
   resources :users
-  resources :credits
-  resources :deliveries
+  resources :credits do
+    collection do
+      get 'pay'
+    end
+  end
   resources :signups , only: [:new, :create] do
     collection do
       get 'identification'

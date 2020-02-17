@@ -1,5 +1,4 @@
 = render 'shared/main_header'
-
 .item-show
   .item-show__page
     .item-show__page__box
@@ -41,12 +40,16 @@
           (税込)
         .item-show__page__box__price-box__shipping-fee
           送料込み
-
-      .item-show__page__box__buy-btn
-        購入画面に進む
+      -if @item.soldout == "true"
+        .item-show__page__box__buy-btn
+          売り切れです
+          =@item.soldout
+      -else
+        = link_to buy_item_path(@item) do
+          .item-show__page__box__buy-btn
+            購入画面に進む
       .item-show__page__box__text
         この商品はゆうゆうメルカリ便を利用しているため、アプリからのみ購入できます。
-
       .item-show__page__box__description
         .item-show__page__box__description__text
           【商品説明】
@@ -94,8 +97,6 @@
               🇯🇵  不適切な商品の報告
           .item-show__page__description__container__lock-text
             🔑  あんしん・あんぜんへの取り組み
-
-
     .item-show__page__show-message
       .item-show__page__show-message__container
         .item-show__page__show-message__container__content
@@ -225,7 +226,6 @@
                 ￥11,499
               .item-show__page__other-item__lists__list2__text__low-box__good
                 ♡ 2
-
         .item-show__page__other-item__lists__list3
           .item-show__page__other-item__lists__list3__img
             = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
@@ -237,7 +237,6 @@
                 ￥11,499
               .item-show__page__other-item__lists__list3__text__low-box__good
                 ♡ 2
-
       .item-show__page__other-item__lists2
         .item-show__page__other-item__lists2__list1
           .item-show__page__other-item__lists2__list1__img
@@ -250,7 +249,6 @@
                 ￥11,499
               .item-show__page__other-item__lists2__list1__text__low-box__good
                 ♡ 2
-
         .item-show__page__other-item__lists2__list2
           .item-show__page__other-item__lists2__list2__img
             = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
@@ -262,7 +260,6 @@
                 ￥11,499
               .item-show__page__other-item__lists2__list2__text__low-box__good
                 ♡ 2
-
         .item-show__page__other-item__lists2__list3
           .item-show__page__other-item__lists2__list3__img
             = image_tag "icon/member_photo_noimage_thumb.png", width: "200px", height: "220px"
@@ -274,12 +271,9 @@
                 ￥11,499
               .item-show__page__other-item__lists2__list3__text__low-box__good
                 ♡ 2
-
       .item-show__page__low-text
         .item-show__page__low-text__left
           メルカリ
         .item-show__page__low-text__right
           > DF81 グッチ トートバッグ GGキャンバス ブラック
-
-
 = render 'shared/main_footer'
