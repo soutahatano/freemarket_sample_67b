@@ -203,5 +203,17 @@ $(function(){
     alert("入力エラーがあります");
     e.preventDefault();
   }
+});
+  $('img').click(function(){
+    $(this).attr('src');
+    var a = $(this).attr('src');
+    $('#picturepreview').children('img').attr('src',a);
+    $("img").removeClass("active");
+    $(".picture > img").addClass("hoge");
+    $(this).removeClass("hoge");
+    $(this).toggleClass("active");
   });
+  $(document).ready( function(){
+    $(".hoge").first().removeClass("hoge");
+    });
 });

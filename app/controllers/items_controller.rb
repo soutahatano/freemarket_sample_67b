@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   # before_action  :move_to_index,except: [:index, :show]
 
   def index
-    
+    @items = Item.all
+    @items = @items.order("created_at DESC").limit(5)
   end
 
   def new
@@ -113,8 +114,11 @@ class ItemsController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def show
+    @items = Item.all
+    @items = @items.order("created_at DESC").limit(5)
+    @item = Item.includes(:user, :delivery).find(params[:id])
   end
 
   private
