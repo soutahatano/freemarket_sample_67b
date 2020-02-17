@@ -82,34 +82,39 @@ class ItemsController < ApplicationController
   def get_category_children
     @category_children = Category.find(params[:id]).children
   end
-  def edit
-    @item = Item.find(params[:id])
-    @category = Category.all
-    @delivery =Delivery.find(params[:id])
-    @category_children = Category.find(params[:id]).children
-    @picture=Picture.find(params[:id])
 
-    
+  def edit
+    @item=Item.find(params[:id])
+
   end
 
-
   def update
-    @item = Item.find_by(id: params[:id])
+    
+    item = Item.find(params[:id])
     if item.user_id == current_user.id
-      @item.update(
-        name:             item_params[:name],
-        text:      item_params[:text],
-        status:        item_params[:status],
-        category_id:      item_params[:grandchild_category_id],
-        brand:         item_params[:brand],
-        price:            item_params[:price],
-        user_id:        item_params[:user_id],
-        pictures:           session[:pictures]
-      )
+      item.update(item_params)
+      item.delivery.update(delivery_params)
+      item.pictures.each_with_index do |picture, index|
+        picture_params = ":params#{index + 1}"
+        if picture != params[picture_params]
+          picture.update(picture: params[picture_params])
+        elsif params[picture_params] =  nil
+          picture.delete!
+        end
+      end
+      (5 - item.pictures.length).times do |x|
+        picture_params = ":params#{5 - x}"
+        Picture.create(
+          picture: params[picture_params],
+          item: item
+        )
+      end
+      redirect_to root_path
     else
       render 'edit'
     end
   end
+
   def show
   end
 
