@@ -81,8 +81,11 @@ class ItemsController < ApplicationController
   def get_category_children
     @category_children = Category.find(params[:id]).children
   end
- 
+
   def show
+    @items = Item.all
+    @items = @items.order("created_at DESC").limit(5)
+    @item = Item.includes(:user, :delivery).find(params[:id])
   end
 
   private
