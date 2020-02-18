@@ -1,0 +1,57 @@
+= render 'shared/main_header'
+.u-s-content
+  = render 'shared/navigation_bar'
+  .payment-page
+    .payment-page__content
+      .payment-page__content__theme
+        支払い方法
+      = form_with url: credits_path, method: :post, id: 'charge-form' do |f|
+        .payment-page__content__top-box
+          = f.label :カード番号, class: 'payment-page__content__top-box__text1'
+          .payment-page__content__top-box__text2
+            必須
+        .payment-page__content__container1
+          .payment-page__content__container1__form
+            = f.text_field :card_number, type: 'text', class: 'payment-page__content__container1__form__box', placeholder: '半角数字のみ', maxlength: '16', id: 'payment_card_no'
+        .payment-page__content__container1__icons
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/visa.svg', width: '33px', height: '33px'
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/jcb.svg', width: '33px', height: '33px'
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/master-card.svg', width: '33px', height: '33px'
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/american_express.svg', width: '33px', height: '33px'
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/dinersclub.svg', width: '33px', height: '33px'
+          .payment-page__content__container1__icons__icon
+            = image_tag 'icon/discover.svg', width: '33px', height: '33px'
+
+        .payment-page__content__middle-box
+          = f.label :有効期限, class: 'payment-page__content__middle-box__text1'
+          .payment-page__content__middle-box__text2
+            必須
+        .payment-page__content__container2
+          .payment-page__content__container2__form-box
+            .payment-page__content__container2__form-box__form-left
+              = f.select :exp_month, [['01',1],['02',2],['03',3],['04',4],['05',5],['06',6],['07',7],['08',8],['09',9],['10',10],['11',11],['12',12]],{} , class: 'payment-page__content__container2__form-box__form-left__box', id: 'payment_card_expire_mm'
+            .payment-page__content__container2__form-box__month
+              月
+            .payment-page__content__container2__form-box__form-right
+              = f.select :exp_year, [['20',2020],['21',2021],['22',2022],['23',2023],['24',2024],['25',2025],['26',2026],['27',2027],['28',2028],['29',2029],['30',2030]],{} , class: 'payment-page__content__container2__form-box__form-left__box', id: 'payment_card_expire_yy'
+            .payment-page__content__container2__form-box__year
+              年
+        .payment-page__content__bottom-box
+          = f.label :セキュリティコード, class: 'payment-page__content__bottom-box__text1'
+          .payment-page__content__bottom-box__text2
+            必須
+        .payment-page__content__container3
+          .payment-page__content__container3__form
+            = f.text_field :cvc, type: 'text', class: 'payment-page__content__container3__form__box', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: '4', id: 'payment_card_security_code', name: 'cvc'
+          .payment-page__content__container3__help-box
+            .payment-page__content__container3__help-box__icon
+              ＊
+            .payment-page__content__container3__help-box__text
+              カード裏面の番号とは？
+        = f.submit '追加する', class: 'payment-page__content__register-btn'
+= render 'shared/main_footer'

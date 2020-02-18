@@ -5,10 +5,8 @@ class Item < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
-  # belongs_to :brand
   has_one :delivery, dependent: :destroy
   has_many :comments
-  # has_many :pictures
   has_many :favorites
   
   validates :name,             presence: true, length:{maximum: 40}
