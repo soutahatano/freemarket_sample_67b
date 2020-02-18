@@ -118,10 +118,12 @@ def new
   end
   
   def destroy
+    if @item.user_id == current_user.id
     @item.destroy
-    redirect_to root_path
+    else
+    redirect_to root_path, notice: '削除に成功しました。'
   end
-  
+end
   def buy
     if Credit.find_by(user_id: current_user.id).present?
       @credit = Credit.find_by(user_id: current_user.id)
