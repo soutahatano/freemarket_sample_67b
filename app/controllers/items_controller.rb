@@ -1,14 +1,16 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update, :buy]
+
+
+  before_action :set_item, only: [:edit,:destroy,:show,:update,:buy]
+
+
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
   end
-
-  def new
+def new
     @item = Item.new
   end
-
   def create
     if params[:category_id] == nil
       render :new
@@ -112,7 +114,14 @@ class ItemsController < ApplicationController
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
   end
-
+  
+  def destroy
+    if @item.user_id == current_user.id && @item.destroy
+      redirect_to root_path, notice: '削除に成功しました。'
+    else
+      render :show, notice: '削除に失敗しました。'
+  end
+end
   def buy
     if Credit.find_by(user_id: current_user.id).present?
       @credit = Credit.find_by(user_id: current_user.id)
@@ -120,7 +129,7 @@ class ItemsController < ApplicationController
       @credit_information = customer.cards.retrieve(@credit.card_id)
     end
   end
-
+  
   private
   
   def set_item

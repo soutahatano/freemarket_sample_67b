@@ -63,7 +63,8 @@
         = link_to edit_item_path(@item) do
           .item-show__page__box__buy-btn
             編集
-        = link_to do
+        = link_to item_path(@item), method: :delete do
+       
           .item-show__page__box__buy-btn
             削除
       - else 
