@@ -38,6 +38,12 @@ $(function(){
     var html =`<input class="sell-form__uploder__file" type="file" name="${picture}" id="${picture}">`
     $('.file_field_lists').append(html);
   };
+  $(document).ready( function(){
+      var img_count = $('.sell-form__uploder__box__lists__list').length;
+      for( var i = 0; i < img_count; i ++){
+        $(`#label-picture${i + 1}`).hide();
+      };
+  });
   $('#price_calc').on('input', function(){
     var data = $('#price_calc').val();
     var profit = Math.round(data * 0.9)
@@ -46,7 +52,6 @@ $(function(){
     $('.sell-form__price__right__text__r').prepend('¥') 
     $('.sell-form__price__right__rieki__r').html(profit)
     $('.sell-form__price__right__rieki__r').prepend('¥')
-    $('#price').val(profit) 
     if(profit == '') {
       $('.sell-form__price__right__rieki__r').html('');
       $('.sell-form__price__right__text__r').html('');
@@ -193,7 +198,8 @@ $(function(){
   });
   $(document).on('click',".sell-form__btn__box__exhibition",function(e){
   let error = $('.error_count').length;
-  if(error > 0){
+  let img = $(".sell-form__uploder__box__lists__list").length;
+  if(error > 0|| img < 1){
     alert("入力エラーがあります");
     e.preventDefault();
   }
