@@ -1,0 +1,19 @@
+= render 'shared/main_header'
+.u-s-content
+  = render 'shared/navigation_bar'
+  .payment
+    .payment__content
+      .payment__content__theme
+        クレジットカード情報
+    .payment__card.payment__icon
+      = image_tag "icon/#{@credit_information.brand.downcase}.svg", width: '50px', height: '35px'
+    .payment__card
+      = "**** **** **** " + @credit_information.last4
+    .payment__card
+      - exp_month = @credit_information.exp_month.to_s
+      - exp_year = @credit_information.exp_year.to_s.slice(2,3)
+      = exp_month + " / " + exp_year
+    =link_to credit_path, method: :delete  do
+      .payment__moov-new__box
+        クレジットカードを削除する
+= render 'shared/main_footer'

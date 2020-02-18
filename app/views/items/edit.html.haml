@@ -5,7 +5,7 @@
       .in-containner
         .in-containner__header 商品の情報を入力
         %form.sell-form
-        =form_with method: :post,url: items_path, local: true do |f|
+        = form_with  id: "item-edit-form",method: :patch,url: item_path(@item), local: true do |f|
           .sell-form__uploder 
             .sell-form__uploder__head 
               .sell-form__uploder__head__text 出品画像
@@ -13,30 +13,32 @@
             %p.in- 最大5枚までアップロードできます。
             .sell-form__uploder__box
               .sell-form__uploder__box__lists
+                -@item.pictures.each_with_index do |picture, index|
+                  .sell-form__uploder__box__lists__list
+                    = image_tag picture.picture.url
+                    = f.hidden_field :"image#{index + 1}", value: "true"
+                    %button.box-image__image-btn__delete{data: {picture: {id: "#label-picture#{index + 1}"}}}
+                      削除
               .sell-form__uploder__box__field
-                = f.label :picture5, "画像を選択", class: 'sell-form__uploder__box__field__picture', id: 'label-picture5'
-                = f.label :picture4, "画像を選択", class: 'sell-form__uploder__box__field__picture', id: 'label-picture4'
-                = f.label :picture3, "画像を選択", class: 'sell-form__uploder__box__field__picture', id: 'label-picture3'
-                = f.label :picture2, "画像を選択", class: 'sell-form__uploder__box__field__picture', id: 'label-picture2'
-                = f.label :picture1, "画像を選択", class: 'sell-form__uploder__box__field__picture', id: 'label-picture1'
+                -5.times do |index|
+                  = f.label :"picture#{index + 1}", "画像を選択", class: 'sell-form__uploder__box__field__picture', id: "label-picture#{index + 1}"
               .file_field_lists
-                = f.file_field :picture1, class: 'sell-form__uploder__file'
-                = f.file_field :picture2, class: 'sell-form__uploder__file'
-                = f.file_field :picture3, class: 'sell-form__uploder__file'
-                = f.file_field :picture4, class: 'sell-form__uploder__file'
-                = f.file_field :picture5, class: 'sell-form__uploder__file'
+                -@item.pictures.each_with_index do |picture, index|
+                  = f.file_field :"picture#{index + 1}", class: 'sell-form__uploder__file'
+                -(5 - @item.pictures.length).times do |index|
+                  = f.file_field :"picture#{5 - index}", class: 'sell-form__uploder__file'
           .sell-form__content
             .sell-form__content__1
               %label.sell-form__content__1__head
                 .sell-form__content__1__head__text 商品名
                 .sell-form__content__1__head__require 必須
-              =f.text_field :name, class:'sell-form__content__1__form__input' ,placeholder: '商品名（必須40文字以内）'
+              =f.text_field :name, class:'sell-form__content__1__form__input',value: @item.name
               .exhibition_error_messages#error_name
             .sell-form__content__2
               .sell-form__content__2__head
                 .sell-form__content__2__head__text 商品の説明
                 .sell-form__content__2__head__require 必須
-              =f.text_area :text, class:'sell-form__content__2__input' ,placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+              =f.text_area :text, class:'sell-form__content__2__input', value: @item.text ,placeholder:'商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
               .exhibition_error_messages#error_text
           .sell-form__content__clearfix 
             .sell-form__content__clearfix__sub 商品詳細
@@ -47,7 +49,11 @@
                     .sell-form__content__clearfix__form__group__head__text カテゴリー
                     .sell-form__content__clearfix__form__group__head__require 必須
                   .sell-form__content__clearfix__form__group__field
-                    = f.select :grandparent_category_id, Category.where(category_id: nil).map { |category| [category.name, category.id] },{prompt: "--"}
+                    = f.select :grandparent_category_id, Category.where(category_id: nil) .map { |category| [category.name, category.id] },{prompt:"--",selected:@item.category.parent.parent.id}
+                  .sell-form__content__clearfix__form__group__field#children_category
+                    = f.select :parent_category_id, Category.where(category_id: @item.category.parent.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected: @item.category.parent.id}
+                  .sell-form__content__clearfix__form__group__field#grandchildren_category
+                    = f.select :category_id, Category.where(category_id: @item.category.parent.id) .map { |category| [category.name, category.id] },{prompt: "--", selected:@item.category_id}
               .exhibition_error_messages#error_category
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
@@ -58,7 +64,7 @@
                       .sell-form__content__clearfix__form__group__head__require 任意
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                      = f.text_field :brand, class:'sell-form__content__1__form__input' ,placeholder: '例）アディダス'
+                      = f.text_field :brand, class:'sell-form__content__1__form__input',value: @item.brand ,placeholder: '例）アディダス'
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
                 .sell-form__content__clearfix__form
@@ -68,7 +74,7 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                      = f.collection_select :status_id, Status.all, :id, :name,{prompt: "--"}
+                      = f.collection_select :status_id, Status.all, :id, :name,{prompt: "--",selected:@item.status_id}
                     .exhibition_error_messages#error_status
           .sell-form__content__clearfix 
             .sell-form__content__clearfix__sub 配送について
@@ -79,7 +85,7 @@
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                  = f.collection_select :deliverycharge_id, Deliverycharge.all, :id, :name,{prompt: "--"}
+                  = f.collection_select :deliverycharge_id, Deliverycharge.all, :id, :name,{prompt: "--",selected: @item.delivery.deliverycharge_id}
                 .exhibition_error_messages#error_deliverycharge
               .sell-form__content__clearfix__form__group
                 .sell-form__content__clearfix__sub 
@@ -90,15 +96,14 @@
                       .sell-form__content__clearfix__form__group__head__require 必須
                     .sell-form__content__clearfix__form__group__field
                       %i.in-select__button
-                      = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--"}
-                    .exhibition_error_messages#error_prefecture
+                      = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "--",selected: @item.delivery.prefecture_id}
               .sell-form__content__clearfix__form__group
                 %label.sell-form__content__clearfix__form__group__head
                   .sell-form__content__clearfix__form__group__head__text 配送までの日数
                   .sell-form__content__clearfix__form__group__head__require 必須
                 .sell-form__content__clearfix__form__group__field
                   %i.in-select__button
-                  = f.collection_select :deliveryday_id, Deliveryday.all, :id, :name,{prompt: "--"}
+                  = f.collection_select :deliveryday_id, Deliveryday.all, :id, :name,{prompt: "--",selected: @item.delivery.deliveryday_id}
                 .exhibition_error_messages#error_deliveryday
           .sell-form__price
             .sell-form__price__left 販売価格(300~9,999,999)
@@ -127,6 +132,6 @@
                 またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
               %br
                 また、出品をもちまして加盟店規約に同意したことになります。
-            =f.submit "出品する", class: "sell-form__btn__box__exhibition"
+            =f.submit "更新する", class: "sell-form__btn__box__exhibition"
             .sell-form__btn__box__return もどる
 = render 'shared/logo_footer'

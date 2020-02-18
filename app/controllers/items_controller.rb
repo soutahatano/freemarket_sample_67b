@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show,:destroy]
+  before_action :set_item, only: [:edit,:destroy,:show,:update,:buy]
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category = Category.where(category_id: nil)
   end
 
   def create
@@ -82,15 +81,54 @@ class ItemsController < ApplicationController
     @category_children = Category.find(params[:id]).children
   end
 
+  def edit
+  end
+
+  def update
+    if @item.user_id == current_user.id
+      @item.update(item_params)
+      @item.delivery.update(delivery_params)
+      @picture.transaction do
+        @item.pictures.each_with_index do |picture, index|
+          if params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] != nil 
+            picture.update(picture: params[:"params#{index + 1}"])
+          elsif params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] ==  nil
+            picture.destroy
+          end
+        end
+        (5 - @item.pictures.length).times do |x|
+          picture = Picture.create(
+            picture: params[:"picture#{5 - x}"],
+            item_id: @item.id
+          )
+        end
+        redirect_to redirect_to root_path
+      rescue => e
+        puts e.message
+        redirect_to root_path
+      end
+    else
+      render 'edit'
+    end
+  end
+  
   def show
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
   end
-
+  
   def destroy
    @item.destroy
     redirect_to root_path
+  end
+  
+  def buy
+    if Credit.find_by(user_id: current_user.id).present?
+      @credit = Credit.find_by(user_id: current_user.id)
+      customer = Payjp::Customer.retrieve(@credit.customer_id)
+      @credit_information = customer.cards.retrieve(@credit.card_id)
+    end
   end
   
   private
