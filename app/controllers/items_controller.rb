@@ -101,7 +101,7 @@ class ItemsController < ApplicationController
           item_id: @item.id
         )
       end
-        redirect_to　root_path
+        redirect_to root_path
     else
       render 'edit'
     end
