@@ -87,25 +87,20 @@ def new
     if @item.user_id == current_user.id
       @item.update(item_params)
       @item.delivery.update(delivery_params)
-      @picture.transaction do
-        @item.pictures.each_with_index do |picture, index|
-          if params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] != nil 
-            picture.update(picture: params[:"params#{index + 1}"])
-          elsif params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] ==  nil
-            picture.destroy
-          end
+      @item.pictures.each_with_index do |picture, index|
+        if params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] != nil 
+          picture.update(picture: params[:"params#{index + 1}"])
+        elsif params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] ==  nil
+          picture.destroy
         end
-        (5 - @item.pictures.length).times do |x|
-          picture = Picture.create(
-            picture: params[:"picture#{5 - x}"],
-            item_id: @item.id
-          )
-        end
-        redirect_to redirect_to root_path
-      rescue => e
-        puts e.message
-        redirect_to root_path
       end
+      (5 - @item.pictures.length).times do |x|
+        picture = Picture.create(
+          picture: params[:"picture#{5 - x}"],
+          item_id: @item.id
+        )
+      end
+        redirect_to　root_path
     else
       render 'edit'
     end
