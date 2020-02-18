@@ -1,9 +1,6 @@
 class ItemsController < ApplicationController
-<<<<<<< HEAD
-  before_action :set_item, only: [:edit,:show,:update, :buy]
-=======
+
   before_action :set_item, only: [:edit,:destroy,:show,:update,:buy]
->>>>>>> bacda5c3020d09561ca308d616ff01757801fff4
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
