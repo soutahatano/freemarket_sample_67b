@@ -1,14 +1,13 @@
 class CreditsController < ApplicationController
   require "payjp"
   before_action :set_credit
+  before_action :move_show, only: [:index, :new]
   before_action :set_api_key, except: [:index, :new]
 
   def index
-    redirect_to credit_path(@credit) if @credit.present?
   end
 
   def new
-    redirect_to credits_path if @credit.present?
   end
 
   def create
@@ -72,6 +71,10 @@ class CreditsController < ApplicationController
 
   def set_api_key
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_access_key]
+  end
+
+  def move_show
+    redirect_to credit_path(@credit) if @credit.present?
   end
 
 end

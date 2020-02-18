@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users
-  resources :credits do
+  resources :credits, except: [:edit, :update] do
     collection do
       get 'pay'
     end
