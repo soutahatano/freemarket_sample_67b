@@ -1,8 +1,8 @@
 .buy-page{
   background: #f5f5f5;
   &__buy-content{
-    height: 580px;
-    margin: 0 400px;
+    width: 700px;
+    margin: 0 auto;
     background: #fafafa;
     font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
     &__confirmation{
@@ -82,9 +82,13 @@
               font-size: 13.5px;
               &__icon{
                 color: #0099e8;
+                padding-left: 42px;
               }
               &__text{
                 color: #0099e8;
+              }
+              &__credit{
+                margin: auto;
               }
             }
           }
@@ -102,9 +106,14 @@
               font-size: 13.5px;
               &__icon{
                 color: #0099e8;
+                padding-left: 42px;
               }
               &__text{
                 color: #0099e8;
+              }
+              &__address{
+                text-align: left;
+                padding-left: 42px;
               }
             }
           }
@@ -113,7 +122,7 @@
             padding: 23px 42px;
             &__text{
               height: 45px;
-              background: #888;
+              background: #ea352d;
               color: #fff;
               line-height: 48px;
               font-size: 14px;

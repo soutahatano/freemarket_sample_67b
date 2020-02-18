@@ -88,6 +88,11 @@ class ItemsController < ApplicationController
   end
 
   def buy
+    if Credit.find_by(user_id: current_user.id).present?
+      @credit = Credit.find_by(user_id: current_user.id)
+      customer = Payjp::Customer.retrieve(@credit.customer_id)
+      @credit_information = customer.cards.retrieve(@credit.card_id)
+    end
   end
 
   private

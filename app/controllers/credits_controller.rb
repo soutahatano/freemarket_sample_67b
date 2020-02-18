@@ -30,8 +30,8 @@ class CreditsController < ApplicationController
   end
 
   def show
-      customer = Payjp::Customer.retrieve(@credit.customer_id)
-      @credit_information = customer.cards.retrieve(@credit.card_id)
+    customer = Payjp::Customer.retrieve(@credit.customer_id)
+    @credit_information = customer.cards.retrieve(@credit.card_id)
   end
 
   def destroy
@@ -46,7 +46,7 @@ class CreditsController < ApplicationController
 
   def pay
     @item = Item.find(params[:format])
-    if @item.soldout
+    if @item.soldout == "true"
       redirect_to root_path
     else
       Payjp::Charge.create(

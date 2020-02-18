@@ -7,12 +7,17 @@
     .buy-page__buy-content__item
       .buy-page__buy-content__item__box
         .buy-page__buy-content__item__box__img
-          = image_tag "icon/member_photo_noimage_thumb.png", width: "65px", height: "65px"
+          = image_tag @item.pictures[0].picture.url, width: "80px", height: "80px"
         .buy-page__buy-content__item__box__detail
           .buy-page__buy-content__item__box__detail__name
-            これは笑顔の写真です
+            =@item.name
           .buy-page__buy-content__item__box__detail__price
-            ￥500 (税込) 送料込み
+            ¥
+            =@item.price
+            -if @item.delivery.deliverycharge_id == 1
+              (税込)送料込み
+            -else
+              (税込)送料別(着払い)
       .buy-page__buy-content__item__info
         .buy-page__buy-content__item__info__container
           .buy-page__buy-content__item__info__container__detail
@@ -23,29 +28,44 @@
               = @item.price
           .buy-page__buy-content__item__info__container__detail__point
             .buy-page__buy-content__item__info__container__detail__point__icon
-              □
-            .buy-page__buy-content__item__info__container__detail__point__text
-              ポイント使用(所持ポイント:P0)
+              □ポイント使用(所持ポイント:P0)
           .buy-page__buy-content__item__info__container__method-box
             .buy-page__buy-content__item__info__container__method-box__text
               支払い方法
             .buy-page__buy-content__item__info__container__method-box__under
-              .buy-page__buy-content__item__info__container__method-box__under__icon
-                ◇
-              .buy-page__buy-content__item__info__container__method-box__under__text
-                登録してください
+              -if current_user.credit.present?
+                .buy-page__buy-content__item__info__container__method-box__under__credit
+                  .payment__card
+                    = image_tag "icon/#{@credit_information.brand.downcase}.svg", width: '50px', height: '35px'
+                  .payment__card
+                    = "**** **** **** " + @credit_information.last4
+                  .payment__card
+                    - exp_month = @credit_information.exp_month.to_s
+                    - exp_year = @credit_information.exp_year.to_s.slice(2,3)
+                    = exp_month + " / " + exp_year
+              -else
+                =link_to credits_path do
+                  .buy-page__buy-content__item__info__container__method-box__under__icon
+                    ◇登録してください
           .buy-page__buy-content__item__info__container__address-box
             .buy-page__buy-content__item__info__container__address-box__text
               配送先
             .buy-page__buy-content__item__info__container__address-box__under
-              .buy-page__buy-content__item__info__container__address-box__under__icon
-                ◇
-              .buy-page__buy-content__item__info__container__address-box__under__text
-                登録してください
+              .buy-page__buy-content__item__info__container__address-box__under__address
+                %div
+                  〒
+                  =current_user.address.post_number
+                %div
+                  =current_user.address.prefecture.name
+                  =current_user.address.city
+                  =current_user.address.house_number
+                  =current_user.address.building
+                %div
+                  =current_user.first_name
+                  =current_user.last_name
           .buy-page__buy-content__item__info__container__purchase
-            -unless @item.soldout == "true"
+            -if @item.soldout == "false" && current_user.credit.present?
               = link_to pay_credits_path(@item) do
                 .buy-page__buy-content__item__info__container__purchase__text
                   購入する
-
 = render 'shared/logo_footer'
