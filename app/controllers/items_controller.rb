@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit,　:show,　:update, :buy]
+  before_action :set_item, only: [:edit, :show, :update, :buy]
   def index
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
