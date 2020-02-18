@@ -114,9 +114,9 @@ def new
   
   def destroy
     if @item.user_id == current_user.id && @item.destroy
-    @item.destroy
+      redirect_to root_path, notice: '削除に成功しました。'
     else
-    redirect_to root_path, notice: '削除に成功しました。'
+      render :show, notice: '削除に失敗しました。'
   end
 end
   def buy
