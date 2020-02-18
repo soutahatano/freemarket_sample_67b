@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit,:show]
+  before_action :set_item, only: [:edit,:show,:update]
 
   def index
     @items = Item.all
@@ -87,24 +87,22 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.user_id == current_user.id
-      item.update(item_params)
-      item.delivery.update(delivery_params)
-      item.pictures.each_with_index do |picture, index|
+    if @item.user_id == current_user.id
+      @item.update(item_params)
+      @item.delivery.update(delivery_params)
+      @item.pictures.each_with_index do |picture, index|
         if params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] != nil 
           picture.update(picture: params[:"params#{index + 1}"])
         elsif params[:"image#{index + 1}"] != "true" && params[:"params#{index + 1}"] ==  nil
           picture.destroy
         end
       end
-      (5 - item.pictures.length).times do |x|
+      (5 - @item.pictures.length).times do |x|
         picture = Picture.create(
           picture: params[:"picture#{5 - x}"],
-          item_id: item.id
+          item_id: @item.id
         )
       end
-      
       redirect_to root_path
     else
       render 'edit'
