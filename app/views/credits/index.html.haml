@@ -1,65 +1,16 @@
-= render 'shared/logo_header'
-
-.payment-page
-  .payment-page__content
-    .payment-page__content__theme
-      支払い方法
-
-    .payment-page__content__top-box
-      .payment-page__content__top-box__text1
-        カード番号
-      .payment-page__content__top-box__text2
-        必須
-    .payment-page__content__container1
-      .payment-page__content__container1__form
-        %input{placeholder: "半角英数字のみ", type: "text", value: "", class: "payment-page__content__container1__form__box"}
-    .payment-page__content__container1__icons
-      .payment-page__content__container1__icons__icon1
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon2
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon3
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon4
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon5
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon6
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-      .payment-page__content__container1__icons__icon7
-        = image_tag "icon/visa.svg", width: "33px", height: "33px"
-
-    .payment-page__content__middle-box
-      .payment-page__content__middle-box__text1
-        有効期限
-      .payment-page__content__middle-box__text2
-        必須
-    .payment-page__content__container2
-      .payment-page__content__container2__form-box
-        .payment-page__content__container2__form-box__form-left
-          %input{placeholder: "  01                       ↓", type: "text", value: "", class: "payment-page__content__container2__form-box__form-left__box"}
-        .payment-page__content__container2__form-box__month
-          月
-        .payment-page__content__container2__form-box__form-right
-          %input{placeholder: "  20                       ↓", type: "text", value: "", class: "payment-page__content__container2__form-box__form-right__box"}
-        .payment-page__content__container2__form-box__year
-          年
-
-    .payment-page__content__bottom-box
-      .payment-page__content__bottom-box__text1
-        セキュリティコード
-      .payment-page__content__bottom-box__text2
-        必須
-    .payment-page__content__container3
-      .payment-page__content__container3__form
-        %input{placeholder: "カード背面4桁もしくは3桁の番号", type: "text", value: "", class: "payment-page__content__container3__form__box"}
-      .payment-page__content__container3__help-box
-        .payment-page__content__container3__help-box__icon
-          ＊
-        .payment-page__content__container3__help-box__text
-          カード裏面の番号とは？
-
-    .payment-page__content__register-btn
-      登録する
-
-= render 'shared/logo_footer'
+= render 'shared/main_header'
+.u-s-content
+  = render 'shared/navigation_bar'
+  .payment
+    .payment__content
+      .payment__content__theme
+        支払い方法
+    .payment__moov-new
+      =link_to new_credit_path do
+        .payment__moov-new__box
+          %i.far.fa-credit-card
+          クレジットカードを追加する
+    .payment__attention-sentence
+      支払い方法について
+      %i.fas.fa-chevron-right.icon
+= render 'shared/main_footer'
