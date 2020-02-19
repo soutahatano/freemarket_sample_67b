@@ -21,7 +21,6 @@
             %tr
               %th 出品者
               %td
-                -# = link_to new_signup_path do
                 = @item.user.nickname
             %tr
               %th カテゴリー
@@ -84,7 +83,8 @@
                 %i.fa.fa-heart.red{data:{ids:{"item": @item.id,"user": current_user.id}}}
               - else
                 %i.fa.fa-heart{data:{ids:{"item": @item.id,"user": current_user.id}}}
-              %p.favorite-text いいね 
+              %p#favorite-count 
+                = @item.favorites.length
             .item-show__page__box__description__container__left-box__report-btn
               🇯🇵  不適切な商品の報告
           .item-show__page__box__description__container__lock-text
@@ -141,6 +141,8 @@
     $(document).on("click",".fa-heart",function(){
       var item = $(this).data("ids-item");
       var user = $(this).data("ids-user");
+      let count = $("#favorite-count").text().trim();
+        console.log(+count + 1);
       if($(this).hasClass("red")){
         $.ajax({
           type: 'DELETE',
@@ -151,6 +153,8 @@
         .done(function(){
           console.log('成功');
           $(".fa-heart").removeClass("red");
+          $("#favorite-count").empty();
+          $("#favorite-count").append(+count - 1);
         })
         .fail(function(){
           console.log('失敗');
@@ -165,6 +169,9 @@
         .done(function(){
           console.log('成功');
           $(".fa-heart").addClass("red");
+          //$("#favorite-count").replace(count, +count + 1);
+          $("#favorite-count").empty();
+          $("#favorite-count").append(+count + 1);
         })
         .fail(function(){
           console.log('失敗');

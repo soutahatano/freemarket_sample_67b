@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   protect_from_forgery except: [:create]
 
   def create
@@ -11,5 +10,4 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find_by(user_id: params[:user_id], item_id: params[:item_id])
     @favorite.destroy
   end
-
 end
