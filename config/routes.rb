@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "items#index"
   resources :items do
+    resources :comments, only: :create
     collection do
       get 'get_category_children', defaults: { format: 'json' }
     end
     member do
-      get 'buy'
+      get 'buy' 
     end
   end
+  
   resources :users
   resources :credits, except: [:edit, :update] do
     collection do

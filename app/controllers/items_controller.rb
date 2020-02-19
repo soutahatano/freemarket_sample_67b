@@ -113,14 +113,17 @@ def new
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
+    # @user=User.includes(:item).find(params[:id])
   end
   
   def destroy
     if @item.user_id == current_user.id && @item.destroy
-      redirect_to root_path, notice: '削除に成功しました。'
+      redirect_to root_path
     else
-      render :show, notice: '削除に失敗しました。'
-  end
+      render :show
+    end
 end
   def buy
     if Credit.find_by(user_id: current_user.id).present?

@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_one :delivery, dependent: :destroy
   has_many :comments
   has_many :favorites
-  
+  has_many :comments
   validates :name,             presence: true, length:{maximum: 40}
   validates :text,             presence: true, length:{maximum: 1000}
   validates :price,            presence: true
