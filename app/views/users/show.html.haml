@@ -1,4 +1,9 @@
 = render 'shared/main_header'
+-if @user == current_user
+  - breadcrumb :myuser
+-else
+  - breadcrumb :user, @user
+= breadcrumbs separator: " &rsaquo; "
 .u-s-content
   = render 'shared/navigation_bar'
   .u-s-content__main
@@ -7,12 +12,13 @@
         %figure
           = image_tag "icon/member_photo_noimage_thumb.png", size: "60x60"
         %h2
-          ユーザーネーム
+          =@user.nickname
         .user-lifomation
           %h5.user-lifomation__evaluation
             評価数
           %h5.user-lifomation__item
             出品数
+            = @user.items.length
     %section.u-s-content__main__notice
       %ul
         %li#notice-list.activ-list
