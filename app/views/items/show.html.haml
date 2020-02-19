@@ -142,4 +142,6 @@
         .item-show__page__low-text__right
           ＞
           = @item.name
+- breadcrumb :item, @item
+= breadcrumbs separator: " &rsaquo; "
 = render 'shared/main_footer'

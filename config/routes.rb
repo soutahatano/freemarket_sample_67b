@@ -11,8 +11,10 @@ Rails.application.routes.draw do
       get 'buy' 
     end
   end
-  
-  resources :users
+
+
+  resources :users, only: [:show]
+
   resources :credits, except: [:edit, :update] do
     collection do
       get 'pay'
