@@ -289,12 +289,23 @@
           &__left-box{
             display: flex;
             &__good-btn{
+              display: flex;
               color: #333;
               border: 1px solid #f5f5f5;
               background: #f5f5f5;
               border-radius: 40px;
               padding: 0 12px;
               margin-top: 16px;
+            }
+            .fa-heart{
+              margin-top: 22.5px;
+              padding-right: 5px;
+            }
+            .red{
+              color: red;
+            }
+            .favorite-text{
+              margin-top: 20px;
             }
             &__report-btn{
               color: #333;
