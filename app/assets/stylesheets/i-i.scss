@@ -434,9 +434,6 @@
           &__price{
             color: black;
           }
-          &__like{
-            color: rgb(64, 201, 231);
-          }
         }
         &__tax{
           margin-left: 10px;
@@ -672,8 +669,11 @@
       &__price{
         color: black;
       }
-      &__like{
-        color: rgb(64, 201, 231);
+      .fa.fa-heart{
+        display: flex;
+      }
+      #favorite-count{
+        padding-left: 5px;
       }
     }
     &__tax{
@@ -689,10 +689,9 @@
     left: 0;
     width: 0;
     height: 0;
-
-    border-top: 60px solid #f52f2f ;
+    border-top: 60px solid #f52f2f;
     border-right: 60px solid transparent;
     border-bottom: 60px solid transparent;
-    border-left: 60px solid #f52f2f  ;
+    border-left: 60px solid #f52f2f;
   }
 }

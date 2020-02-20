@@ -64,8 +64,7 @@
           .item-show__page__box__buy-btn
             編集
         = link_to item_path(@item), method: :delete do
-       
-          .item-show__page__box__buy-btn
+          .item-show__page__box__delete-btn
             削除
       - else 
         = link_to buy_item_path(@item) do
@@ -128,14 +127,9 @@
                   .item-show__page__other-item__lists__list1__text__low-box__price
                     = item.price
                   .item-show__page__other-item__lists__list1__text__low-box__good
-                    ♡ 2
-      .item-show__page__low-text
-        .item-show__page__low-text__left
-          FURIMA
-        .item-show__page__low-text__right
-          ＞
-          = @item.name
-- breadcrumb :item, @item
+                    %i.fa.fa-heart
+                    %p#favorite-count 
+                      = item.favorites.length
 = breadcrumbs separator: " &rsaquo; "
 = render 'shared/main_footer'
 

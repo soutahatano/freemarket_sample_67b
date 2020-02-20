@@ -121,19 +121,21 @@
           .top-category__lists__list1__text-box__box__price
             = item.price
           .top-category__lists__list1__text-box__box__like
-            ♡ 2
+            %i.fa.fa-heart
+              %p#favorite-count 
+                = item.favorites.length
         .top-category__lists__list1__text-box__tax
           (税込)
 .top-brand
   .top-brand__title
-    おすすめ商品(お気に入りに追加されている数が多いものを表示させる予定)
+    おすすめ商品
     .top-brand__title__sub-title
       商品
   .top-brand__lists
-    - @items.each do |item|
+    - @fav.each do |item|
       .top-brand__lists__list1
         .top-brand__lists__list1__img
-          = link_to "items/1" do
+          = link_to item_path(item) do
             = image_tag item.pictures[0].picture.url,size: "188x188"
         - if item.soldout == "true"
           .top-category__lists__list1__border-box
@@ -146,7 +148,9 @@
           .top-category__lists__list1__text-box__box__price
             = item.price
           .top-category__lists__list1__text-box__box__like
-            ♡ 2
+            %i.fa.fa-heart
+              %p#favorite-count 
+                = item.favorites.length
         .top-category__lists__list1__text-box__tax
           (税込)
 .top-banner
