@@ -7,14 +7,16 @@ describe Favorite, type: :model do
       expect(favorite).to be_valid
     end
 
-    it 'not create favorite' do
+    it 'is invalid without a user' do
       favorite = build(:favorite, user_id: "")
-      expect(favorite).to_not be_valid
+      favorite.valid?
+      expect(favorite.errors[:user]).to include('を入力してください')
     end
 
-    it 'not create favorite' do
+    it 'is invalid without a item' do
       favorite = build(:favorite, item_id: "")
-      expect(favorite).to_not be_valid
+      favorite.valid?
+      expect(favorite.errors[:item]).to include('を入力してください')
     end
   end
 end
