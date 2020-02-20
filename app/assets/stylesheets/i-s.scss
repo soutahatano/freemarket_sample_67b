@@ -24,6 +24,12 @@
           position: relative;
           border:1px solid #000;
           margin: 10px;
+          width: 190px;
+          white-space: nowrap;  
+          overflow: hidden;  
+          text-overflow: ellipsis;  
+          -webkit-text-overflow: ellipsis;  
+          -o-text-overflow: ellipsis;  
           &__text{
             background-color: #fff;
             padding: 16px;
@@ -68,6 +74,7 @@
             font-size: 16px;
             height: 100px;
             margin-bottom: 10px;
+            width: 100%;
           }
           &__comment{
             background: #aaa;
@@ -77,6 +84,11 @@
             line-height: 48px;
             text-align: center;
             font-size: 15px;
+            width: 100%;
+           }
+          .comments{
+            overflow: scroll;
+            height: 200px;
           }
         }
       }

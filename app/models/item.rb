@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_many :pictures
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
-  
+
   validates :name,             presence: true, length:{maximum: 40}
   validates :text,             presence: true, length:{maximum: 1000}
   validates :price,            presence: true

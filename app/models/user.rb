@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :deliveries
   has_many :favorites, dependent: :destroy
+  has_many :comments
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_NAME_REGEX = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/

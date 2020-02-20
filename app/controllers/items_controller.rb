@@ -113,6 +113,8 @@ class ItemsController < ApplicationController
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
     @favorites = Favorite.find_by(user_id: session[:user_id], item_id: @item)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
