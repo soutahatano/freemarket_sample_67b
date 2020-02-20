@@ -37,6 +37,7 @@
         a{
           .fa-chevron-right{
             color: #000000;
+            margin-right: -10px;
           }
         }
       }
@@ -50,7 +51,8 @@
   &__main{
     margin-left: 50px;
     &__user{
-      background-color: #ffaaaa;
+      background-color: #51e0e0;
+      background-image: url("https://www.transparenttextures.com/patterns/triangles.png");
       width: 700px;
       height: 200px;
       padding: 20px;
