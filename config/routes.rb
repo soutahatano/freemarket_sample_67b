@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "items#index"
   resources :items do
     collection do
+      get 'search'
       get 'get_category_children', defaults: { format: 'json' }
     end
     member do

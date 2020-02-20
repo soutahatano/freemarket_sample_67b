@@ -3,6 +3,26 @@
   border-top: 1px solid #dddddd;
   border-bottom: 2px solid #dddddd;
 }
+.search{
+  margin: 40px 150px 0px;
+  display: flex;
+  justify-content: left;
+  &__nav{
+    width: 280px;
+    height: 100%;
+  }
+  &__main{
+    &__titgle{
+      
+    }
+    &__content{
+      display: flex;
+      overflow: scroll;
+      width: 800px
+      // word-break: break-all;
+    }
+  }
+}
 .buy-page{
   background: #f5f5f5;
   &__buy-content{

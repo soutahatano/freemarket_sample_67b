@@ -2,10 +2,9 @@
   .header__middle-box
     = link_to root_path do
       .header__middle-box__img
-    .header__middle-box__search-box
-      %p.header__middle-box__search-box__text
-        キーワードから探す
-    .header__middle-box__icon
+    =form_with url: "/items/search", method: "GET",local: true do |f|
+      = f.text_field :text, placeholder: 'キーワドから探す',class: "header__middle-box__search-box"
+      = f.submit "・",class: "header__middle-box__icon"
   .header__middle-box__lower
     .header__middle-box__lower__left-box
       .header__middle-box__lower__left-box__category

@@ -130,6 +130,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.all.search_name(params[:text])
+  #   binding.pry
+  end
+
   private
 
   def set_item

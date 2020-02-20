@@ -1,0 +1,28 @@
+= render 'shared/main_header'
+.search
+  .search__nav
+  .search__main
+    .search__main__title
+    .search__main__content
+      - @items.each do |item|
+        .top-category__lists__list1
+          .top-category__lists__list1__img
+            = link_to item_path(item) do
+              = image_tag item.pictures[0].picture.url,size: "188x188"
+          - if item.soldout == "true"
+            .top-category__lists__list1__border-box
+            .top-category__lists__list1__text-box
+              .top-category__lists__list1__text-box__sold-out
+                SOLD
+          .top-category__lists__list1__text-box__name
+            = item.name
+          .top-category__lists__list1__text-box__box
+            .top-category__lists__list1__text-box__box__price
+              = item.price
+            .top-category__lists__list1__text-box__box__like
+              ♡ 2
+          .top-category__lists__list1__text-box__tax
+            (税込)
+= render 'shared/main_footer'
+- if user_signed_in?
+  = render 'shared/main_exhibition-btn'
