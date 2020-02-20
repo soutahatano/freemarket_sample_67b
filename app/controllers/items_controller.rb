@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :destroy, :show, :update, :buy]
 
   def index
-    @items = Item.all
-    @items = @items.order("created_at DESC").limit(5)
+    @items = Item.order("created_at DESC").limit(5)
+    @fav = Item.find(Favorite.group(:item_id).order('count(item_id) DESC').limit(5).pluck(:item_id))
   end
 
   def new
@@ -112,6 +112,7 @@ class ItemsController < ApplicationController
     @items = Item.all
     @items = @items.order("created_at DESC").limit(5)
     @item = Item.includes(:user, :delivery).find(params[:id])
+    @favorites = Favorite.find_by(user_id: session[:user_id], item_id: @item)
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end

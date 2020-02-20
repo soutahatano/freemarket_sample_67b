@@ -25,5 +25,5 @@ describe Credit, type: :model  do
     expect(credit.errors[:card_id]).to include('を入力してください')
   end
 
- end
+  end
 end

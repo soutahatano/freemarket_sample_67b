@@ -24,4 +24,5 @@ Rails.application.routes.draw do
       post 'phone_number'
     end
   end
+  resources :favorites, only: [:create, :destroy], defaults: { format: 'json' }
 end

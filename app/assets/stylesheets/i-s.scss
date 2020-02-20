@@ -41,99 +41,12 @@
             &__low-box{
               justify-content: space-between;
               display: flex;
-            }
-          }
-        }
-        &__list2{
-          &__img{
-            padding: 7px;
-          }
-          &__text{
-            background-color: #fff;
-            padding: 16px;
-            height: 110px;
-            &__name{
-              font-size: 16px;
-              color: #333;
-            }
-            &__low-box{
-              justify-content: space-between;
-              display: flex;
-            }
-          }
-        }
-        &__list3{
-          &__img{
-            padding: 7px;
-          }
-          &__text{
-            background-color: #fff;
-            padding: 16px;
-            height: 110px;
-            &__name{
-              font-size: 16px;
-              color: #333;
-            }
-            &__low-box{
-              justify-content: space-between;
-              display: flex;
-            }
-          }
-        }
-      }
-      &__lists2{
-        display: flex;
-        &__list1{
-          &__img{
-            padding: 7px;
-          }
-          &__text{
-            background-color: #fff;
-            padding: 16px;
-            height: 110px;
-            &__name{
-              font-size: 16px;
-              color: #333;
-            }
-            &__low-box{
-              justify-content: space-between;
-              display: flex;
-            }
-          }
-        }
-        &__list2{
-          &__img{
-            padding: 7px;
-          }
-          &__text{
-            background-color: #fff;
-            padding: 16px;
-            height: 110px;
-            &__name{
-              font-size: 16px;
-              color: #333;
-            }
-            &__low-box{
-              justify-content: space-between;
-              display: flex;
-            }
-          }
-        }
-        &__list3{
-          &__img{
-            padding: 7px;
-          }
-          &__text{
-            background-color: #fff;
-            padding: 16px;
-            height: 110px;
-            &__name{
-              font-size: 16px;
-              color: #333;
-            }
-            &__low-box{
-              justify-content: space-between;
-              display: flex;
+              &__good{
+                display: flex;
+                #favorite-count{
+                  padding-left: 5px;
+                }
+              }
             }
           }
         }
@@ -197,7 +110,7 @@
           font-size: 30px;
           border-radius: 4px;
           border: 1px solid;
-          border-color: black;
+          border-color: #adadad;
         }
         .fab.fab.fa-facebook{
           cursor: pointer;
@@ -207,7 +120,7 @@
           font-size: 30px;
           border-radius: 4px;
           border: 1px solid;
-          border-color: black;
+          border-color: #adadad;
         }
         .fab.fab.fa-line{
           cursor: pointer;
@@ -217,7 +130,7 @@
           font-size: 30px;
           border-radius: 4px;
           border: 1px solid;
-          border-color: black;
+          border-color: #adadad;
           width: 30px;
           padding-left: 1px;
         }
@@ -271,9 +184,17 @@
         }
       }
       &__buy-btn{
-        font-size: 24px;
-        line-height: 60px;
-        background: #ea352d;
+        font-size: 20px;
+        line-height: 46px;
+        background-color: #33cccc;
+        margin-top: 16px;
+        color: #fff;
+        text-align: center;
+      }
+      &__delete-btn{
+        font-size: 20px;
+        line-height: 46px;
+        background: #ff0000;
         margin-top: 16px;
         color: #fff;
         text-align: center;
@@ -285,8 +206,7 @@
         text-align: center;
       }
       &__description{
-        padding: 0 30px;
-        white-space: pre-wrap;
+        padding: 50px 30px;
         &__text{
           font-weight: 100;
           font-size: 18px;
@@ -296,33 +216,37 @@
           display: flex;
           &__lock-text{
             font-size: 13px;
-            margin: 20px 0 0 23px;
+            margin: 53px 0 0 80px;
           }
           &__left-box{
+            padding-top: 7px;
             display: flex;
             &__good-btn{
+              display: flex;
               color: #333;
-              border: 1px solid #f5f5f5;
-              background: #f5f5f5;
-              border-radius: 40px;
               padding: 0 12px;
-              margin-top: 16px;
+              margin-top: 26px;
+            }
+            .fa-heart{
+              margin-top: 24px;
+              padding-right: 5px;
+              font-size: 20px;
+              cursor: pointer;
+            }
+            .red{
+              color: red;
+            }
+            #favorite-count{
+              font-size: 20px;
+              margin: 22px 0 0 5px;
             }
             &__report-btn{
               color: #333;
-              border: 1px solid #f5f5f5;
-              background: #f5f5f5;
-              padding: 0 20px 20px 20px;
-              border-radius: 40px;
-              margin-top: 16px;
+              margin: 46px 0 0 40px;
             }
           }
         }
       }
-    }
-    &__low-text{
-      padding-top: 20px;
-      display: flex;
     }
   }
 }
