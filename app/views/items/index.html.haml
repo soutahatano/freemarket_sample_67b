@@ -106,26 +106,26 @@
       新規投稿商品
   .top-category__lists
     - @items.each do |item|
-      .top-category__lists__list1
-        .top-category__lists__list1__img
-          = link_to item_path(item) do
+      = link_to item_path(item) do
+        .top-category__lists__list1
+          .top-category__lists__list1__img
             = image_tag item.pictures[0].picture.url,size: "188x188"
-        - if item.soldout == "true"
-          .top-category__lists__list1__border-box
-          .top-category__lists__list1__text-box
-            .top-category__lists__list1__text-box__sold-out
-              SOLD
-        .top-category__lists__list1__text-box__name
-          = item.name
-        .top-category__lists__list1__text-box__box
-          .top-category__lists__list1__text-box__box__price
-            = item.price
-          .top-category__lists__list1__text-box__box__like
-            %i.fa.fa-heart
-              %p#favorite-count 
-                = item.favorites.length
-        .top-category__lists__list1__text-box__tax
-          (税込)
+          - if item.soldout == "true"
+            .top-category__lists__list1__border-box
+            .top-category__lists__list1__text-box
+              .top-category__lists__list1__text-box__sold-out
+                SOLD
+          .top-category__lists__list1__text-box__name
+            = item.name
+          .top-category__lists__list1__text-box__box
+            .top-category__lists__list1__text-box__box__price
+              = item.price
+            .top-category__lists__list1__text-box__box__like
+              %i.fa.fa-heart
+                %p#favorite-count 
+                  = item.favorites.length
+          .top-category__lists__list1__text-box__tax
+            (税込)
 .top-brand
   .top-brand__title
     おすすめ商品
@@ -133,26 +133,26 @@
       商品
   .top-brand__lists
     - @fav.each do |item|
-      .top-brand__lists__list1
-        .top-brand__lists__list1__img
-          = link_to item_path(item) do
+      = link_to item_path(item) do
+        .top-brand__lists__list1
+          .top-brand__lists__list1__img
             = image_tag item.pictures[0].picture.url,size: "188x188"
-        - if item.soldout == "true"
-          .top-category__lists__list1__border-box
-          .top-category__lists__list1__text-box
-            .top-category__lists__list1__text-box__sold-out
-              SOLD
-        .top-category__lists__list1__text-box__name
-          = item.name
-        .top-category__lists__list1__text-box__box
-          .top-category__lists__list1__text-box__box__price
-            = item.price
-          .top-category__lists__list1__text-box__box__like
-            %i.fa.fa-heart
-              %p#favorite-count 
-                = item.favorites.length
-        .top-category__lists__list1__text-box__tax
-          (税込)
+          - if item.soldout == "true"
+            .top-category__lists__list1__border-box
+            .top-category__lists__list1__text-box
+              .top-category__lists__list1__text-box__sold-out
+                SOLD
+          .top-category__lists__list1__text-box__name
+            = item.name
+          .top-category__lists__list1__text-box__box
+            .top-category__lists__list1__text-box__box__price
+              = item.price
+            .top-category__lists__list1__text-box__box__like
+              %i.fa.fa-heart
+                %p#favorite-count 
+                  = item.favorites.length
+          .top-category__lists__list1__text-box__tax
+            (税込)
 .top-banner
   .top-banner__inner
     .top-banner__inner__title

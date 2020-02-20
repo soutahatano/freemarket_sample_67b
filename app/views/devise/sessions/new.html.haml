@@ -19,7 +19,7 @@
           Googleでログイン
     .sign-up__content__login-form
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = f.email_field :email, class: "form-box", placeholder: "メールアドレス", label: false
-        = f.password_field :password, class: "form-box", placeholder: "パスワード", label: false
+        = f.email_field :email, class: "form-box", placeholder: "メールアドレス", label: false, value: "test@test.test"
+        = f.password_field :password, class: "form-box", placeholder: "パスワード", label: false, value: "testest"
         = f.submit "ログイン", class: 'log-in-btn'
 = render 'shared/logo_footer'
