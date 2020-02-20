@@ -21,11 +21,12 @@
             %tr
               %th 出品者
               %td
-                = @item.user.nickname
+                = link_to user_path(@item.user) do
+                  = @item.user.nickname
             %tr
               %th カテゴリー
               %td
-                = @item.category.name
+                = @item.category.name 
             %tr
               %th ブランド
               %td
@@ -89,14 +90,25 @@
               🇯🇵  不適切な商品の報告
           .item-show__page__box__description__container__lock-text
             🔑  あんしん・あんぜんへの取り組み
+  = form_with model: @comment, method: :post,url: item_comments_path(@item), local: true, id: "new_comment"do |f|
     .item-show__page__show-message
       .item-show__page__show-message__container
         .item-show__page__show-message__container__content
           .item-show__page__show-message__container__content__text
             相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          .item-show__page__show-message__container__content__text-box
-          .item-show__page__show-message__container__content__comment
-            コメントする
+          =f.text_area :text, class:"item-show__page__show-message__container__content__text-box"
+          =f.submit "コメントする",class:"item-show__page__show-message__container__content__comment" 
+          .comments
+            %h4 ＜コメント一覧＞
+            - if @comments
+              - @comments.each do |comment|
+                %p
+                  %strong
+                    = link_to comment.user.nickname, "/items/#{comment.item_id}"
+                    ：
+                  = comment.text
+           
+          
     .item-show__page__show-icons
       .item-show__page__show-icons__container
         .item-show__page__show-icons__container__facebook
@@ -130,6 +142,7 @@
                     %i.fa.fa-heart
                     %p#favorite-count 
                       = item.favorites.length
+- breadcrumb :item, @item
 = breadcrumbs separator: " &rsaquo; "
 = render 'shared/main_footer'
 
