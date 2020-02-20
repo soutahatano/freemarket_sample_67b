@@ -114,7 +114,6 @@ class ItemsController < ApplicationController
     @item = Item.includes(:user, :delivery).find(params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
-   
   end
 
   def destroy
@@ -123,8 +122,7 @@ class ItemsController < ApplicationController
     else
       render :show
     end
-
-end
+  end
 
   def buy
     if Credit.find_by(user_id: current_user.id).present?

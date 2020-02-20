@@ -1,7 +1,7 @@
 require 'rails_helper'
 describe Credit, type: :model  do
   describe '#create' do
-   
+
   it 'is valid with all columns exist ' do
     credit = build(:credit)
     expect(credit).to be_valid
