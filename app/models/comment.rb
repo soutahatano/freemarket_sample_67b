@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
-  belongs_to :item  # tweetsテーブルとのアソシエーション
+  belongs_to :item  
   belongs_to :user
-  validates :text, presence: true
+  validates :text,:user_id,:item_id, presence: true
+  
 end

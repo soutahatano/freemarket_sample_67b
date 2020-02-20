@@ -115,7 +115,7 @@ def new
     @item = Item.includes(:user, :delivery).find(params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
-    # @user=User.includes(:item).find(params[:id])
+   
   end
   
   def destroy

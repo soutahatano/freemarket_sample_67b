@@ -8,11 +8,10 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
     end
     member do
-      get 'buy' 
+      get 'buy'
     end
   end
-  
-  resources :users
+   resources :users
   resources :credits, except: [:edit, :update] do
     collection do
       get 'pay'

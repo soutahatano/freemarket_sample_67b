@@ -132,10 +132,7 @@
         height: 430px;
         width: 300px;
         white-space: nowrap;  
-
-     
-
-        &__img{
+      &__img{
           height: 300px;
           width: 300px;
           background-image: image-url("pict/pict-reason-01.jpg");
@@ -150,13 +147,9 @@
             margin: 0 5px 0 0;
             padding: 10px 20px;
           }
-        
         }
         &__text{
           text-align: center;
-          &-box__name{
-            
-          }
           &__content{
             display: flex;
             &__text1{
