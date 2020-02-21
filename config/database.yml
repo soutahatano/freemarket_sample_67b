@@ -5,9 +5,10 @@ default: &default
   adapter: mysql2
   username: root
   password:
-  socket: /tmp/mysql.sock
+  # socket: /tmp/mysql.sock
   encoding: utf8
   pool: 6
+  host: 127.0.0.1
 
 development:
   <<: *default
@@ -27,4 +28,3 @@ production:
   password: <%= ENV['DATABASE_PASSWORD'] %>
   # socket: /tmp/mysql.sock
   # socket: /var/lib/mysql/mysql.sock
-  host: 127.0.0.1
