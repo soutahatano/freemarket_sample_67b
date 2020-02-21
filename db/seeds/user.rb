@@ -11,7 +11,7 @@ birthday: "1964-11-05",
 phone_number: "09099009900")
 
 Address.create(
-  user: user.id,
+  user: "1",
   first_name: "不離",
   last_name: "真理雄",
   first_name_kana: "フリ",
