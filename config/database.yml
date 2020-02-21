@@ -4,7 +4,7 @@ default: &default
 #  timeout: 5000
   adapter: mysql2
   username: root
-  password:
+  # password:
   # socket: /tmp/mysql.sock
   encoding: utf8
   pool: 6
@@ -26,6 +26,6 @@ production:
   database: fremaket_production
   username: root
   # password:
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  # password: <%= ENV['DATABASE_PASSWORD'] %>
   # socket: /tmp/mysql.sock
   # socket: /var/lib/mysql/mysql.sock
