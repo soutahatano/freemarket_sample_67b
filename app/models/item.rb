@@ -6,8 +6,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_one :delivery, dependent: :destroy
-  has_many :comments
-  has_many :pictures
+  has_many :comments, dependent: :destroy
   has_many :pictures, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
